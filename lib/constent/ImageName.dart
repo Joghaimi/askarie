@@ -1,0 +1,1 @@
+const K_camel   = "images/Boy.png";
