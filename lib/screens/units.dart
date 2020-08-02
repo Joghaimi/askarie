@@ -108,7 +108,7 @@ class _UnitsState extends State<Units> {
                                       }
                                     },
                                     decoration: InputDecoration(
-                                      hintText: "احمد يبحث",
+                                      hintText: "بحث",
                                       hintStyle: TextStyle(
                                         fontSize: 20,
                                         color: Colors.white,

@@ -35,7 +35,7 @@ class _UnitBoxsState extends State<UnitBoxs> {
           height: 20 * SizeConfig.widthMultiplier,
           decoration: AppTheme.UnitBoxes,
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(2, 5, 2, 5),
+            padding:  EdgeInsets.fromLTRB(0.2*SizeConfig.widthMultiplier, 0.5*SizeConfig.heightMultiplier, 0.2*SizeConfig.widthMultiplier, 0.5*SizeConfig.heightMultiplier),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               textDirection: TextDirection.rtl,
@@ -45,7 +45,7 @@ class _UnitBoxsState extends State<UnitBoxs> {
                   child: Row(
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+                        padding:  EdgeInsets.fromLTRB(2*SizeConfig.widthMultiplier, 0.8*SizeConfig.heightMultiplier, 1.2*SizeConfig.widthMultiplier, 0.8*SizeConfig.heightMultiplier),
                         child: Container(
                           width: 20,
                           height: 20,
