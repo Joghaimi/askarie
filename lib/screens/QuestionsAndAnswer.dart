@@ -83,7 +83,7 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
                                 ? Icons.search
                                 : Icons.cancel,
                             color: Colors.white,
-                            size: !QuestionsAndAnswer.isSearching ? 50 : 30,
+                            size: !QuestionsAndAnswer.isSearching ? 7*SizeConfig.textMultiplier : 4*SizeConfig.textMultiplier,
                           ),
                         ),
                       ),
@@ -105,9 +105,9 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
                                   }
                                 },
                                 decoration: InputDecoration(
-                                  hintText: "احمد يبحث",
+                                  hintText: "بحث",
                                   hintStyle: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 2.2*SizeConfig.textMultiplier,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -117,7 +117,7 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
                       Expanded(
                         flex: 1,
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          padding: EdgeInsets.fromLTRB(0, 1.2*SizeConfig.heightMultiplier, 0, 0),
                           child: Text(
                             !QuestionsAndAnswer.isSearching ? AppName : "",
                             style: AppTheme.Titel.copyWith(
@@ -133,7 +133,7 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
                 Stack(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
+                      padding: EdgeInsets.fromLTRB(1.6 *SizeConfig.widthMultiplier, 1.7*SizeConfig.heightMultiplier, 1.6*SizeConfig.widthMultiplier,  1.7*SizeConfig.heightMultiplier),
                       child: Container(
                         height: SizeConfig.heightMultiplier * 87,
                         decoration: AppTheme.UnitBoxes,
@@ -144,7 +144,7 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
                               padding: EdgeInsets.fromLTRB(4*SizeConfig.widthMultiplier, 12*SizeConfig.widthMultiplier, 4*SizeConfig.widthMultiplier, 8*SizeConfig.widthMultiplier),
                               child: Container(
                                 width: 40 * SizeConfig.widthMultiplier,
-                                height: 40 * SizeConfig.widthMultiplier,
+                                height: 35 * SizeConfig.widthMultiplier,
                                 child: Center(
                                   child: Text(
                                     UnitsArray[Units.Unit_id][widget.QestionsNumber]

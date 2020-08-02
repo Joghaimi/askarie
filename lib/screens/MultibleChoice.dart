@@ -145,7 +145,7 @@ class _MultibleChoiseState extends State<MultibleChoise> {
                           children: <Widget>[
                             Container(
                               width: 40 * SizeConfig.widthMultiplier,
-                              height: 32 * SizeConfig.widthMultiplier,
+                              height: 35 * SizeConfig.widthMultiplier,
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(4*SizeConfig.widthMultiplier, 6*SizeConfig.widthMultiplier, 4*SizeConfig.widthMultiplier, 4*SizeConfig.widthMultiplier),
                                 child: Center(
