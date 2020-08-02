@@ -13,20 +13,15 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   /// ToDo :
-  ///   1- Create Logo For the Application             --> Done
-  ///   2- Create MockUp Screens                       --> Done
+  ///  --- Edit Sizing
+  ///  --- Create MockUp Screens                       --> Done
   ///      - Create MockeUP For Qestions and Search
-  ///   3- Remove SplashScreens                        --> Done
-  ///   4- Change the pages Depends on the Logo        --> Done
+  ///      - Create all images needed
   ///   5- Create All things For Android PlayStore     --> Done
   ///   6- Add Addmob
   ///   *************ADDMOB Information ***************
   ///   - APPID : ca-app-pub-9661386178168248~2297648329
-  ///   -
   ///   7- Add Make Random Test                        --> MayNotBeNeeded
-  ///   8- Add Share The App Button                    --> Done
-  ///   9- Create SharePage In Joghaimi.com            --> Done
-  ///   9- Make the BackButton make the ChoseWindow Display None --> Done
   @override
   Widget build(BuildContext context) {
     final DefaultCupertinoLocalizations localizations = CupertinoLocalizations.of(context);

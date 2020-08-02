@@ -83,7 +83,7 @@ class _MultibleChoiseState extends State<MultibleChoise> {
                       child: Icon(
                         !MultibleChoise.isSearching ? Icons.search : Icons.cancel,
                         color: Colors.white,
-                        size: !MultibleChoise.isSearching ? 50 : 30,
+                        size: !MultibleChoise.isSearching ? 7*SizeConfig.textMultiplier : 4*SizeConfig.textMultiplier,
                       ),
                     ),
                   ),
@@ -107,9 +107,9 @@ class _MultibleChoiseState extends State<MultibleChoise> {
 
                       },
                       decoration: InputDecoration(
-                        hintText: "احمد يبحث",
+                        hintText: "يبحث",
                         hintStyle: TextStyle(
-                          fontSize: 20,
+                          fontSize: 2.2*SizeConfig.textMultiplier,
                           color: Colors.white,
                         ),
 
@@ -120,7 +120,7 @@ class _MultibleChoiseState extends State<MultibleChoise> {
                   Expanded(
                     flex: 1,
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                      padding:  EdgeInsets.fromLTRB(0, 1.2*SizeConfig.heightMultiplier, 0, 0),
                       child: Text(
                         !MultibleChoise.isSearching ? AppName : "",
                         style: AppTheme.Titel.copyWith(
@@ -136,7 +136,7 @@ class _MultibleChoiseState extends State<MultibleChoise> {
                 Stack(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
+                      padding:  EdgeInsets.fromLTRB(1.6 *SizeConfig.widthMultiplier, 1.7*SizeConfig.heightMultiplier, 1.6*SizeConfig.widthMultiplier,  1.7*SizeConfig.heightMultiplier),
                       child: Container(
                         height: SizeConfig.heightMultiplier * 87,
                         decoration: AppTheme.UnitBoxes,
@@ -145,9 +145,9 @@ class _MultibleChoiseState extends State<MultibleChoise> {
                           children: <Widget>[
                             Container(
                               width: 40 * SizeConfig.widthMultiplier,
-                              height: 40 * SizeConfig.widthMultiplier,
+                              height: 32 * SizeConfig.widthMultiplier,
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(4*SizeConfig.widthMultiplier, 12*SizeConfig.widthMultiplier, 4*SizeConfig.widthMultiplier, 8*SizeConfig.widthMultiplier),
+                                padding: EdgeInsets.fromLTRB(4*SizeConfig.widthMultiplier, 6*SizeConfig.widthMultiplier, 4*SizeConfig.widthMultiplier, 4*SizeConfig.widthMultiplier),
                                 child: Center(
                                   child: Text(
                                     UnitsArray[Units.Unit_id][widget.QestionsNumber][1],
@@ -171,7 +171,7 @@ class _MultibleChoiseState extends State<MultibleChoise> {
                               ),
                             ),
                             SizedBox(
-                              height: 7*SizeConfig.heightMultiplier,
+                              height: 4*SizeConfig.heightMultiplier,
                             ),
                             GestureDetector(
                               child: Answers(
@@ -286,17 +286,16 @@ class _MultibleChoiseState extends State<MultibleChoise> {
                                               icon: _Score >40 ?ICON.SUCCESS:ICON.INFO,
                                               radius: 0,
                                               elevation: 10,
-                                              imageSize: 35,
+                                              imageSize: (3*SizeConfig.textMultiplier).toInt(),
                                               textColor: Colors.white,
                                               backgroundColor: _Score >40 ?Colors.green:Colors.red[500],
-                                              timeInSeconds: 2
+                                              timeInSeconds: 3
                                           );
 
                                           localStorage.saveData(Units_Name[Units.Unit_id],_Score.toInt());
                                           widget.Score=0;
                                           widget.QestionsNumber=0;
                                           Units.Unit_id=0;
-
                                           Navigator.pop(context);
                                         }
                                       });

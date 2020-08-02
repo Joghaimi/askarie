@@ -45,10 +45,10 @@ class _UnitBoxsState extends State<UnitBoxs> {
                   child: Row(
                     children: <Widget>[
                       Padding(
-                        padding:  EdgeInsets.fromLTRB(2*SizeConfig.widthMultiplier, 0.8*SizeConfig.heightMultiplier, 1.2*SizeConfig.widthMultiplier, 0.8*SizeConfig.heightMultiplier),
+                        padding:  EdgeInsets.fromLTRB(2*SizeConfig.widthMultiplier, 0.8*SizeConfig.heightMultiplier, 1.3*SizeConfig.widthMultiplier, 0.8*SizeConfig.heightMultiplier),
                         child: Container(
-                          width: 20,
-                          height: 20,
+                          width: 6*SizeConfig.widthMultiplier,
+                          height: 6*SizeConfig.widthMultiplier,
                           child: Text(""),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
@@ -74,14 +74,14 @@ class _UnitBoxsState extends State<UnitBoxs> {
                   child: Row(
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.fromLTRB(2, 0, 5*SizeConfig.widthMultiplier, 0),
+                        padding: EdgeInsets.fromLTRB(1.2*SizeConfig.widthMultiplier, 0, 5*SizeConfig.widthMultiplier, 0),
                         child: Text(
                           widget.NumerOfQestions,
                           style: AppTheme.UnitScore.copyWith(color: C_TextGray),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 18, 0, 18),
+                        padding:  EdgeInsets.fromLTRB(0, 2.5*SizeConfig.heightMultiplier, 0, 2.5*SizeConfig.heightMultiplier),
                         child: VerticalDivider(
                           color: C_TextGray_Deep,
                           thickness: 1.5,
