@@ -8,7 +8,15 @@ import 'screens/units.dart';
 import 'screens/MultibleChoice.dart';
 import 'screens/QuestionsAndAnswer.dart';
 
-void main() => runApp(MyApp());
+// ADS
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:firebase_admob/firebase_admob.dart';
+import 'function/ads.dart';
+void main(){
+  WidgetsFlutterBinding.ensureInitialized();
+  FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-9661386178168248~7055214624' );
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

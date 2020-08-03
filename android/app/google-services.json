@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "499100688211",
+    "firebase_url": "https://qda3a-8490c.firebaseio.com",
+    "project_id": "qda3a-8490c",
+    "storage_bucket": "qda3a-8490c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499100688211:android:10feca004fd2db49d1cba6",
+        "android_client_info": {
+          "package_name": "com.joghaimi.askarie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499100688211-edjhpu96e9kiofauk05sn31b7qdffb3c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmQxZ07hD0OGl6Uz4ddN3rAaKaTezWav8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499100688211-edjhpu96e9kiofauk05sn31b7qdffb3c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:flutter_flexible_toast/flutter_flexible_toast.dart';
 
+// ADS
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:firebase_admob/firebase_admob.dart';
+import '../function/ads.dart';
+
+
 
 // Component
 import '../component/Answers.dart';
@@ -27,6 +33,7 @@ import '../function/search.dart';
 
 
 class MultibleChoise extends StatefulWidget {
+//  ADMOB
   static final id = "MultibleChoise";
   static var isSearching = false;
   static var Search = false;
@@ -46,8 +53,16 @@ class MultibleChoise extends StatefulWidget {
 }
 
 class _MultibleChoiseState extends State<MultibleChoise> {
+  final ahmdaAds = ADS();
   @override
   Widget build(BuildContext context) {
+   //ADMOB
+    InterstitialAd MultibleChoiseAds = ahmdaAds.getNewInterstital();
+    BannerAd MultibleChoiseBannerAds =ahmdaAds.getNewBannerAd();
+    MultibleChoiseAds.load();
+    MultibleChoiseBannerAds.load();
+    MultibleChoiseBannerAds.show();
+
     return SafeArea(
       child: Scaffold(
         body: WillPopScope(
@@ -275,10 +290,14 @@ class _MultibleChoiseState extends State<MultibleChoise> {
                                         // Go To the Next Questions
                                         if (widget.QestionsNumber <
                                             (UnitsArray[Units.Unit_id].length - 1)) {
+//                                          ٍ// Shoe ADD At half of the way
+                                            if(widget.QestionsNumber ==(UnitsArray[Units.Unit_id].length/2).toInt()){
+                                              // Show the Add
+                                              MultibleChoiseAds.show();
+                                            }
                                           widget.QestionsNumber++;
                                         } else {
                                           var _Score =(widget.Score/(UnitsArray[Units.Unit_id].length))*100;
-
                                           FlutterFlexibleToast.showToast(
                                               message: "Your Score is ${_Score.toInt()}",
                                               toastLength: Toast.LENGTH_LONG,
@@ -296,14 +315,14 @@ class _MultibleChoiseState extends State<MultibleChoise> {
                                           widget.Score=0;
                                           widget.QestionsNumber=0;
                                           Units.Unit_id=0;
+                                          MultibleChoiseAds.show(); //not sowing
                                           Navigator.pop(context);
                                         }
                                       });
                                 }
                               });
                             }),
-                            // @ToDo ADD Ads  Here
-                            // @ToDo Make A function That Show Add each number of clicks {Try To make it Random}
+                            SizedBox(height: SizeConfig.heightMultiplier*5,),
                           ],
                         ),
                       ),
@@ -315,6 +334,7 @@ class _MultibleChoiseState extends State<MultibleChoise> {
             ),
           ),
         ),
+
       ),
     );
   }

@@ -2,6 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
+// ADS
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:firebase_admob/firebase_admob.dart';
+import '../function/ads.dart';
+
 // Component
 import '../component/Button.dart';
 import '../component/SearchResult.dart';
@@ -44,16 +49,21 @@ class QuestionsAndAnswer extends StatefulWidget {
 }
 
 class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
+  final ahmdaAds = ADS();
   @override
   Widget build(BuildContext context) {
+    InterstitialAd MultibleChoiseAds = ahmdaAds.getNewInterstital();
+    BannerAd MultibleChoiseBannerAds =ahmdaAds.getNewBannerAd();
+    MultibleChoiseAds.load();
+    MultibleChoiseBannerAds.show();
     return SafeArea(
       child: WillPopScope(
-        onWillPop:(){
+        onWillPop: () {
           setState(() {
-            if(!QuestionsAndAnswer.Search){
+            if (!QuestionsAndAnswer.Search) {
               Navigator.pop(context);
-            }else{
-              QuestionsAndAnswer.Search=false;
+            } else {
+              QuestionsAndAnswer.Search = false;
             }
           });
         },
@@ -63,7 +73,7 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
             child: Column(
               children: <Widget>[
                 Container(
-                  height: 8*SizeConfig.heightMultiplier,
+                  height: 8 * SizeConfig.heightMultiplier,
                   color: C_Purple,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -83,7 +93,9 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
                                 ? Icons.search
                                 : Icons.cancel,
                             color: Colors.white,
-                            size: !QuestionsAndAnswer.isSearching ? 7*SizeConfig.textMultiplier : 4*SizeConfig.textMultiplier,
+                            size: !QuestionsAndAnswer.isSearching
+                                ? 7 * SizeConfig.textMultiplier
+                                : 4 * SizeConfig.textMultiplier,
                           ),
                         ),
                       ),
@@ -107,7 +119,7 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
                                 decoration: InputDecoration(
                                   hintText: "بحث",
                                   hintStyle: TextStyle(
-                                    fontSize: 2.2*SizeConfig.textMultiplier,
+                                    fontSize: 2.2 * SizeConfig.textMultiplier,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -117,7 +129,8 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
                       Expanded(
                         flex: 1,
                         child: Padding(
-                          padding: EdgeInsets.fromLTRB(0, 1.2*SizeConfig.heightMultiplier, 0, 0),
+                          padding: EdgeInsets.fromLTRB(
+                              0, 1.2 * SizeConfig.heightMultiplier, 0, 0),
                           child: Text(
                             !QuestionsAndAnswer.isSearching ? AppName : "",
                             style: AppTheme.Titel.copyWith(
@@ -133,7 +146,11 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
                 Stack(
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.fromLTRB(1.6 *SizeConfig.widthMultiplier, 1.7*SizeConfig.heightMultiplier, 1.6*SizeConfig.widthMultiplier,  1.7*SizeConfig.heightMultiplier),
+                      padding: EdgeInsets.fromLTRB(
+                          1.6 * SizeConfig.widthMultiplier,
+                          1.7 * SizeConfig.heightMultiplier,
+                          1.6 * SizeConfig.widthMultiplier,
+                          1.7 * SizeConfig.heightMultiplier),
                       child: Container(
                         height: SizeConfig.heightMultiplier * 87,
                         decoration: AppTheme.UnitBoxes,
@@ -141,14 +158,18 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             Padding(
-                              padding: EdgeInsets.fromLTRB(4*SizeConfig.widthMultiplier, 12*SizeConfig.widthMultiplier, 4*SizeConfig.widthMultiplier, 8*SizeConfig.widthMultiplier),
+                              padding: EdgeInsets.fromLTRB(
+                                  4 * SizeConfig.widthMultiplier,
+                                  12 * SizeConfig.widthMultiplier,
+                                  4 * SizeConfig.widthMultiplier,
+                                  8 * SizeConfig.widthMultiplier),
                               child: Container(
                                 width: 40 * SizeConfig.widthMultiplier,
                                 height: 35 * SizeConfig.widthMultiplier,
                                 child: Center(
                                   child: Text(
-                                    UnitsArray[Units.Unit_id][widget.QestionsNumber]
-                                        [1],
+                                    UnitsArray[Units.Unit_id]
+                                        [widget.QestionsNumber][1],
                                     style: AppTheme.Question,
                                     textDirection: TextDirection.rtl,
                                     textAlign: TextAlign.center,
@@ -157,9 +178,14 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
                               ),
                             ),
                             Padding(
-                              padding:EdgeInsets.fromLTRB(4*SizeConfig.widthMultiplier, 0, 4*SizeConfig.widthMultiplier, 0),
+                              padding: EdgeInsets.fromLTRB(
+                                  4 * SizeConfig.widthMultiplier,
+                                  0,
+                                  4 * SizeConfig.widthMultiplier,
+                                  0),
                               child: StepProgressIndicator(
-                                totalSteps: UnitsArray[Units.Unit_id].length - 1,
+                                totalSteps:
+                                    UnitsArray[Units.Unit_id].length - 1,
                                 currentStep: widget.QestionsNumber,
                                 size: 8,
                                 padding: 0,
@@ -169,12 +195,19 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
                               ),
                             ),
                             SizedBox(
-                              height: 7*SizeConfig.heightMultiplier,
+                              height: 7 * SizeConfig.heightMultiplier,
                             ),
                             Padding(
-                              padding:EdgeInsets.fromLTRB(4*SizeConfig.heightMultiplier, 8*SizeConfig.heightMultiplier, 4*SizeConfig.heightMultiplier, 4*SizeConfig.heightMultiplier),
+                              padding: EdgeInsets.fromLTRB(
+                                  4 * SizeConfig.heightMultiplier,
+                                  8 * SizeConfig.heightMultiplier,
+                                  4 * SizeConfig.heightMultiplier,
+                                  4 * SizeConfig.heightMultiplier),
                               child: Text(
-                                UnitsArray[Units.Unit_id][widget.QestionsNumber][1+UnitsArray[Units.Unit_id][widget.QestionsNumber][6]],
+                                UnitsArray[Units.Unit_id][widget.QestionsNumber]
+                                    [1 +
+                                        UnitsArray[Units.Unit_id]
+                                            [widget.QestionsNumber][6]],
                                 style: AppTheme.QestionsAndAnswersText,
                                 textDirection: TextDirection.rtl,
                               ),
@@ -186,19 +219,25 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
                               setState(() {
                                 if (widget.QestionsNumber <
                                     (UnitsArray[Units.Unit_id].length - 1)) {
+                                  // Shoe ADD At half of the way
+                                  if (widget.QestionsNumber ==
+                                      (UnitsArray[Units.Unit_id].length / 2)
+                                          .toInt()) {
+                                    // Show the Add
+                                    MultibleChoiseAds.show();
+                                  }
                                   widget.QestionsNumber++;
                                 } else {
                                   Units.Unit_id = 0;
+                                  MultibleChoiseAds.show(); //not sowing
                                   Navigator.pop(context);
                                 }
                               });
                             }),
-                            Expanded(
-                              child: Text(""),
-                            ),
 
-                            // @ToDo ADD Ads  Here
-                            // @ToDo Make A function That Show Add each number of clicks {Try To make it Random}
+                            SizedBox(
+                              height: SizeConfig.heightMultiplier * 5,
+                            ),
                           ],
                         ),
                       ),

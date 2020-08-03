@@ -3,6 +3,11 @@ import 'package:askarie/themes/AppTheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// ADS
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:firebase_admob/firebase_admob.dart';
+import '../function/ads.dart';
+
 // Constant
 import '../constent/Color.dart';
 import '../constent/Text.dart';
@@ -28,8 +33,13 @@ class SearchResult extends StatefulWidget {
 }
 
 class _SearchResultState extends State<SearchResult> {
+  final ahmdaAds = ADS();
+
   @override
   Widget build(BuildContext context) {
+    InterstitialAd MultibleChoiseAds = ahmdaAds.getNewInterstital();
+    MultibleChoiseAds.load();
+
     return Visibility(
       visible: widget.rs,
       child: Positioned(
@@ -71,6 +81,7 @@ class _SearchResultState extends State<SearchResult> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
+                                        MultibleChoiseAds.show();
                                         setState(() {
                                           widget.rs = false;
                                           Units.Search = false;
