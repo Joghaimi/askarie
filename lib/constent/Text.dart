@@ -1,3 +1,3 @@
-const AppName = "عسكرية";
+const AppName = "قطاعة";
 const K_MultiChoise = "اختيار من متعدد";
 const K_QuestionsAndAnswer = "سؤال وجواب";
