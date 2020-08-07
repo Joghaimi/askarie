@@ -54,18 +54,32 @@ class MultibleChoise extends StatefulWidget {
 
 class _MultibleChoiseState extends State<MultibleChoise> {
   final ahmdaAds = ADS();
+  InterstitialAd MultibleChoiseAds;
+  BannerAd MultibleChoiseBannerAds;
   @override
-  Widget build(BuildContext context) {
-   //ADMOB
-    InterstitialAd MultibleChoiseAds = ahmdaAds.getNewInterstital();
-    BannerAd MultibleChoiseBannerAds =ahmdaAds.getNewBannerAd();
+  void initState() {
+    WidgetsFlutterBinding.ensureInitialized();
+    FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-9661386178168248~7055214624' );
+    MultibleChoiseAds = ahmdaAds.getNewInterstital();
+    MultibleChoiseBannerAds =ahmdaAds.getNewBannerAd();
     MultibleChoiseAds.load();
     MultibleChoiseBannerAds.load();
+    super.initState();
+  }
+  @override
+  void dispose() {
+    MultibleChoiseBannerAds.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     MultibleChoiseBannerAds.show();
 
     return SafeArea(
       child: Scaffold(
         body: WillPopScope(
+          // ignore: missing_return
           onWillPop:(){
             setState(() {
               if(!MultibleChoise.Search){
@@ -90,10 +104,7 @@ class _MultibleChoiseState extends State<MultibleChoise> {
                     flex: 1,
                     child: GestureDetector(
                       onTap: () {
-                        setState(() {
-                          MultibleChoise.isSearching = !MultibleChoise.isSearching;
-
-                        });
+                        setState(() {MultibleChoise.isSearching = !MultibleChoise.isSearching;});
                       },
                       child: Icon(
                         !MultibleChoise.isSearching ? Icons.search : Icons.cancel,
@@ -176,7 +187,7 @@ class _MultibleChoiseState extends State<MultibleChoise> {
                             Padding(
                               padding:  EdgeInsets.fromLTRB(4*SizeConfig.widthMultiplier, 0, 4*SizeConfig.widthMultiplier, 0),
                               child: StepProgressIndicator(
-                                totalSteps: UnitsArray[Units.Unit_id].length - 1,
+                                totalSteps: UnitsArray[Units.Unit_id].length ,
                                 currentStep: widget.QestionsNumber,
                                 size: 8,
                                 padding: 0,
@@ -290,28 +301,23 @@ class _MultibleChoiseState extends State<MultibleChoise> {
                                         // Go To the Next Questions
                                         if (widget.QestionsNumber <
                                             (UnitsArray[Units.Unit_id].length - 1)) {
-//                                          ٍ// Shoe ADD At half of the way
-                                            if(widget.QestionsNumber ==(UnitsArray[Units.Unit_id].length/2).toInt()){
-                                              // Show the Add
-                                              MultibleChoiseAds.show();
-                                            }
                                           widget.QestionsNumber++;
                                         } else {
-                                          var _Score =(widget.Score/(UnitsArray[Units.Unit_id].length))*100;
+                                          var Score =(widget.Score/(UnitsArray[Units.Unit_id].length))*100;
                                           FlutterFlexibleToast.showToast(
-                                              message: "Your Score is ${_Score.toInt()}",
+                                              message: "Your Score is ${Score.toInt()}",
                                               toastLength: Toast.LENGTH_LONG,
                                               toastGravity: ToastGravity.BOTTOM,
-                                              icon: _Score >40 ?ICON.SUCCESS:ICON.INFO,
+                                              icon: Score >40 ?ICON.SUCCESS:ICON.INFO,
                                               radius: 0,
                                               elevation: 10,
                                               imageSize: (3*SizeConfig.textMultiplier).toInt(),
                                               textColor: Colors.white,
-                                              backgroundColor: _Score >40 ?Colors.green:Colors.red[500],
+                                              backgroundColor: Score >40 ?Colors.green:Colors.red[500],
                                               timeInSeconds: 3
                                           );
 
-                                          localStorage.saveData(Units_Name[Units.Unit_id],_Score.toInt());
+                                          localStorage.saveData(Units_Name[Units.Unit_id],Score.toInt());
                                           widget.Score=0;
                                           widget.QestionsNumber=0;
                                           Units.Unit_id=0;

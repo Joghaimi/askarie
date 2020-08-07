@@ -50,14 +50,30 @@ class QuestionsAndAnswer extends StatefulWidget {
 
 class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
   final ahmdaAds = ADS();
+  InterstitialAd MultibleChoiseAds;
+  BannerAd MultibleChoiseBannerAds;
+  @override
+  void initState() {
+    WidgetsFlutterBinding.ensureInitialized();
+    FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-9661386178168248~7055214624' );
+    MultibleChoiseAds = ahmdaAds.getNewInterstital();
+    MultibleChoiseBannerAds =ahmdaAds.getNewBannerAd();
+    MultibleChoiseAds.load();
+    MultibleChoiseBannerAds.load();
+    super.initState();
+  }
+  void dispose() {
+    MultibleChoiseBannerAds.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    InterstitialAd MultibleChoiseAds = ahmdaAds.getNewInterstital();
-    BannerAd MultibleChoiseBannerAds =ahmdaAds.getNewBannerAd();
-    MultibleChoiseAds.load();
     MultibleChoiseBannerAds.show();
     return SafeArea(
       child: WillPopScope(
+
+        // ignore: missing_return
         onWillPop: () {
           setState(() {
             if (!QuestionsAndAnswer.Search) {
@@ -219,13 +235,6 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
                               setState(() {
                                 if (widget.QestionsNumber <
                                     (UnitsArray[Units.Unit_id].length - 1)) {
-                                  // Shoe ADD At half of the way
-                                  if (widget.QestionsNumber ==
-                                      (UnitsArray[Units.Unit_id].length / 2)
-                                          .toInt()) {
-                                    // Show the Add
-                                    MultibleChoiseAds.show();
-                                  }
                                   widget.QestionsNumber++;
                                 } else {
                                   Units.Unit_id = 0;

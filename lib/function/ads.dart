@@ -19,7 +19,7 @@ class ADS{
   BannerAd getNewBannerAd(){
      return BannerAd(
        adUnitId:'ca-app-pub-3940256099942544/6300978111',////@TODO Change the ID ca-app-pub-9661386178168248/9731696464
-       size: AdSize.smartBanner,
+       size: AdSize.fullBanner,
        targetingInfo: targetingInfo,
      );
   }
