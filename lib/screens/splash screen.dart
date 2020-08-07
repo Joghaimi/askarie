@@ -84,9 +84,8 @@ class _splash_screenState extends State<splash_screen> {
 
     return Future.delayed(const Duration(milliseconds: 4000), () {
       setState(() {
-//        Navigator.pushReplacementNamed(context, Units.id);
-//        Navigator.pushReplacementNamed(context, MultibleChoise.id);
-      });
+        Navigator.pushReplacementNamed(context, Units.id);
+        });
     });
   }
 }
