@@ -318,6 +318,7 @@ class _MultibleChoiseState extends State<MultibleChoise> {
                                           );
 
                                           localStorage.saveData(Units_Name[Units.Unit_id],Score.toInt());
+                                          Units.UnitScore[Units.Unit_id]=Score.toInt();
                                           widget.Score=0;
                                           widget.QestionsNumber=0;
                                           Units.Unit_id=0;

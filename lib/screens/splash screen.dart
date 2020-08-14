@@ -82,7 +82,7 @@ class _splash_screenState extends State<splash_screen> {
       Units.UnitScore[i] = await localStorage.getData(Units_Name[i]);
     }
 
-    return Future.delayed(const Duration(milliseconds: 4000), () {
+    return Future.delayed(const Duration(milliseconds: 2000), () {
       setState(() {
         Navigator.pushReplacementNamed(context, Units.id);
         });
