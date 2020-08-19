@@ -176,10 +176,10 @@ class _UnitsState extends State<Units> {
             floatingActionButton: FloatingActionButton.extended(
                 onPressed: () {
                   WcFlutterShare.share(
-                      sharePopupTitle: 'مادة العسكرية',
-                      subject: 'العسكرية ',
+                      sharePopupTitle: 'قطاعه',
+                      subject: 'قطاعه ',
                       text:
-                          'حمل تطبيق مادة العسكرية : joghaimi.com/askarie.html',
+                          'حمل تطبيق قطاعه : joghaimi.com/Qata3a.html',
                       mimeType: 'text/plain');
                 },
                 icon: Icon(Icons.share),
