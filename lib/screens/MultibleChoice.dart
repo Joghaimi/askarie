@@ -59,7 +59,7 @@ class _MultibleChoiseState extends State<MultibleChoise> {
   @override
   void initState() {
     WidgetsFlutterBinding.ensureInitialized();
-    FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-9661386178168248~7055214624' );
+    FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-9661386178168248~7055214624' );//ca-app-pub-9661386178168248~2297648329
     MultibleChoiseAds = ahmdaAds.getNewInterstital();
     MultibleChoiseBannerAds =ahmdaAds.getNewBannerAd();
     MultibleChoiseAds.load();

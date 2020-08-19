@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   ///   5- Create All things For Android PlayStore     --> Done
   ///   6- Add Addmob
   ///   *************ADDMOB Information ***************
-  ///   - APPID : ca-app-pub-9661386178168248~2297648329
+  ///   - APPID : ca-app-pub-9661386178168248~7055214624
   ///   7- Add Make Random Test                        --> MayNotBeNeeded
   @override
   Widget build(BuildContext context) {
