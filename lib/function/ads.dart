@@ -3,7 +3,7 @@ import 'package:firebase_admob/firebase_admob.dart';
 class ADS{
   MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
       nonPersonalizedAds: true,
-      keywords: <String>['student','collage','Young','arab','jordan']
+      keywords: <String>['student','collage','Young','arab','jordan','learn','engineer']
   );
 
 
