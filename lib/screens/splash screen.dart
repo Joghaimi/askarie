@@ -16,6 +16,7 @@ import '../themes/size_config.dart';
 
 //Screens
 import 'units.dart';
+import '../screens/AllMaterial.dart';
 
 class splash_screen extends StatefulWidget {
   static final id = 'splash_screen';
@@ -81,11 +82,16 @@ class _splash_screenState extends State<splash_screen> {
     for (int i = 0; i < Units_Name.length; i++) {
       Units.UnitScore[i] = await localStorage.getData(Units_Name[i]);
     }
-
-    return Future.delayed(const Duration(milliseconds: 2000), () {
+    return Future.delayed(const Duration(milliseconds: 200), () {
       setState(() {
-        Navigator.pushReplacementNamed(context, Units.id);
+        Navigator.pushReplacementNamed(context, AllMaterial.id);
         });
     });
+
+//    return Future.delayed(const Duration(milliseconds: 2000), () {
+//      setState(() {
+//        Navigator.pushReplacementNamed(context, Units.id);
+//        });
+//    }); @TODO UNCOMMENT THIS
   }
 }

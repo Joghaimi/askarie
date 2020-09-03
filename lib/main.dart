@@ -7,11 +7,9 @@ import 'screens/splash screen.dart';
 import 'screens/units.dart';
 import 'screens/MultibleChoice.dart';
 import 'screens/QuestionsAndAnswer.dart';
-
+import 'screens/AllMaterial.dart';
 // ADS
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:firebase_admob/firebase_admob.dart';
-import 'function/ads.dart';
 void main(){
   WidgetsFlutterBinding.ensureInitialized();
   FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-9661386178168248~7055214624' );
@@ -21,18 +19,16 @@ void main(){
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   /// ToDo :
-  ///  --- Edit Sizing
-  ///  --- Create MockUp Screens                       --> Done
-  ///      - Create MockeUP For Qestions and Search
-  ///      - Create all images needed
-  ///   5- Create All things For Android PlayStore     --> Done
-  ///   6- Add Addmob
-  ///   *************ADDMOB Information ***************
-  ///   - APPID : ca-app-pub-9661386178168248~7055214624
-  ///   7- Add Make Random Test                        --> MayNotBeNeeded
+  ///  Change the Bottom APP BAR
+  ///  Create Material Component
+  ///  Download material and read them
+  ///  Redesign Material Page
+  ///  Make it Responsive all tings
+
   @override
   Widget build(BuildContext context) {
     final DefaultCupertinoLocalizations localizations = CupertinoLocalizations.of(context);
+
     return MaterialApp(
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -47,6 +43,7 @@ class MyApp extends StatelessWidget {
         Units.id : (context) => Units(),
         MultibleChoise.id : (context) => MultibleChoise(),
         QuestionsAndAnswer.id : (context) => QuestionsAndAnswer(),
+        AllMaterial.id : (context) => AllMaterial(),
       },
     );
   }

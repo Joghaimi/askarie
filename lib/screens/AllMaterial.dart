@@ -1,8 +1,13 @@
 // packages
 import 'package:flutter/material.dart';
-
+// Constant
+import '../constent/Color.dart';
+// Component
+import '../component/MyBottomAppBar.dart';
 
 class AllMaterial extends StatefulWidget {
+  static final id = "AllMaterial";
+
   @override
   _AllMaterialState createState() => _AllMaterialState();
 }
@@ -10,6 +15,12 @@ class AllMaterial extends StatefulWidget {
 class _AllMaterialState extends State<AllMaterial> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Container(
+        color: SecondryColor,
+        child: Text(";"),
+    ),
+      bottomNavigationBar: MyBottomAppBar(),
+    );
   }
 }
