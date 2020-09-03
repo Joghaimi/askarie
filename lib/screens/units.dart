@@ -180,6 +180,7 @@ class _UnitsState extends State<Units> {
                       subject: 'قطاعه ',
                       text:
                           'حمل تطبيق قطاعه : joghaimi.com/Qata3a.html',
+
                       mimeType: 'text/plain');
                 },
                 icon: Icon(Icons.share),
