@@ -22,6 +22,7 @@ dependencies:
   loading_animations: ^2.1.0
   font_awesome_flutter: ^8.8.1
   dio: ^3.0.10
+  week_of_year: ^1.0.1
 
 
 

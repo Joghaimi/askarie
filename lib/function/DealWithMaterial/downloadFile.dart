@@ -8,41 +8,46 @@ final String filename = "ahmad.json";
 
 class DownloadFile{
   DownloadFile();
-  var FolderPath;
   var FolderURL;
   var FileName;
   bool DownloadStatus =false;
-  bool ErrorDownload;
-  bool internetConnectionsta =false;
-  void internetConnection() async{
+  bool ErrorDownload = false;
+  Future internetConnectionsta ;
+  Future<bool> internetConnection() async{
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        print('connected');
-        internetConnectionsta=true;
+        return true;
+      }else{
+        return true;
       }
     } on SocketException catch (_) {
-      internetConnectionsta=false;
+      return false;
     }
   }
-  Future<void> downloadFile(var FolderPath, var FolderURL,var FileName) async {
-    this.FolderPath =FolderPath;
+  Future<bool> downloadFile(var FolderURL,var FileName) async {
     this.FolderURL  =FolderURL;
     this.FileName   =FileName;
     var documentDir = await getApplicationDocumentsDirectory();
-    var Fullpath = documentDir.path + "Temp/Kewy/Qata3a/" + filename;
+    var Fullpath = documentDir.path + "Temp/Kewy/Qata3a/" + this.FileName;
     Dio dio = Dio();
     try {
-      dio.download(
-          URL,
+      await dio.download(
+          this.FolderURL,
           Fullpath,
-          onReceiveProgress: (rcv, total) {rcv ==total?DownloadStatus =true:DownloadStatus=false;}
+          onReceiveProgress: (rcv, total) {
+            print('$rcv / $total');
+            rcv ==total?DownloadStatus =true:DownloadStatus=false;
+          },
       );
-//      print(Fullpath);
+      return true;
     } catch (e) {
+      print('OOOO Download ERRO');
       ErrorDownload=true;
-//      print(e);
+      DownloadStatus =false;
+      return false;
     }
+//    return false;
   }
 
 }
