@@ -7,3 +7,4 @@ const C_Gray =  Color(0xFFEEEEEE);
 const C_TextGray =  Color(0xFFBEBEBE);
 const C_TextGray_Deep =  Color(0xFF9A9A9A);
 var C_Purpel_Color =[Colors.white,Colors.white,Colors.white,Colors.white];
+const MaterialColorArray =[Color(0xFF0D113E),Color(0xFF855EF8),Color(0xFFE54980),Color(0xFF18BF8D),Color(0xFF32B6E7),];

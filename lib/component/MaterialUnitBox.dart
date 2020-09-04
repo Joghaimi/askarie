@@ -28,7 +28,7 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
       child: Container(
         height: SizeConfig.heightMultiplier * 10,
         decoration:
-            AppTheme.MaterialUnitBoxContainer.copyWith(color: PrimaryColor),
+            AppTheme.MaterialUnitBoxContainer.copyWith(color: MaterialColorArray[1]),
         child: Padding(
           padding: EdgeInsets.fromLTRB(
               SizeConfig.widthMultiplier * 1,
