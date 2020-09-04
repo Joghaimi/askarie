@@ -82,6 +82,29 @@ class AppTheme{
     ],
     color: Colors.white,
   );
+  static final BoxDecoration MaterialUnitBoxContainer= BoxDecoration(
+    borderRadius: BorderRadius.all(Radius.circular(SizeConfig.heightMultiplier*2.7)),
+    color: C_Purple,
+  );
+  static final TextStyle MaterialName = TextStyle(
+    color: C_White,
+    fontFamily: 'ArbFONTS-Asmaa',
+    fontSize: 3.5 * SizeConfig.textMultiplier,
+    height: 0.15 * SizeConfig.heightMultiplier,
+  );
+  static final TextStyle MaterialScore = TextStyle(
+    color: C_White,
+    fontFamily: 'ArbFONTS-Asmaa',
+    fontSize: 2 * SizeConfig.textMultiplier,
+    height: 0.15 * SizeConfig.heightMultiplier,
+  );
+  static final TextStyle MaterialNumberofScore = TextStyle(
+    color: C_White,
+    fontFamily: 'ArbFONTS-Asmaa',
+    fontSize: 2.5 * SizeConfig.textMultiplier,
+    height: 0.15 * SizeConfig.heightMultiplier,
+
+  );
 
 
 }

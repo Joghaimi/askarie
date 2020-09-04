@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../constent/Color.dart';
 // Component
 import '../component/MyBottomAppBar.dart';
+import '../component/MaterialUnitBox.dart';
 
 class AllMaterial extends StatefulWidget {
   static final id = "AllMaterial";
@@ -18,7 +19,7 @@ class _AllMaterialState extends State<AllMaterial> {
     return Scaffold(
       body: Container(
         color: SecondryColor,
-        child: Text(";"),
+        child: MaterialUnitBox(),
     ),
       bottomNavigationBar: MyBottomAppBar(),
     );
