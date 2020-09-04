@@ -9,6 +9,7 @@ import '../material/Units.dart';
 
 // Functions
 import '../function/localStorage.dart';
+import '../function/DealWithMaterial/downloadFile.dart';
 
 //Themes
 import '../themes/AppTheme.dart';
@@ -20,6 +21,7 @@ import '../screens/AllMaterial.dart';
 
 class splash_screen extends StatefulWidget {
   static final id = 'splash_screen';
+
 
   @override
   _splash_screenState createState() => _splash_screenState();
@@ -79,15 +81,25 @@ class _splash_screenState extends State<splash_screen> {
   }
 
   Future<dynamic> OpenNewView() async {
-    for (int i = 0; i < Units_Name.length; i++) {
-      Units.UnitScore[i] = await localStorage.getData(Units_Name[i]);
+    // Make Sure that their are internet Connection
+    DownloadFile SplashScreenDownload = DownloadFile();
+    SplashScreenDownload.internetConnection();
+    if(!SplashScreenDownload.internetConnectionsta){
+      // No InternetConnection
+    }else{
+      // Their is Internet Connection
+         // Check the last time we download the File
+            // is Their are a Downloaded file Before
     }
+
     return Future.delayed(const Duration(milliseconds: 200), () {
       setState(() {
         Navigator.pushReplacementNamed(context, AllMaterial.id);
         });
     });
-
+//    for (int i = 0; i < Units_Name.length; i++) {
+//      Units.UnitScore[i] = await localStorage.getData(Units_Name[i]);
+//    }
 //    return Future.delayed(const Duration(milliseconds: 2000), () {
 //      setState(() {
 //        Navigator.pushReplacementNamed(context, Units.id);
