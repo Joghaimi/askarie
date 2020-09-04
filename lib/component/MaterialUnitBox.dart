@@ -70,7 +70,7 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
                           size: 8,
                           padding: 0,
                           selectedColor: C_White,
-                          unselectedColor: C_TextGray_Deep,
+                          unselectedColor: C_TextGray,
                           progressDirection: TextDirection.ltr,
                           roundedEdges: Radius.circular(0),
                         ),
