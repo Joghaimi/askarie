@@ -5,7 +5,6 @@ import 'package:week_of_year/week_of_year.dart';
 
 // Constent
 import '../constent/Color.dart';
-import '../constent/ImageName.dart';
 import '../constent/Text.dart';
 import '../material/Units.dart';
 
@@ -86,74 +85,76 @@ class _splash_screenState extends State<splash_screen> {
   }
 
   Future<dynamic> OpenNewView() async {
+    bool AllDone ;
+
     // Make Sure that their are internet Connection
     DownloadFile SplashScreenDownload = DownloadFile();
     Future connectionstate = SplashScreenDownload.internetConnection();
     connectionstate.then((value) async {
       if (!value) {
+
+
       } else {
-        // Their is Internet Connection
-        // Check the last time we download the File
-        // Get this week number
-        print("**** Internet Connected");
+        //  - Their is Internet Connection
+        //  - Get Current time
+        //  - Check the last time we download the File
         final date = DateTime.now();
         var weekNum = date.weekOfYear;
-        // is Their are a Downloaded file Before
         var lastcheckData = await localStorage.getData('Qata3alastcheckData');
-        // Get this   DayNumber of day
-        if ((lastcheckData + 3) >= weekNum) { // TODO change the compare sign to >
-
-          // Data checked less than one month
-          print("$lastcheckData XXx File Downloaded Before");
-          // Go To the new page
-          var AllMaterialFromlocal = await localStorage.getDataStringArray('Material');
-          if(AllMaterialFromlocal!=0){
-            print(AllMaterialFromlocal);
-            print(AllMaterialFromlocal.length);
-          }else{
-            print('No Saved Material');
-          }
+        if ((lastcheckData + 3) >= weekNum) {
+          // * Data checked less than one month
+          // * Go To the new page
         } else {
-          // Data never Checked   or checked more than one month
-          print("**** File not Downloaded");
-          // Download the File
+          // * Data never Checked or checked more than one month
+          // - Download the File
           Future DownloadState = SplashScreenDownload.downloadFile('http://joghaimi.com/mat.json', 'MaterialName.json'); //
-          // Make Sure File is saved
+          // - Make Sure File is saved
           if (!SplashScreenDownload.ErrorDownload) {
-            print("**** File No Error");
-
-            // save data in the local Storage
+            // -  save data in the local Storage
             DownloadState.then((value) async {
               if (value) {
-                // File Downloaded
-                print("**** File Finished Downloaded");
+                // - File Downloaded
                 jsonToLocalStorage(); // Material To localStorage
                 localStorage.saveData('Qata3alastcheckData', weekNum); // @ TODO uncomut this to save the date
-                print('************ Finished');
               } else {
-
+                // * File Feild to download
+                SplashScreenDownload.ErrorDownload=true;
                 print("**** File Feild to download ");
               }
             });
           } else {
+            // * Error
+            SplashScreenDownload.ErrorDownload=true;
             print("XXX IN ERROR Page ");
           }
         }
       }
     });
+    return Future.delayed(const Duration(milliseconds: 3000), () async{
+          // ignore: non_constant_identifier_names
+          var AllMaterialFromlocal = await localStorage.getDataStringArray('Material');
+          AllMaterial.AllMaterialNum= AllMaterialFromlocal.length;
+          if(AllMaterialFromlocal!=0){
+            for (int i = 0; i < AllMaterialFromlocal.length; i++) {
+              // TODO NUM#1 ==> its related in ToDo in ALL material Page
+              AllMaterial.AllMaterials[i] = AllMaterialFromlocal[i];
+            }
+          }else{
+            // * No Data Saved
+            print('No Saved Material');
+          }
 
-    return Future.delayed(const Duration(milliseconds: 200), () {
       setState(() {
-//        Navigator.pushReplacementNamed(context, AllMaterial.id);
+        Navigator.pushReplacementNamed(context, AllMaterial.id);
       });
     });
 //    for (int i = 0; i < Units_Name.length; i++) {
 //      Units.UnitScore[i] = await localStorage.getData(Units_Name[i]);
 //    }
-//    return Future.de3layed(const Duration(milliseconds: 2000), () {
+//    return Future.delayed(const Duration(milliseconds: 2000), () {
 //      setState(() {
 //        Navigator.pushReplacementNamed(context, Units.id);
 //        });
-//    }); @TODO UNCOMMENT THIS
+//    }); //@TODO UNCOMMENT THIS
   }
 }

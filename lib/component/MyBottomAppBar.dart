@@ -6,6 +6,9 @@ import '../constent/Color.dart';
 // Themes
 import '../themes/size_config.dart';
 
+// Function
+import '../function/saverandomdata.dart';
+
 class MyBottomAppBar extends StatefulWidget {
   bool isSearching = false;
   @override
@@ -33,9 +36,13 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
               // Home
               flex: 1,
               child: GestureDetector(
-                onTap: () {
+                onTap: () async{
+
+                  await saveRandomData();
+                  print("what now ? ");
                   setState(() {
-                    widget.isSearching = !widget.isSearching;
+//                    widget.isSearching = !widget.isSearching;
+
                   });
                 },
                 child: FaIcon(
