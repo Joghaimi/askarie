@@ -2,9 +2,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colored_progress_indicators/flutter_colored_progress_indicators.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'dart:convert';
 // Function
 import '../function/RandomNum.dart';
 import '../function/DealWithMaterial/downloadFile.dart';
+// Function DataBase
+import '../function/DB/material.dart';
+import '../function/DB/DataBaseHelper.dart';
+import '../function/DealWithMaterial/ReadFile.dart';
+import '../function/DealWithMaterial/downloadMaterialAndCreateTable.dart';
+
+
+
+
 // Constant
 import 'package:askarie/constent/Color.dart';
 
@@ -68,25 +78,17 @@ class _DownloadMaterialUnitBoxState extends State<DownloadMaterialUnitBox> {
                   });
                   // Disable The appilitty to click
                   onTabCondition=false;
-                  // Start Download Data
-                  DownloadFile downloadMaterial = DownloadFile();
-                  var connectionstate =await  downloadMaterial.internetConnection();
-                  if(connectionstate){
-                    // Their is Internet Connection
-                    bool DownloadState =await downloadMaterial.downloadFile('http://joghaimi.com/${widget.materialName}.json', '${widget.materialName}.json'); //
-                    if(DownloadState){
-                      // Download Sucess
-                      // Create Table
-                      // Insert Data
-                      // Change icon to go icon or open new widget
-                    }else{
-                      // Some Thing Wrong Happend
-                    }
-
-                  }
-                  // Convert DataFrom File to DB
-
+                  var downloadState = await downloadMaterialAndCreateTable(widget.materialName);
                   // Open The New View
+                  if(downloadState){
+                    setState(() {
+                      IconPlace= FaIcon(
+                        FontAwesomeIcons.arrowCircleDown,
+                        size: SizeConfig.textMultiplier *5 ,
+                        color:C_White,
+                      );
+                    });
+                  }
                   // Enable The Click again
                 }:null,
               ),
@@ -97,3 +99,6 @@ class _DownloadMaterialUnitBoxState extends State<DownloadMaterialUnitBox> {
     );
   }
 }
+// TODO I'm Here 14/9/2020
+//  *** Change the icon after Finish Download the Data
+//  *** Fix the problem for not showing the material name when opening the  Material Page

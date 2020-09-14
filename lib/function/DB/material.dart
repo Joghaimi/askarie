@@ -10,7 +10,8 @@ class Material{
   String _C_Ans;
   String _D_Ans;
   int _solution;
-  Material(this.TableName, this._UnitName, this._QS,this._A_Ans,this._B_Ans,this._C_Ans,this._D_Ans,this._solution);
+  Material();
+//  Material(this.TableName, this._UnitName, this._QS,this._A_Ans,this._B_Ans,this._C_Ans,this._D_Ans,this._solution);
   Material.withId(this._id,this.TableName, this._UnitName, this._QS,this._A_Ans,this._B_Ans,this._C_Ans,this._D_Ans,this._solution);
   // Save Data
    void saveData(String tableName, String unitName, String _qs,String a_Ans,String B_Ans
