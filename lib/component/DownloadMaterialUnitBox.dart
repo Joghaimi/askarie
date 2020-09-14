@@ -1,11 +1,10 @@
 // Packages
 import 'package:flutter/material.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:flutter_colored_progress_indicators/flutter_colored_progress_indicators.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 // Function
 import '../function/RandomNum.dart';
-
+import '../function/DealWithMaterial/downloadFile.dart';
 // Constant
 import 'package:askarie/constent/Color.dart';
 
@@ -15,17 +14,23 @@ import '../themes/AppTheme.dart';
 
 class DownloadMaterialUnitBox extends StatefulWidget {
   final String materialName;
+
   const DownloadMaterialUnitBox(this.materialName);
+
   @override
   _DownloadMaterialUnitBoxState createState() => _DownloadMaterialUnitBoxState();
+
 }
 
 class _DownloadMaterialUnitBoxState extends State<DownloadMaterialUnitBox> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+  Widget IconPlace = FaIcon(
+    FontAwesomeIcons.arrowCircleDown,
+    size: SizeConfig.textMultiplier *5 ,
+    color:C_White,
+  );
+  bool onTabCondition = true;
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -53,10 +58,37 @@ class _DownloadMaterialUnitBoxState extends State<DownloadMaterialUnitBox> {
                 style: AppTheme.MaterialName,
               ),
               SizedBox(width:SizeConfig.widthMultiplier * 8 ,),
-              FaIcon(
-                FontAwesomeIcons.arrowCircleDown,
-                size: SizeConfig.textMultiplier *5 ,
-                color:C_White,
+              GestureDetector(
+                child: IconPlace,
+                onTap:onTabCondition? ()async{
+                  // Start Downloading and Change the Icon
+                  // -- ChangeIcon
+                  setState(() {
+                    IconPlace= ColoredCircularProgressIndicator();
+                  });
+                  // Disable The appilitty to click
+                  onTabCondition=false;
+                  // Start Download Data
+                  DownloadFile downloadMaterial = DownloadFile();
+                  var connectionstate =await  downloadMaterial.internetConnection();
+                  if(connectionstate){
+                    // Their is Internet Connection
+                    bool DownloadState =await downloadMaterial.downloadFile('http://joghaimi.com/${widget.materialName}.json', '${widget.materialName}.json'); //
+                    if(DownloadState){
+                      // Download Sucess
+                      // Create Table
+                      // Insert Data
+                      // Change icon to go icon or open new widget
+                    }else{
+                      // Some Thing Wrong Happend
+                    }
+
+                  }
+                  // Convert DataFrom File to DB
+
+                  // Open The New View
+                  // Enable The Click again
+                }:null,
               ),
             ],
           ),

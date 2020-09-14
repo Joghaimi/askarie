@@ -8,6 +8,7 @@ import '../component/MaterialUnitBox.dart';
 import '../component/DownloadMaterialUnitBox.dart';
 // Themes
 import '../themes/size_config.dart';
+import '../themes/AppTheme.dart';
 
 
 class AllMaterial extends StatefulWidget {
@@ -36,17 +37,24 @@ class _AllMaterialState extends State<AllMaterial> {
         color: SecondryColor,
         child: Column(
           children: [
-
+            SizedBox( height: 20 * SizeConfig.widthMultiplier,),
+            Container(
+              alignment: Alignment.topRight,
+              child:Padding(
+                padding: EdgeInsets.fromLTRB(SizeConfig.widthMultiplier*5, SizeConfig.heightMultiplier*5,
+                    SizeConfig.widthMultiplier*5, SizeConfig.heightMultiplier*2),
+                child: Text(
+                  'جميع المواد',
+                  style: AppTheme.AllMaterialName,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 1 * SizeConfig.widthMultiplier,
+            ),
             Flexible(
               child: Stack(
-
                 children: <Widget>[
-                  Container(
-                    child: Text("المواد"),
-                  ),
-                  SizedBox(
-                    height: 20 * SizeConfig.widthMultiplier,
-                  ),
                   ListView.builder(
                       itemCount: (AllMaterial.AllMaterialNum-1)>=0?(AllMaterial.AllMaterialNum-1):0,
                       itemBuilder: (BuildContext ctxt, int index) {
@@ -63,8 +71,6 @@ class _AllMaterialState extends State<AllMaterial> {
                 ],
               ),
             ),
-
-
           ],
         ),
     ),
@@ -72,8 +78,3 @@ class _AllMaterialState extends State<AllMaterial> {
     );
   }
 }
-/*
-* Saved Section open new page
-* Non Save Section Use it to download and save Database
-* create Function To show the downloaded file First then  the non Downloaded file @ToDO
-* */

@@ -92,6 +92,12 @@ class AppTheme{
     fontSize: 3.5 * SizeConfig.textMultiplier,
     height: 0.15 * SizeConfig.heightMultiplier,
   );
+  static final TextStyle AllMaterialName = TextStyle(
+    color: PrimaryColor,
+    fontFamily: 'ArbFONTS-Asmaa',
+    fontSize: 4.5 * SizeConfig.textMultiplier,
+    height: 0.15 * SizeConfig.heightMultiplier,
+  );
   static final TextStyle MaterialScore = TextStyle(
     color: C_White,
     fontFamily: 'ArbFONTS-Asmaa',
