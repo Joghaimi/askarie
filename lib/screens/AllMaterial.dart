@@ -5,15 +5,21 @@ import '../constent/Color.dart';
 // Component
 import '../component/MyBottomAppBar.dart';
 import '../component/MaterialUnitBox.dart';
+import '../component/DownloadMaterialUnitBox.dart';
 // Themes
 import '../themes/size_config.dart';
-// Function
-import '../function/localStorage.dart';
+
 
 class AllMaterial extends StatefulWidget {
   static final id = "AllMaterial";
-  static var AllMaterials   = new List(100);
-  static var AllMaterialNum =0;
+  static bool Ready = false;
+
+  static var AllMaterialNum=0;
+  static var SavedMaterial =  new List(100);
+  static var SavedMaterialNum =0;
+
+  static var NonSavedMaterial =  new List(100);
+  static var NonSavedMaterialNum =0;
 
 
 
@@ -24,12 +30,6 @@ class AllMaterial extends StatefulWidget {
 
 class _AllMaterialState extends State<AllMaterial> {
   @override
-  void initState() {
-    // check if data downloaded or not
-//    checkDataFromLocal();
-    super.initState();
-  }
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -38,13 +38,57 @@ class _AllMaterialState extends State<AllMaterial> {
           children: [
             MaterialUnitBox(),
             Flexible(
+              flex: 3,
+
               child: Stack(
+
                 children: <Widget>[
+                  Container(
+                    child: Text("المواد"),
+                  ),
                   SizedBox(
                     height: 20 * SizeConfig.widthMultiplier,
                   ),
                   ListView.builder(
                       itemCount: (AllMaterial.AllMaterialNum-1)>=0?(AllMaterial.AllMaterialNum-1):0,
+                      itemBuilder: (BuildContext ctxt, int index) {
+                        if(AllMaterial.SavedMaterialNum -1>= index){
+                          print("Saved");
+                          print(index);
+                        }else{
+                          print("Non Saved");
+                          print(index-AllMaterial.SavedMaterialNum);
+                        }
+
+
+                        return Column(
+                          children: <Widget>[
+                            index == 0
+                                ? SizedBox(
+                              height:
+                              8 * SizeConfig.heightMultiplier,
+                            )
+                                : SizedBox(
+                              height:
+                              0.4 * SizeConfig.heightMultiplier,
+                            ),
+//                            Text(AllMaterial.SavedMaterial[index]),
+                          ],
+                        );
+                      }),
+                ],
+              ),
+            ),
+            Container(
+              child: Text("مواد جديده"),
+            ),
+            Flexible(
+              flex: 2,
+              child: Stack(
+                children: <Widget>[
+
+                  ListView.builder(
+                      itemCount: (AllMaterial.NonSavedMaterialNum-1)>=0?(AllMaterial.NonSavedMaterialNum-1):0,
                       itemBuilder: (BuildContext ctxt, int index) {
                         return Column(
                           children: <Widget>[
@@ -57,42 +101,23 @@ class _AllMaterialState extends State<AllMaterial> {
                               height:
                               0.4 * SizeConfig.heightMultiplier,
                             ),
-                            Text(AllMaterial.AllMaterials[index]),
+                            DownloadMaterialUnitBox(AllMaterial.NonSavedMaterial[index]),
                           ],
                         );
                       }),
                 ],
               ),
             ),
+
           ],
         ),
     ),
       bottomNavigationBar: MyBottomAppBar(),
     );
   }
-  checkDataFromLocal()async{
-
-    // TODO move ALL this Function to Splash Screen at TODO NUM#1
-    for (var i=0 ; (AllMaterial.AllMaterialNum-1)>i;i++){
-      var isMat = localStorage.getDataString(AllMaterial.AllMaterials[i]);
-
-//        if (isMat != 0) {
-////        localStorage.SaveStringArray(await AllMaterial.AllMaterials[i],datatosave.toString());
-//          print("Local Storage save ${AllMaterial.AllMaterials[i]}");
-//        } else {
-//          print("save Non");
-//        }
-//      }
-//    );
-//      List<String> datatosave=new List();
-//      datatosave.add('');
-//      datatosave.add('');
-//      if(isMat != 0){
-////        localStorage.SaveStringArray(await AllMaterial.AllMaterials[i],datatosave.toString());
-//        print("Local Storage save ${AllMaterial.AllMaterials[i]}");
-//      }else{
-//        print("save Non");
-//      }
-    }
-  }
 }
+/*
+* Saved Section open new page
+* Non Save Section Use it to download and save Database
+* create Function To show the downloaded file First then  the non Downloaded file @ToDO
+* */

@@ -12,6 +12,7 @@ import '../material/Units.dart';
 import '../function/localStorage.dart';
 import '../function/DealWithMaterial/downloadFile.dart';
 import '../function/DealWithMaterial/MaterialToLocalStorage.dart';
+import '../function/DealWithMaterial/LocalStorageSavedUnsavedMaterialpage.dart';
 
 //Themes
 import '../themes/AppTheme.dart';
@@ -86,75 +87,47 @@ class _splash_screenState extends State<splash_screen> {
 
   Future<dynamic> OpenNewView() async {
     bool AllDone ;
-
     // Make Sure that their are internet Connection
     DownloadFile SplashScreenDownload = DownloadFile();
-    Future connectionstate = SplashScreenDownload.internetConnection();
-    connectionstate.then((value) async {
-      if (!value) {
-
-
-      } else {
-        //  - Their is Internet Connection
-        //  - Get Current time
-        //  - Check the last time we download the File
-        final date = DateTime.now();
-        var weekNum = date.weekOfYear;
-        var lastcheckData = await localStorage.getData('Qata3alastcheckData');
-        if ((lastcheckData + 3) >= weekNum) {
-          // * Data checked less than one month
-          // * Go To the new page
-        } else {
-          // * Data never Checked or checked more than one month
-          // - Download the File
-          Future DownloadState = SplashScreenDownload.downloadFile('http://joghaimi.com/mat.json', 'MaterialName.json'); //
-          // - Make Sure File is saved
-          if (!SplashScreenDownload.ErrorDownload) {
-            // -  save data in the local Storage
-            DownloadState.then((value) async {
-              if (value) {
-                // - File Downloaded
-                jsonToLocalStorage(); // Material To localStorage
-                localStorage.saveData('Qata3alastcheckData', weekNum); // @ TODO uncomut this to save the date
-              } else {
-                // * File Feild to download
-                SplashScreenDownload.ErrorDownload=true;
-                print("**** File Feild to download ");
-              }
-            });
-          } else {
-            // * Error
-            SplashScreenDownload.ErrorDownload=true;
-            print("XXX IN ERROR Page ");
-          }
-        }
-      }
-    });
-    return Future.delayed(const Duration(milliseconds: 3000), () async{
-          // ignore: non_constant_identifier_names
-          var AllMaterialFromlocal = await localStorage.getDataStringArray('Material');
-          AllMaterial.AllMaterialNum= AllMaterialFromlocal.length;
-          if(AllMaterialFromlocal!=0){
-            for (int i = 0; i < AllMaterialFromlocal.length; i++) {
-              // TODO NUM#1 ==> its related in ToDo in ALL material Page
-              AllMaterial.AllMaterials[i] = AllMaterialFromlocal[i];
+    var connectionstate =await  SplashScreenDownload.internetConnection();
+    if(connectionstate){
+      //  - Their is Internet Connection
+      //  - Get Current time
+      //  - Check the last time we download the File
+      final date = DateTime.now();
+      var weekNum = date.weekOfYear;
+      var lastcheckData = await localStorage.getData('Qata3alastcheckData');
+      if ((lastcheckData + 3) <= weekNum) {
+        // * Data never Checked or checked more than one month
+        // - Download the File
+        Future DownloadState = SplashScreenDownload.downloadFile('http://joghaimi.com/mat.json', 'MaterialName.json'); //
+        // - Make Sure File is saved
+        if (!SplashScreenDownload.ErrorDownload) {
+          // -  save data in the local Storage
+          DownloadState.then((value) async {
+            if (value) {
+              // - File Downloaded
+              jsonToLocalStorage(); // Material To localStorage
+              localStorage.saveData('Qata3alastcheckData', weekNum);
+            } else {
+              // * File Feild to download
+              SplashScreenDownload.ErrorDownload=true;
+              print("**** File Feild to download ");
             }
-          }else{
-            // * No Data Saved
-            print('No Saved Material');
-          }
+          });
+        } else {
+          // * Error
+          SplashScreenDownload.ErrorDownload=true;
+        }
 
-      setState(() {
-        Navigator.pushReplacementNamed(context, AllMaterial.id);
-      });
-    });
-//    for (int i = 0; i < Units_Name.length; i++) {
-//      Units.UnitScore[i] = await localStorage.getData(Units_Name[i]);
-//    }
-//    return Future.delayed(const Duration(milliseconds: 2000), () {
-//      setState(() {
-//        Navigator.pushReplacementNamed(context, Units.id);
-//        });
-//    }); //@TODO UNCOMMENT THIS
+    }else{
+      // No internet Connection
+      Navigator.pushReplacementNamed(context, AllMaterial.id);
+    }
+    await localStorageSavedUnsavedMaterialPage();
+    if(AllMaterial.Ready){
+      Navigator.pushReplacementNamed(context, AllMaterial.id);
+    }
   }
+}
 }

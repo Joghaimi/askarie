@@ -37,6 +37,18 @@ class DataBaseHelper{
      String sql = "CREATE TABLE IF NOT EXISTS $tableName(id INTEGER PRIMARY KEY, UnitName TEXT,QS TEXT, A_Ans TEXT,B_Ans TEXT,C_Ans TEXT, D_Ans TEXT,solution INTEGER)";
      db.execute(sql);
   }
+  //check if table is exist
+   isexist(String tableName) async{
+    Database db =await this.database;
+    String sql = "SELECT name FROM sqlite_master WHERE type='table' AND name='$tableName'";
+    var result =await db.rawQuery(sql);
+    if(result.length>0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 
   // Fetch Database
   getMaterial(String TableName , List<dynamic> whereArgs) async {
