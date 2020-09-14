@@ -36,10 +36,8 @@ class _AllMaterialState extends State<AllMaterial> {
         color: SecondryColor,
         child: Column(
           children: [
-            MaterialUnitBox(),
-            Flexible(
-              flex: 3,
 
+            Flexible(
               child: Stack(
 
                 children: <Widget>[
@@ -53,61 +51,19 @@ class _AllMaterialState extends State<AllMaterial> {
                       itemCount: (AllMaterial.AllMaterialNum-1)>=0?(AllMaterial.AllMaterialNum-1):0,
                       itemBuilder: (BuildContext ctxt, int index) {
                         if(AllMaterial.SavedMaterialNum -1>= index){
-                          print("Saved");
-                          print(index);
+                          // Return saved Material
+                          return MaterialUnitBox(AllMaterial.SavedMaterial[index]);
                         }else{
-                          print("Non Saved");
-                          print(index-AllMaterial.SavedMaterialNum);
+                          // Return non Saved Material
+                          return DownloadMaterialUnitBox(AllMaterial.NonSavedMaterial[(index-(AllMaterial.SavedMaterialNum))]!=null?AllMaterial.NonSavedMaterial[(index-(AllMaterial.SavedMaterialNum))]:"");
                         }
 
 
-                        return Column(
-                          children: <Widget>[
-                            index == 0
-                                ? SizedBox(
-                              height:
-                              8 * SizeConfig.heightMultiplier,
-                            )
-                                : SizedBox(
-                              height:
-                              0.4 * SizeConfig.heightMultiplier,
-                            ),
-//                            Text(AllMaterial.SavedMaterial[index]),
-                          ],
-                        );
                       }),
                 ],
               ),
             ),
-            Container(
-              child: Text("مواد جديده"),
-            ),
-            Flexible(
-              flex: 2,
-              child: Stack(
-                children: <Widget>[
 
-                  ListView.builder(
-                      itemCount: (AllMaterial.NonSavedMaterialNum-1)>=0?(AllMaterial.NonSavedMaterialNum-1):0,
-                      itemBuilder: (BuildContext ctxt, int index) {
-                        return Column(
-                          children: <Widget>[
-                            index == 0
-                                ? SizedBox(
-                              height:
-                              8 * SizeConfig.heightMultiplier,
-                            )
-                                : SizedBox(
-                              height:
-                              0.4 * SizeConfig.heightMultiplier,
-                            ),
-                            DownloadMaterialUnitBox(AllMaterial.NonSavedMaterial[index]),
-                          ],
-                        );
-                      }),
-                ],
-              ),
-            ),
 
           ],
         ),

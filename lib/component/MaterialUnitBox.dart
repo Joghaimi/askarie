@@ -12,6 +12,8 @@ import '../themes/size_config.dart';
 import '../themes/AppTheme.dart';
 
 class MaterialUnitBox extends StatefulWidget {
+  const MaterialUnitBox(this.materialName);
+  final String materialName;
   @override
   _MaterialUnitBoxState createState() => _MaterialUnitBoxState();
 }
@@ -46,7 +48,7 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        "العسكرية",
+                        widget.materialName,
                         style: AppTheme.MaterialName,
                       ),
                       SizedBox(
