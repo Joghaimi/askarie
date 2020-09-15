@@ -51,10 +51,14 @@ class DataBaseHelper{
 
 
   // Fetch Database
-  getMaterial(String TableName , List<dynamic> whereArgs) async {
+  getMaterial(String TableName , {List<dynamic> whereArgs}) async { // ToDo May need to remove the {} to make it must
     Database db =await this.database;
     var result =await db.query(TableName , whereArgs:whereArgs);
     return result;
+  }
+  Future<List<Map<String, dynamic>>> getUnitName(tableName) async {
+    Database db =await this.database;
+    return await db.query(tableName, columns: ['UnitName']);
   }
 
   // insert Data To DataBase

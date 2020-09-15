@@ -1,5 +1,4 @@
 // packages
-//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 
@@ -8,7 +7,7 @@ import '../component/MyAppBar.dart';
 import '../component/UnitBoxs.dart';
 import '../component/ChoseOption.dart';
 import '../component/SearchResult.dart';
-
+import '../component/MyBottomAppBar.dart';
 // Constant
 import '../constent/Color.dart';
 import '../material/Units.dart';
@@ -26,6 +25,9 @@ class Units extends StatefulWidget {
   static final ad = 0;
   static var state = false;
 
+  // Unit From Material
+  static var unitNumber = 0;
+  static var UnitName = new List(100);
   // Searching
   static var isSearching = false;
 
@@ -51,6 +53,7 @@ class _UnitsState extends State<Units> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: WillPopScope(
+       // ToDo make it Able to go bake
         onWillPop: () {
           setState(() {
             Units.state = false;
@@ -63,77 +66,6 @@ class _UnitsState extends State<Units> {
               color: C_Gray,
               child: Column(
                 children: <Widget>[
-                  Container(
-                    height: 8 * SizeConfig.heightMultiplier,
-                    color: C_Purple,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Expanded(
-                          flex: 1,
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                Units.isSearching = !Units.isSearching;
-                              });
-                            },
-                            child: Icon(
-                              !Units.isSearching ? Icons.search : Icons.cancel,
-                              color: Colors.white,
-                              size: !Units.isSearching ? 50 : 30,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Units.isSearching
-                              ? Theme(
-                                  data: new ThemeData(
-                                    primaryColor: Colors.white,
-                                    primaryColorDark: Colors.white,
-                                  ),
-                                  child: TextField(
-                                    autofocus: true,
-                                    textDirection: TextDirection.rtl,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(color: Colors.white),
-                                    onSubmitted: (String search) {
-                                      Search.Result.clear();
-                                      if (search.isNotEmpty) {
-                                        Search.search(search);
-                                        setState(() {
-                                          Units.Search = true;
-                                        });
-                                      }
-                                    },
-                                    decoration: InputDecoration(
-                                      hintText: "بحث",
-                                      hintStyle: TextStyle(
-                                        fontSize: 20,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : Text(""),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                            child: Text(
-                              !Units.isSearching ? AppName : "",
-                              style: AppTheme.Titel.copyWith(
-                                fontSize: 3.5 * SizeConfig.textMultiplier,
-                                height: 0.15 * SizeConfig.heightMultiplier,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                   Flexible(
                     child: Stack(
                       children: <Widget>[
@@ -141,7 +73,7 @@ class _UnitsState extends State<Units> {
                           height: 20 * SizeConfig.widthMultiplier,
                         ),
                         ListView.builder(
-                            itemCount: Units_Name.length,
+                            itemCount: Units.unitNumber,
                             itemBuilder: (BuildContext ctxt, int index) {
                               return Column(
                                 children: <Widget>[
@@ -155,7 +87,7 @@ class _UnitsState extends State<Units> {
                                               0.4 * SizeConfig.heightMultiplier,
                                         ),
                                   buildGestureDetector(
-                                      Units_Name[index],
+                                      Units.UnitName[index],
                                       "${UnitsArray[index].length} سؤال ",
                                       "${Units.UnitScore[index]}/100",
                                       index,
@@ -173,19 +105,7 @@ class _UnitsState extends State<Units> {
                 ],
               ),
             ),
-            floatingActionButton: FloatingActionButton.extended(
-                onPressed: () {
-                  WcFlutterShare.share(
-                      sharePopupTitle: 'قطاعه',
-                      subject: 'قطاعه ',
-                      text:
-                          'حمل تطبيق قطاعه : joghaimi.com/Qata3a.html',
-
-                      mimeType: 'text/plain');
-                },
-                icon: Icon(Icons.share),
-                label: Text("share"),
-                backgroundColor: C_Purple),
+            bottomNavigationBar: MyBottomAppBar(),
           ),
         ),
       ),
@@ -210,3 +130,12 @@ class _UnitsState extends State<Units> {
     );
   }
 }
+
+
+// TODO :
+/*
+*  - Change the Bottom NavBar
+*  - Change Unit Box Style and Function
+*  - Make the Design Like AdobeXD
+*  - Create Share Option
+* */

@@ -1,25 +1,40 @@
 // Packages
 import 'package:flutter/material.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:flutter_colored_progress_indicators/flutter_colored_progress_indicators.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // fUNCTION
 import '../function/RandomNum.dart';
+import '../function/DB/DataBaseHelper.dart';
+import '../function/localStorage.dart';
 // Constant
 import 'package:askarie/constent/Color.dart';
 // Themes
 import '../themes/size_config.dart';
 import '../themes/AppTheme.dart';
 
+// Screens
+import '../screens/units.dart';
+
 class MaterialUnitBox extends StatefulWidget {
   const MaterialUnitBox(this.materialName);
   final String materialName;
+
+
+
   @override
   _MaterialUnitBoxState createState() => _MaterialUnitBoxState();
 }
 
 class _MaterialUnitBoxState extends State<MaterialUnitBox> {
+  int materialQSNum;
+  Widget iconPlace =FaIcon(
+    FontAwesomeIcons.arrowCircleLeft,
+    size: SizeConfig.textMultiplier*5 ,
+    color:C_White,
+  );
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: EdgeInsets.fromLTRB(
           SizeConfig.widthMultiplier * 3,
@@ -40,55 +55,36 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Column(
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        widget.materialName,
-                        style: AppTheme.MaterialName,
-                      ),
-                      SizedBox(
-                        width: SizeConfig.widthMultiplier * 8,
-                      ),
-                    ],
-                  ),
-                  // Material Name
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(SizeConfig.widthMultiplier * 1,
-                        SizeConfig.heightMultiplier * 1, 0, 0),
-                    child: Row(
-                      children: [
-                        Text(
-                          '10/100 ',
-                          style: AppTheme.MaterialScore,
-                        ),
-                        StepProgressIndicator(
-                          totalSteps: 12,
-                          currentStep: 2,
-                          size: 8,
-                          padding: 0,
-                          selectedColor: C_White,
-                          unselectedColor: C_TextGray,
-                          progressDirection: TextDirection.ltr,
-                          roundedEdges: Radius.circular(0),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
               Text(
-                "10 سؤال ",
-                style: AppTheme.MaterialNumberofScore,
-
+                widget.materialName,
+                style: AppTheme.MaterialName,
               ),
-              FaIcon(
-                FontAwesomeIcons.arrowCircleLeft,
-                size: SizeConfig.textMultiplier*5 ,
-                color:C_White,
+              SizedBox(
+                width: SizeConfig.widthMultiplier * 8,
+              ),
+              GestureDetector(
+                child:iconPlace,
+                onTap: ()async{
+                  // Change Icon To loading Icon
+                  setState(() {iconPlace= ColoredCircularProgressIndicator();});
+                  // Save All Unit Name
+                  DataBaseHelper baseHelper=DataBaseHelper(); // DataBase Helper
+                  var material_name = await baseHelper.getUnitName(widget.materialName);
+                  // Go To Unit Page
+                  Units.unitNumber=material_name.length;
+                  var cont = 0;
+                  for(var material in material_name){
+                    Units.UnitName[cont]=material['UnitName'];
+                    cont ++ ;
+                  }
+                  Navigator.pushReplacementNamed(context, Units.id);
+                  //return icon to what it was
+                  setState(() {iconPlace= FaIcon(
+                    FontAwesomeIcons.arrowCircleLeft,
+                    size: SizeConfig.textMultiplier*5 ,
+                    color:C_White,
+                  );});
+                },
               ),
             ],
           ),
@@ -96,4 +92,8 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
       ),
     );
   }
+
 }
+// TODO
+//  - ADD Text For the Number of QS
+//  - ADD Progress Indecator

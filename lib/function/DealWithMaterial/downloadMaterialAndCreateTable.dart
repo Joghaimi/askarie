@@ -3,6 +3,7 @@ import 'dart:convert';
 
 // Function
 import 'downloadFile.dart';
+import '../localStorage.dart';
 // Function DataBase
 import '../DB/material.dart';
 import '../DB/DataBaseHelper.dart';
@@ -24,6 +25,8 @@ downloadMaterialAndCreateTable(String materialName) async{
       // Read File
       var materialCont      = await ReadFile.readFile('${materialName}.json');
       var jsonMaterialCont  = json.decode(materialCont)['unit'];
+      //Save The number of QS in Local Storage
+      localStorage.saveData(materialName+"qsNum",jsonMaterialCont.length); // If their is Error MayBe Here
       // Create Table
       DataBaseHelper baseHelper=DataBaseHelper(); // DataBase Helper
       baseHelper.createDBTable(materialName);

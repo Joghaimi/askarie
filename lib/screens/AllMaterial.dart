@@ -31,7 +31,7 @@ class AllMaterial extends StatefulWidget {
 
 class _AllMaterialState extends State<AllMaterial> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       body: Container(
         color: SecondryColor,
@@ -57,7 +57,7 @@ class _AllMaterialState extends State<AllMaterial> {
                 children: <Widget>[
                   ListView.builder(
                       itemCount: (AllMaterial.AllMaterialNum-1)>=0?(AllMaterial.AllMaterialNum-1):0,
-                      itemBuilder: (BuildContext ctxt, int index) {
+                      itemBuilder: (BuildContext ctxt, int index){
                         if(AllMaterial.SavedMaterialNum -1>= index){
                           // Return saved Material
                           return MaterialUnitBox(AllMaterial.SavedMaterial[index]);
@@ -65,8 +65,6 @@ class _AllMaterialState extends State<AllMaterial> {
                           // Return non Saved Material
                           return DownloadMaterialUnitBox(AllMaterial.NonSavedMaterial[(index-(AllMaterial.SavedMaterialNum))]!=null?AllMaterial.NonSavedMaterial[(index-(AllMaterial.SavedMaterialNum))]:"");
                         }
-
-
                       }),
                 ],
               ),
