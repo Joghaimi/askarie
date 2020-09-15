@@ -2,11 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-
+// fUNCTION
+import '../function/RandomNum.dart';
 // Constant
 import 'package:askarie/constent/Color.dart';
-
 // Themes
 import '../themes/size_config.dart';
 import '../themes/AppTheme.dart';
@@ -24,13 +23,13 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
     return Padding(
       padding: EdgeInsets.fromLTRB(
           SizeConfig.widthMultiplier * 3,
-          SizeConfig.heightMultiplier * 3,
+          SizeConfig.heightMultiplier * 2,
           SizeConfig.widthMultiplier * 3,
-          SizeConfig.heightMultiplier * 3),
+          SizeConfig.heightMultiplier * 0.1),
       child: Container(
         height: SizeConfig.heightMultiplier * 10,
         decoration:
-            AppTheme.MaterialUnitBoxContainer.copyWith(color: MaterialColorArray[1]),
+            AppTheme.MaterialUnitBoxContainer.copyWith(color: MaterialColorArray[RandomNum()]),
         child: Padding(
           padding: EdgeInsets.fromLTRB(
               SizeConfig.widthMultiplier * 1,
@@ -52,7 +51,7 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
                         style: AppTheme.MaterialName,
                       ),
                       SizedBox(
-                        width: SizeConfig.widthMultiplier * 12,
+                        width: SizeConfig.widthMultiplier * 8,
                       ),
                     ],
                   ),

@@ -13,6 +13,7 @@ import '../function/localStorage.dart';
 import '../function/DealWithMaterial/downloadFile.dart';
 import '../function/DealWithMaterial/MaterialToLocalStorage.dart';
 import '../function/DealWithMaterial/LocalStorageSavedUnsavedMaterialpage.dart';
+import '../function/SplashScreenFunction.dart';
 
 //Themes
 import '../themes/AppTheme.dart';
@@ -32,11 +33,8 @@ class splash_screen extends StatefulWidget {
 class _splash_screenState extends State<splash_screen> {
   @override
   void initState() {
-    OpenNewView();
-//    final date = DateTime.now();
-//    print(date.weekOfYear);
-
-    super.initState();
+      OpenNewView();
+      super.initState();
   }
 
   @override
@@ -86,48 +84,11 @@ class _splash_screenState extends State<splash_screen> {
   }
 
   Future<dynamic> OpenNewView() async {
-    bool AllDone ;
-    // Make Sure that their are internet Connection
-    DownloadFile SplashScreenDownload = DownloadFile();
-    var connectionstate =await  SplashScreenDownload.internetConnection();
-    if(connectionstate){
-      //  - Their is Internet Connection
-      //  - Get Current time
-      //  - Check the last time we download the File
-      final date = DateTime.now();
-      var weekNum = date.weekOfYear;
-      var lastcheckData = await localStorage.getData('Qata3alastcheckData');
-      if ((lastcheckData + 3) <= weekNum) {
-        // * Data never Checked or checked more than one month
-        // - Download the File
-        Future DownloadState = SplashScreenDownload.downloadFile('http://joghaimi.com/mat.json', 'MaterialName.json'); //
-        // - Make Sure File is saved
-        if (!SplashScreenDownload.ErrorDownload) {
-          // -  save data in the local Storage
-          DownloadState.then((value) async {
-            if (value) {
-              // - File Downloaded
-              jsonToLocalStorage(); // Material To localStorage
-              localStorage.saveData('Qata3alastcheckData', weekNum);
-            } else {
-              // * File Feild to download
-              SplashScreenDownload.ErrorDownload=true;
-              print("**** File Feild to download ");
-            }
-          });
-        } else {
-          // * Error
-          SplashScreenDownload.ErrorDownload=true;
-        }
-
-    }else{
-      // No internet Connection
-      Navigator.pushReplacementNamed(context, AllMaterial.id);
-    }
+    await checkForNewMaterial();
     await localStorageSavedUnsavedMaterialPage();
     if(AllMaterial.Ready){
       Navigator.pushReplacementNamed(context, AllMaterial.id);
     }
   }
 }
-}
+

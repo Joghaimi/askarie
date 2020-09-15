@@ -5,19 +5,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:convert';
 // Function
 import '../function/RandomNum.dart';
-import '../function/DealWithMaterial/downloadFile.dart';
 // Function DataBase
-import '../function/DB/material.dart';
-import '../function/DB/DataBaseHelper.dart';
-import '../function/DealWithMaterial/ReadFile.dart';
 import '../function/DealWithMaterial/downloadMaterialAndCreateTable.dart';
-
-
-
-
 // Constant
 import 'package:askarie/constent/Color.dart';
-
 // Themes
 import '../themes/size_config.dart';
 import '../themes/AppTheme.dart';
@@ -39,8 +30,6 @@ class _DownloadMaterialUnitBoxState extends State<DownloadMaterialUnitBox> {
     color:C_White,
   );
   bool onTabCondition = true;
-
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -83,7 +72,7 @@ class _DownloadMaterialUnitBoxState extends State<DownloadMaterialUnitBox> {
                   if(downloadState){
                     setState(() {
                       IconPlace= FaIcon(
-                        FontAwesomeIcons.arrowCircleDown,
+                        FontAwesomeIcons.arrowCircleLeft,
                         size: SizeConfig.textMultiplier *5 ,
                         color:C_White,
                       );
@@ -99,6 +88,3 @@ class _DownloadMaterialUnitBoxState extends State<DownloadMaterialUnitBox> {
     );
   }
 }
-// TODO I'm Here 14/9/2020
-//  *** Change the icon after Finish Download the Data
-//  *** Fix the problem for not showing the material name when opening the  Material Page
