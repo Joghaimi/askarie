@@ -2,26 +2,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colored_progress_indicators/flutter_colored_progress_indicators.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'dart:convert';
 // Function
 import '../function/RandomNum.dart';
 // Function DataBase
 import '../function/DealWithMaterial/downloadMaterialAndCreateTable.dart';
 // Constant
 import 'package:askarie/constent/Color.dart';
-
 // Themes
 import '../themes/size_config.dart';
 import '../themes/AppTheme.dart';
 
 class DownloadMaterialUnitBox extends StatefulWidget {
   final String materialName;
-
   const DownloadMaterialUnitBox(this.materialName);
-
   @override
   _DownloadMaterialUnitBoxState createState() => _DownloadMaterialUnitBoxState();
-
 }
 
 class _DownloadMaterialUnitBoxState extends State<DownloadMaterialUnitBox> {
