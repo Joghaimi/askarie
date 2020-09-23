@@ -37,20 +37,28 @@ class _AllMaterialState extends State<AllMaterial> {
         color: SecondryColor,
         child: Column(
           children: [
-            SizedBox( height: 5 * SizeConfig.widthMultiplier,),
-            Container(
-              alignment: Alignment.topRight,
-              child:Padding(
-                padding: EdgeInsets.fromLTRB(SizeConfig.widthMultiplier*5, SizeConfig.heightMultiplier*5,
-                    SizeConfig.widthMultiplier*5, SizeConfig.heightMultiplier*2),
-                child: Text(
-                  'جميع المواد',
-                  style: AppTheme.AllMaterialName,
+            SizedBox( height: 7 * SizeConfig.heightMultiplier,),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 5 * SizeConfig.heightMultiplier, 0, 0),
+                  child: Text(
+                    'جميع المواد',
+                    style: AppTheme.AllMaterialName,
+                  ),
                 ),
-              ),
+                SizedBox(
+                  width: 18* SizeConfig.widthMultiplier,
+                ),
+                Image.asset("images/UnitScreen.png",),
+
+              ],
             ),
             SizedBox(
-              height: 1 * SizeConfig.widthMultiplier,
+              height: 10 * SizeConfig.widthMultiplier,
             ),
             Flexible(
               child: Stack(
@@ -69,6 +77,9 @@ class _AllMaterialState extends State<AllMaterial> {
                 ],
               ),
             ),
+
+            
+            
           ],
         ),
     ),
