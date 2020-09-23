@@ -3,14 +3,20 @@ import 'package:askarie/constent/Color.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 //Function
 import '../function/RandomNum.dart';
+import '../function/AllUnitFunction/saveQsinUnitArray.dart';
 // Themes
 import '../themes/size_config.dart';
 import '../themes/AppTheme.dart';
-
 // Component
 import 'ChoseOption.dart';
+// Screens
+import '../screens/units.dart';
+import '../screens/QuestionsAndAnswer.dart';
+import '../screens/MultibleChoice.dart';
 
 class UnitBoxs extends StatefulWidget {
   UnitBoxs({this.BoxTitel, this.Final_Score, this.NumerOfQestions,this.circleColors});
@@ -18,130 +24,163 @@ class UnitBoxs extends StatefulWidget {
   final Final_Score;
   final NumerOfQestions;
   final circleColors;
-
+  var ahmad=5;
+  Widget iconPlace =
+  Padding(
+      padding: EdgeInsets.fromLTRB(
+          SizeConfig.widthMultiplier * 7,
+          0,
+          0,
+          0),
+      child: FaIcon(
+        FontAwesomeIcons.arrowCircleLeft,
+        size: SizeConfig.textMultiplier *5 ,
+        color:C_White,
+      )
+  );
   @override
   _UnitBoxsState createState() => _UnitBoxsState();
 }
 
 class _UnitBoxsState extends State<UnitBoxs> {
-
+  var color =MaterialColorArray[RandomNum()];
+  var sizedBoxSie=SizeConfig.widthMultiplier * 8;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(
-          SizeConfig.widthMultiplier * 3,
+          SizeConfig.widthMultiplier  * 3,
           SizeConfig.heightMultiplier * 2,
-          SizeConfig.widthMultiplier * 3,
+          SizeConfig.widthMultiplier  * 3,
           SizeConfig.heightMultiplier * 0.1),
       child: Container(
         height: SizeConfig.heightMultiplier * 10,
         decoration:
-        AppTheme.MaterialUnitBoxContainer.copyWith(color: MaterialColorArray[RandomNum()]),
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(
-              SizeConfig.widthMultiplier * 1,
-              SizeConfig.heightMultiplier * 1,
-              SizeConfig.widthMultiplier * 0.1,
-              SizeConfig.heightMultiplier * 1),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Text(
+        AppTheme.MaterialUnitBoxContainer.copyWith(color: color),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding:  EdgeInsets.fromLTRB(
+                  SizeConfig.widthMultiplier * 3,
+                  0,
+                  SizeConfig.widthMultiplier * 7,
+                  0),
+              child: Text(
                 widget.BoxTitel,
                 style: AppTheme.MaterialName,
               ),
-              SizedBox(width:SizeConfig.widthMultiplier * 8 ,),
-              GestureDetector(
-                child: FaIcon(
-                  FontAwesomeIcons.arrowCircleLeft,
-                  size: SizeConfig.textMultiplier *5 ,
-                  color:C_White,
-                ),
-                onTap:(){}
-              ),
-            ],
-          ),
+            ),
+            Expanded(child: Text(""),),
+            Row(
+              mainAxisSize:  MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                SizedBox(width:sizedBoxSie,),
+                GestureDetector(
+                    child: widget.iconPlace,
+                    onTap:(){
+                      setState(() {
+                        widget.iconPlace = SelectoneOfTwoOption(color,'');
+                            sizedBoxSie=SizeConfig.widthMultiplier * 5;
+                      });
+                    }
+                ),],
+            ),
+
+          ],
         ),
       ),
+    );
+  }
+
+}
+
+class SelectoneOfTwoOption extends StatefulWidget {
+  const SelectoneOfTwoOption(this.color ,this.boxTitle) ;
+  final  color;
+  final boxTitle;
+  @override
+  _SelectoneOfTwoOptionState createState() => _SelectoneOfTwoOptionState();
+}
+class _SelectoneOfTwoOptionState extends State<SelectoneOfTwoOption> {
+  @override
+  Widget build(BuildContext context) {
+    Widget selectMultibleChoiseQs= FaIcon(
+      FontAwesomeIcons.questionCircle,
+      size: SizeConfig.textMultiplier *6 ,
+      color:this.widget.color,
+    );
+    Widget SelectQsAndAns = FaIcon(
+      FontAwesomeIcons.book,
+      size: SizeConfig.textMultiplier *6 ,
+      color:this.widget.color,
+    );
+    return Container(
+        height: SizeConfig.heightMultiplier * 10,
+        width: 200,
+        decoration:AppTheme.MaterialUnitBoxContainer.copyWith(color: C_White),
+        child:Row(
+          children: [
+            Padding(
+              padding:  EdgeInsets.fromLTRB(
+                  SizeConfig.widthMultiplier * 3,
+                  0,
+                  SizeConfig.widthMultiplier * 8,
+                  0),
+              child: GestureDetector(
+                child: SelectQsAndAns,
+                onTap: (){
+                  // StopClicking
+                  // Show Toast
+                  Fluttertoast.showToast(
+                      msg: "Loading ..",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      fontSize: 16.0
+                  );
+                  // Get Data
+                  getQuestion("Math",widget.boxTitle);
+                  // Go To QSAndAnsPage
+                },
+              ),
+            ),
+            Padding(
+              padding:  EdgeInsets.fromLTRB(
+                  SizeConfig.widthMultiplier * 3,
+                  0,
+                  SizeConfig.widthMultiplier * 7,
+                  0),
+              child: GestureDetector(
+                child: selectMultibleChoiseQs,
+                onTap: () async{
+                  // Go To MultibleCoise Page
+                  setState(() {
+                    SelectQsAndAns = Text("AHMD");
+                    print("qhm");
+                  });
+                  await getQuestion("Math",'qrn');
+
+                },
+              ),
+            ),
+          ],
+        )
     );
   }
 }
 // TODO Im here 15/9/2020
 // Make Two Chose feature
-// make it like adobe XD
-//Padding(
-//      padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-//      child: Directionality(
-//        textDirection: TextDirection.rtl,
-//        child: Container(
-//          width: 90 * SizeConfig.widthMultiplier,
-//          height: 20 * SizeConfig.widthMultiplier,
-//          decoration: AppTheme.UnitBoxes,
-//          child: Padding(
-//            padding:  EdgeInsets.fromLTRB(0.2*SizeConfig.widthMultiplier, 0.5*SizeConfig.heightMultiplier, 0.2*SizeConfig.widthMultiplier, 0.5*SizeConfig.heightMultiplier),
-//            child: Row(
-//              mainAxisSize: MainAxisSize.max,
-//              textDirection: TextDirection.rtl,
-//              children: <Widget>[
-//                Expanded(
-//                  flex: 3,
-//                  child: Row(
-//                    children: <Widget>[
-//                      Padding(
-//                        padding:  EdgeInsets.fromLTRB(2*SizeConfig.widthMultiplier, 0.8*SizeConfig.heightMultiplier, 1.3*SizeConfig.widthMultiplier, 0.8*SizeConfig.heightMultiplier),
-//                        child: Container(
-//                          width: 6*SizeConfig.widthMultiplier,
-//                          height: 6*SizeConfig.widthMultiplier,
-//                          child: Text(""),
-//                          decoration: BoxDecoration(
-//                            shape: BoxShape.circle,
-//                            color: widget.circleColors,
-//                            border: Border.all(
-//                              width: 2,
-//                              color: C_Purple,
-//                            ),
-//                          ),
-//                        ),
-//                      ),
-//                      Expanded(
-//                        child: AutoSizeText(
-//                          widget.BoxTitel,
-//                          style: AppTheme.UnitName.copyWith(color: C_TextGray_Deep),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
-//                ),
-//                Expanded(
-//                  flex: 2,
-//                  child: Row(
-//                    children: <Widget>[
-//                      Padding(
-//                        padding: EdgeInsets.fromLTRB(1.2*SizeConfig.widthMultiplier, 0, 5*SizeConfig.widthMultiplier, 0),
-//                        child: Text(
-//                          widget.NumerOfQestions,
-//                          style: AppTheme.UnitScore.copyWith(color: C_TextGray),
-//                        ),
-//                      ),
-//                      Padding(
-//                        padding:  EdgeInsets.fromLTRB(0, 2.5*SizeConfig.heightMultiplier, 0, 2.5*SizeConfig.heightMultiplier),
-//                        child: VerticalDivider(
-//                          color: C_TextGray_Deep,
-//                          thickness: 1.5,
-//                        ),
-//                      ),
-//                      Text(
-//                        widget.Final_Score,
-//                        style: AppTheme.UnitScore.copyWith(color: C_TextGray),
-//                      ),
-//
-//                    ],
-//                  ),
-//                ),
-//              ],
-//            ),
-//          ),
-//        ),
-//      ),
-//    );
+/**
+ * Make swip Effect
+ * When Click on any of them do this
+ *    - Make it loading icon
+ *    - Get Database Data
+ *    - Back it to the old icon
+ *    - Go to selected page
+ */
+

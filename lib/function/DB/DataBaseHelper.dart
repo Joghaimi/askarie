@@ -60,6 +60,10 @@ class DataBaseHelper{
     Database db =await this.database;
     return await db.query(tableName, columns: ['UnitName']);
   }
+  Future<List<Map<String, dynamic>>> getAllQS(String tableName,String untName) async{
+    Database db =await this.database;
+    return await db.query(tableName, where: "UnitName =?",whereArgs:[untName]);
+  }
 
   // insert Data To DataBase
   insertMaterial(Material material)async{

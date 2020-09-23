@@ -37,7 +37,7 @@ class _AllMaterialState extends State<AllMaterial> {
         color: SecondryColor,
         child: Column(
           children: [
-            SizedBox( height: 20 * SizeConfig.widthMultiplier,),
+            SizedBox( height: 5 * SizeConfig.widthMultiplier,),
             Container(
               alignment: Alignment.topRight,
               child:Padding(
@@ -60,7 +60,7 @@ class _AllMaterialState extends State<AllMaterial> {
                       itemBuilder: (BuildContext ctxt, int index){
                         if(AllMaterial.SavedMaterialNum -1>= index){
                           // Return saved Material
-                          return MaterialUnitBox(AllMaterial.SavedMaterial[index]);
+                          return MaterialUnitBox(AllMaterial.SavedMaterial[index],MaterialColorArray[index]);
                         }else{
                           // Return non Saved Material
                           return DownloadMaterialUnitBox(AllMaterial.NonSavedMaterial[(index-(AllMaterial.SavedMaterialNum))]!=null?AllMaterial.NonSavedMaterial[(index-(AllMaterial.SavedMaterialNum))]:"");

@@ -16,9 +16,9 @@ import '../themes/AppTheme.dart';
 import '../screens/units.dart';
 
 class MaterialUnitBox extends StatefulWidget {
-  const MaterialUnitBox(this.materialName);
+  const MaterialUnitBox(this.materialName, this.boxColor);
   final String materialName;
-
+  final boxColor;
 
 
   @override
@@ -44,7 +44,7 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
       child: Container(
         height: SizeConfig.heightMultiplier * 10,
         decoration:
-            AppTheme.MaterialUnitBoxContainer.copyWith(color: MaterialColorArray[RandomNum()]),
+            AppTheme.MaterialUnitBoxContainer.copyWith(color: widget.boxColor),
         child: Padding(
           padding: EdgeInsets.fromLTRB(
               SizeConfig.widthMultiplier * 1,
@@ -92,7 +92,6 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
       ),
     );
   }
-
 }
 // TODO
 //  - ADD Text For the Number of QS

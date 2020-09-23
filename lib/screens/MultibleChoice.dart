@@ -33,7 +33,7 @@ import '../function/search.dart';
 
 
 class MultibleChoise extends StatefulWidget {
-//  ADMOB
+  //  ADMOB
   static final id = "MultibleChoise";
   static var isSearching = false;
   static var Search = false;
@@ -47,6 +47,10 @@ class MultibleChoise extends StatefulWidget {
   ];
   var correctAns = 0;
   var Score = 0;
+  //Static Var All QS
+  // Unit From Material
+  static var QSNumber = 0;
+  static var QS = new List(100);
 
   @override
   _MultibleChoiseState createState() => _MultibleChoiseState();
@@ -75,7 +79,6 @@ class _MultibleChoiseState extends State<MultibleChoise> {
   @override
   Widget build(BuildContext context) {
     MultibleChoiseBannerAds.show();
-
     return SafeArea(
       child: Scaffold(
         body: WillPopScope(

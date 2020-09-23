@@ -18,7 +18,7 @@ import '../../screens/AllMaterial.dart';
         AllMaterial.SavedMaterial[AllMaterial.SavedMaterialNum]=allMaterialFromlocal[i];
         AllMaterial.SavedMaterialNum+=1;
       }else{// Table NOT Exist
-        print(i);
+        print(i); // TODO Delete
         AllMaterial.NonSavedMaterial[AllMaterial.NonSavedMaterialNum]=allMaterialFromlocal[i];
         AllMaterial.NonSavedMaterialNum+=1;
       }
