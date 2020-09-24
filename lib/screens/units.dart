@@ -31,9 +31,11 @@ class Units extends StatefulWidget {
   static var state = false;
   static bool loadingState = false;
   // Unit From Material
+  static var materialName ;
   static var unitNumber = 0;
   static var UnitName = new List(100);
   static var questionsArray = new List(100);
+  static var questionNumber=0;
   // Searching
   static var isSearching = false;
   // For Unit And Type
@@ -58,7 +60,7 @@ class _UnitsState extends State<Units> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: WillPopScope(
-       // ToDo make it Able to go bake
+        // ToDo make it Able to go bake
         // ignore: missing_return
         onWillPop: () {
           Navigator.pushNamed(context, AllMaterial.id);
@@ -70,11 +72,36 @@ class _UnitsState extends State<Units> {
                 color: C_Gray,
                 child: Column(
                   children: <Widget>[
+                    SizedBox(height: 10* SizeConfig.heightMultiplier,),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 5 * SizeConfig.heightMultiplier, 0, 0),
+                          child: Text(
+                            Units.materialName,
+                            style: AppTheme.AllMaterialName,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 18* SizeConfig.widthMultiplier,
+                        ),
+                        Image.asset("images/women.png",),
+                      ],
+
+                    ),
                     Flexible(
                       child: Stack(
+
                         children: <Widget>[
-                          SizedBox(
-                            height: 20 * SizeConfig.widthMultiplier,
+                          Padding(
+                            padding:EdgeInsets.fromLTRB(0, 0, 7* SizeConfig.widthMultiplier, 0),
+                            child: Text(
+                              "جميع الوحد ",
+                              style: AppTheme.MaterialName.copyWith(color: PrimaryColor),
+                            ),
                           ),
                           ListView.builder(
                               itemCount: Units.unitNumber,
@@ -84,7 +111,7 @@ class _UnitsState extends State<Units> {
                                     index == 0
                                         ? SizedBox(
                                             height:
-                                                8 * SizeConfig.heightMultiplier,
+                                                2.5* SizeConfig.heightMultiplier,
                                           )
                                         : SizedBox(
                                             height:
@@ -97,7 +124,9 @@ class _UnitsState extends State<Units> {
                                         index,
                                         Units.UnitScore[index] == 0
                                             ? Colors.white
-                                            : C_Purple),
+                                            : C_Purple,
+                                        Units.materialName),
+
                                   ],
                                 );
                               }),
@@ -117,29 +146,22 @@ class _UnitsState extends State<Units> {
     );
   }
 
-  GestureDetector buildGestureDetector(var BoxTitel, var NumerOfQwstions, var final_Score, var unit_id, var circleColors) {
+  GestureDetector buildGestureDetector(var BoxTitel, var NumerOfQwstions,
+      var final_Score, var unit_id, var circleColors ,var materialName) {
 
     return GestureDetector(
       onTap: () {
-//        Fluttertoast.showToast(
-//            msg: "This is Center Short Toast",
-//            toastLength: Toast.LENGTH_SHORT,
-//            gravity: ToastGravity.CENTER,
-//            timeInSecForIosWeb: 1,
-//            backgroundColor: Colors.red,
-//            textColor: Colors.white,
-//            fontSize: 16.0
-//        );
         setState(() {
           Units.Unit_id = unit_id;
           Units.state = true;
         });
       },
       child: UnitBoxs(
-        BoxTitel: BoxTitel,
-        NumerOfQestions: NumerOfQwstions,
-        Final_Score: final_Score,
-        circleColors: circleColors,
+        BoxTitel,
+        NumerOfQwstions,
+        final_Score,
+        circleColors,
+        materialName,
       ),
     );
   }

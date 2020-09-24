@@ -111,6 +111,29 @@ class AppTheme{
     height: 0.15 * SizeConfig.heightMultiplier,
 
   );
+  static final TextStyle SplashScreenTitel = TextStyle(
+    color: PrimaryColor,
+    fontFamily: 'ArbFONTS-Asmaa',
+    fontSize: 6 * SizeConfig.textMultiplier,
+    height: 0.6 * SizeConfig.heightMultiplier,
+    decoration: TextDecoration.none,
+  );
+  static final TextStyle MidSizeText = TextStyle(
+    color: PrimaryColor,
+    fontFamily: 'ArbFONTS-Asmaa',
+    fontSize: 5 * SizeConfig.textMultiplier,
+    height: 0.1 * SizeConfig.heightMultiplier,
+    decoration: TextDecoration.none,
+
+  );
+  static final TextStyle SmallSizeText = TextStyle(
+    color: PrimaryColor,
+    fontFamily: 'ArbFONTS-Asmaa',
+    fontSize: 3 * SizeConfig.textMultiplier,
+    height: 0.17 * SizeConfig.heightMultiplier,
+    decoration: TextDecoration.none,
+
+  );
 
 
 }

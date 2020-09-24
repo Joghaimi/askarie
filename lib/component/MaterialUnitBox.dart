@@ -72,6 +72,7 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
                   var material_name = await baseHelper.getUnitName(widget.materialName);
                   // Go To Unit Page
                   Units.unitNumber=material_name.length;
+                  Units.materialName=widget.materialName;
                   var cont = 0;
                   for(var material in material_name){
                     Units.UnitName[cont]=material['UnitName'];

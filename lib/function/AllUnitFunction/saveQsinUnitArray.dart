@@ -7,15 +7,17 @@ Future <void> getQuestion(var materialName , var unitName) async{
   // Initialize DB
   DataBaseHelper baseHelper=DataBaseHelper(); // DataBase Helper
   var allQs = await baseHelper.getAllQS(materialName, unitName); // GetAllQS
-  var i =0;
-  for(var qs in allQs){
+//  print(allQs);
+  Units.questionNumber = allQs.length;
+  for(int i=0;i<allQs.length;i++){
     Units.questionsArray[i]=[
-      qs[2],
-      qs[3],
-      qs[4],
-      qs[5],
-      qs[6]
+      allQs[i]["QS"],
+      allQs[i]["A_Ans"],
+      allQs[i]["B_Ans"],
+      allQs[i]["C_Ans"],
+      allQs[i]["D_Ans"],
+      allQs[i]["solution"],
     ];
-    i++;
+
   }
 }

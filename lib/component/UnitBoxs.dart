@@ -2,7 +2,6 @@
 import 'package:askarie/constent/Color.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 //Function
@@ -11,20 +10,20 @@ import '../function/AllUnitFunction/saveQsinUnitArray.dart';
 // Themes
 import '../themes/size_config.dart';
 import '../themes/AppTheme.dart';
-// Component
-import 'ChoseOption.dart';
 // Screens
 import '../screens/units.dart';
 import '../screens/QuestionsAndAnswer.dart';
 import '../screens/MultibleChoice.dart';
 
 class UnitBoxs extends StatefulWidget {
-  UnitBoxs({this.BoxTitel, this.Final_Score, this.NumerOfQestions,this.circleColors});
+  UnitBoxs(this.BoxTitel, this.Final_Score, this.NumerOfQestions,this.circleColors,this.materialName);
   final BoxTitel;
   final Final_Score;
   final NumerOfQestions;
   final circleColors;
+  final materialName;
   var ahmad=5;
+  var goData=0;
   Widget iconPlace =
   Padding(
       padding: EdgeInsets.fromLTRB(
@@ -45,8 +44,19 @@ class UnitBoxs extends StatefulWidget {
 class _UnitBoxsState extends State<UnitBoxs> {
   var color =MaterialColorArray[RandomNum()];
   var sizedBoxSie=SizeConfig.widthMultiplier * 8;
+
   @override
   Widget build(BuildContext context) {
+    Widget selectMultibleChoiseQs= FaIcon(
+      FontAwesomeIcons.questionCircle,
+      size: SizeConfig.textMultiplier *6 ,
+      color:color,
+    );
+    Widget SelectQsAndAns = FaIcon(
+      FontAwesomeIcons.book,
+      size: SizeConfig.textMultiplier *6 ,
+      color:color,
+    );
     return Padding(
       padding: EdgeInsets.fromLTRB(
           SizeConfig.widthMultiplier  * 3,
@@ -80,10 +90,71 @@ class _UnitBoxsState extends State<UnitBoxs> {
                 SizedBox(width:sizedBoxSie,),
                 GestureDetector(
                     child: widget.iconPlace,
-                    onTap:(){
+                    onTap:() {
+//                      await getQuestion('math','qrn');
+//                      Navigator.pushNamed(context,QuestionsAndAnswer.id);
+
                       setState(() {
-                        widget.iconPlace = SelectoneOfTwoOption(color,'');
-                            sizedBoxSie=SizeConfig.widthMultiplier * 5;
+                        widget.iconPlace =  Container(
+                            height: SizeConfig.heightMultiplier * 10,
+                            width: 200,
+                            decoration:AppTheme.MaterialUnitBoxContainer.copyWith(color: C_White),
+                            child:Row(
+                              children: [
+                                Padding(
+                                  padding:  EdgeInsets.fromLTRB(
+                                      SizeConfig.widthMultiplier * 3,
+                                      0,
+                                      SizeConfig.widthMultiplier * 8,
+                                      0),
+                                  child: GestureDetector(
+                                    child: SelectQsAndAns,
+                                    onTap: () async{
+                                      // StopClicking
+                                      // Show Toast
+                                      Fluttertoast.showToast(
+                                          msg: "Loading ..",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.green,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0
+                                      );
+                                      // Get Data
+                                      await getQuestion(widget.materialName,widget.BoxTitel );
+//                                      await getQuestion('math','qrn');
+                                      Navigator.pushNamed(context,QuestionsAndAnswer.id);
+
+                                      // Go To QSAndAnsPage
+
+                                    },
+                                  ),
+                                ),
+                                Padding(
+                                  padding:  EdgeInsets.fromLTRB(
+                                      SizeConfig.widthMultiplier * 3,
+                                      0,
+                                      SizeConfig.widthMultiplier * 7,
+                                      0),
+                                  child: GestureDetector(
+                                    child: selectMultibleChoiseQs,
+                                    onTap: () async{
+                                      // Go To MultibleCoise Page
+                                      setState(() {
+                                        SelectQsAndAns = Text("AHMD");
+                                        print("qhm");
+                                      });
+                                      await getQuestion("Math",'qrn');
+                                    },
+                                  ),
+                                ),
+                              ],
+                            )
+                        );
+
+//                            SelectoneOfTwoOption(color,widget.BoxTitel,widget.materialName);
+                        sizedBoxSie=SizeConfig.widthMultiplier * 5;
                       });
                     }
                 ),],
@@ -94,13 +165,13 @@ class _UnitBoxsState extends State<UnitBoxs> {
       ),
     );
   }
-
 }
 
 class SelectoneOfTwoOption extends StatefulWidget {
-  const SelectoneOfTwoOption(this.color ,this.boxTitle) ;
+  const SelectoneOfTwoOption(this.color ,this.boxTitle,this.materialName) ;
   final  color;
   final boxTitle;
+  final materialName;
   @override
   _SelectoneOfTwoOptionState createState() => _SelectoneOfTwoOptionState();
 }
@@ -131,7 +202,7 @@ class _SelectoneOfTwoOptionState extends State<SelectoneOfTwoOption> {
                   0),
               child: GestureDetector(
                 child: SelectQsAndAns,
-                onTap: (){
+                onTap: () async{
                   // StopClicking
                   // Show Toast
                   Fluttertoast.showToast(
@@ -144,8 +215,12 @@ class _SelectoneOfTwoOptionState extends State<SelectoneOfTwoOption> {
                       fontSize: 16.0
                   );
                   // Get Data
-                  getQuestion("Math",widget.boxTitle);
+//                  await getQuestion(widget.materialName,widget.boxTitle);
+                  await getQuestion('math','qrn');
                   // Go To QSAndAnsPage
+                  setState(() {
+                    Navigator.pushNamed(context,QuestionsAndAnswer.id);
+                  });
                 },
               ),
             ),
@@ -164,7 +239,6 @@ class _SelectoneOfTwoOptionState extends State<SelectoneOfTwoOption> {
                     print("qhm");
                   });
                   await getQuestion("Math",'qrn');
-
                 },
               ),
             ),
