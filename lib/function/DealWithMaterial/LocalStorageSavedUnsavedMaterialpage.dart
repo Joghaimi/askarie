@@ -6,6 +6,7 @@ import '../../screens/AllMaterial.dart';
   localStorageSavedUnsavedMaterialPage()async{
   // Initialize DB
   DataBaseHelper baseHelper=DataBaseHelper(); // DataBase Helper
+  await baseHelper.initializeDB();
   // Read All Saved Material
   var allMaterialFromlocal = await localStorage.getDataStringArray('Material');
 

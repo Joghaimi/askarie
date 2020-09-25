@@ -91,9 +91,6 @@ class _UnitBoxsState extends State<UnitBoxs> {
                 GestureDetector(
                     child: widget.iconPlace,
                     onTap:() {
-//                      await getQuestion('math','qrn');
-//                      Navigator.pushNamed(context,QuestionsAndAnswer.id);
-
                       setState(() {
                         widget.iconPlace =  Container(
                             height: SizeConfig.heightMultiplier * 10,
@@ -123,7 +120,6 @@ class _UnitBoxsState extends State<UnitBoxs> {
                                       );
                                       // Get Data
                                       await getQuestion(widget.materialName,widget.BoxTitel );
-//                                      await getQuestion('math','qrn');
                                       Navigator.pushNamed(context,QuestionsAndAnswer.id);
 
                                       // Go To QSAndAnsPage
@@ -140,20 +136,25 @@ class _UnitBoxsState extends State<UnitBoxs> {
                                   child: GestureDetector(
                                     child: selectMultibleChoiseQs,
                                     onTap: () async{
-                                      // Go To MultibleCoise Page
-                                      setState(() {
-                                        SelectQsAndAns = Text("AHMD");
-                                        print("qhm");
-                                      });
-                                      await getQuestion("Math",'qrn');
+                                      Fluttertoast.showToast(
+                                          msg: "Loading ..",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.green,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0
+                                      );
+                                      // Get Data
+                                      await getQuestion(widget.materialName,widget.BoxTitel );
+                                      Navigator.pushNamed(context,MultibleChoise.id);
+
                                     },
                                   ),
                                 ),
                               ],
                             )
                         );
-
-//                            SelectoneOfTwoOption(color,widget.BoxTitel,widget.materialName);
                         sizedBoxSie=SizeConfig.widthMultiplier * 5;
                       });
                     }
@@ -167,86 +168,6 @@ class _UnitBoxsState extends State<UnitBoxs> {
   }
 }
 
-class SelectoneOfTwoOption extends StatefulWidget {
-  const SelectoneOfTwoOption(this.color ,this.boxTitle,this.materialName) ;
-  final  color;
-  final boxTitle;
-  final materialName;
-  @override
-  _SelectoneOfTwoOptionState createState() => _SelectoneOfTwoOptionState();
-}
-class _SelectoneOfTwoOptionState extends State<SelectoneOfTwoOption> {
-  @override
-  Widget build(BuildContext context) {
-    Widget selectMultibleChoiseQs= FaIcon(
-      FontAwesomeIcons.questionCircle,
-      size: SizeConfig.textMultiplier *6 ,
-      color:this.widget.color,
-    );
-    Widget SelectQsAndAns = FaIcon(
-      FontAwesomeIcons.book,
-      size: SizeConfig.textMultiplier *6 ,
-      color:this.widget.color,
-    );
-    return Container(
-        height: SizeConfig.heightMultiplier * 10,
-        width: 200,
-        decoration:AppTheme.MaterialUnitBoxContainer.copyWith(color: C_White),
-        child:Row(
-          children: [
-            Padding(
-              padding:  EdgeInsets.fromLTRB(
-                  SizeConfig.widthMultiplier * 3,
-                  0,
-                  SizeConfig.widthMultiplier * 8,
-                  0),
-              child: GestureDetector(
-                child: SelectQsAndAns,
-                onTap: () async{
-                  // StopClicking
-                  // Show Toast
-                  Fluttertoast.showToast(
-                      msg: "Loading ..",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.green,
-                      textColor: Colors.white,
-                      fontSize: 16.0
-                  );
-                  // Get Data
-//                  await getQuestion(widget.materialName,widget.boxTitle);
-                  await getQuestion('math','qrn');
-                  // Go To QSAndAnsPage
-                  setState(() {
-                    Navigator.pushNamed(context,QuestionsAndAnswer.id);
-                  });
-                },
-              ),
-            ),
-            Padding(
-              padding:  EdgeInsets.fromLTRB(
-                  SizeConfig.widthMultiplier * 3,
-                  0,
-                  SizeConfig.widthMultiplier * 7,
-                  0),
-              child: GestureDetector(
-                child: selectMultibleChoiseQs,
-                onTap: () async{
-                  // Go To MultibleCoise Page
-                  setState(() {
-                    SelectQsAndAns = Text("AHMD");
-                    print("qhm");
-                  });
-                  await getQuestion("Math",'qrn');
-                },
-              ),
-            ),
-          ],
-        )
-    );
-  }
-}
 // TODO Im here 15/9/2020
 // Make Two Chose feature
 /**

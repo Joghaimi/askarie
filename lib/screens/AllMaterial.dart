@@ -66,7 +66,7 @@ class _AllMaterialState extends State<AllMaterial> {
                   ListView.builder(
                       itemCount: (AllMaterial.AllMaterialNum-1)>=0?(AllMaterial.AllMaterialNum-1):0,
                       itemBuilder: (BuildContext ctxt, int index){
-                        if(AllMaterial.SavedMaterialNum -1>= index){
+                        if(AllMaterial.SavedMaterialNum -1>= index){ // TODO AllMaterial.SavedMaterialNum -1>= index
                           // Return saved Material
                           return MaterialUnitBox(AllMaterial.SavedMaterial[index],MaterialColorArray[index]);
                         }else{
@@ -77,9 +77,6 @@ class _AllMaterialState extends State<AllMaterial> {
                 ],
               ),
             ),
-
-            
-            
           ],
         ),
     ),

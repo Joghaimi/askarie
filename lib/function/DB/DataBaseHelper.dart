@@ -1,8 +1,10 @@
+import 'dart:collection';
 import 'dart:io';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'material.dart';
 import 'package:path_provider/path_provider.dart';
+
 
 class DataBaseHelper{
   static DataBaseHelper _dataBaseHelper; // define variable only
@@ -58,17 +60,19 @@ class DataBaseHelper{
   }
   Future<List<Map<String, dynamic>>> getUnitName(tableName) async {
     Database db =await this.database;
-    return await db.query(tableName, columns: ['UnitName']);
+    var result = await db.query(tableName, columns: ['UnitName']);
+    return result;
   }
   Future<List<Map<String, dynamic>>> getAllQS(String tableName,String untName) async{
     Database db =await this.database;
     return await db.query(tableName, where: "UnitName =?",whereArgs:[untName]);
   }
 
+
   // insert Data To DataBase
-  insertMaterial(Material material)async{
+  insertMaterial(String tableName ,Map material)async{
     Database db =await this.database;
-    var result = await db.insert(material.TableName,material.toMap());
+    var result = await db.insert(tableName,material);
     return result;
   }
 

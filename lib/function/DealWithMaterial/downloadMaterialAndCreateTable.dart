@@ -32,10 +32,16 @@ downloadMaterialAndCreateTable(String materialName) async{
       baseHelper.createDBTable(materialName);
       // Insert Data
       for(var QS in jsonMaterialCont){
-        material.saveData(materialName, QS[0], QS[1], QS[2], QS[3], QS[4], QS[5], QS[6]);
-        baseHelper.insertMaterial(material);
+        var map = Map<String,dynamic>();
+        map ['UnitName']    =  QS[0];
+        map ['QS']          =  QS[1];
+        map ['A_Ans']       =  QS[2];
+        map ['B_Ans']       =  QS[3];
+        map ['C_Ans']       =  QS[4];
+        map ['D_Ans']       =  QS[5];
+        map ['solution']    =  QS[6];
+        baseHelper.insertMaterial(materialName,map);
       }
-      // Change icon to go icon or open new widget
       return true;
     }else{
       // Some Thing Wrong Happend

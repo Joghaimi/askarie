@@ -24,7 +24,15 @@ class AppTheme{
   static final TextStyle Button = TextStyle(
     color: Colors.white,
     fontFamily: 'ArbFONTS-Asmaa',
-    fontSize: 3.5 * SizeConfig.textMultiplier,
+    decorationThickness: 1.0,
+    fontSize: 3.0 * SizeConfig.textMultiplier,
+    height: 0.15 * SizeConfig.heightMultiplier,
+  );
+  static final TextStyle ButtonNext = TextStyle(
+    color: C_Purple,
+    fontFamily: 'ArbFONTS-Asmaa',
+    decorationThickness: 1.0,
+    fontSize: 3.0 * SizeConfig.textMultiplier,
     height: 0.15 * SizeConfig.heightMultiplier,
   );
   static final TextStyle QestionAns  = TextStyle(
@@ -56,6 +64,14 @@ class AppTheme{
     fontFamily: 'samat',
     fontSize: 60,
   );
+  static final BoxDecoration  buttonSubmit = BoxDecoration(
+    border: Border.all(
+      width:1,
+      color: C_Purple,
+    ),
+    color: Colors.white,
+  );
+
 
   static final BoxDecoration  Answers = BoxDecoration(
     border: Border.all(
@@ -134,6 +150,13 @@ class AppTheme{
     decoration: TextDecoration.none,
 
   );
+  static final TextStyle smallerSizeText = TextStyle(
+    color: PrimaryColor,
+    fontFamily: 'ArbFONTS-Asmaa',
+    fontSize: 2.1 * SizeConfig.textMultiplier,
+    height: 0.17 * SizeConfig.heightMultiplier,
+    decoration: TextDecoration.none,
 
+  );
 
 }

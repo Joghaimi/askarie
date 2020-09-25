@@ -33,7 +33,7 @@ class Units extends StatefulWidget {
   // Unit From Material
   static var materialName ;
   static var unitNumber = 0;
-  static var UnitName = new List(100);
+  static var UnitName = [];
   static var questionsArray = new List(100);
   static var questionNumber=0;
   // Searching

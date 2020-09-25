@@ -1,11 +1,13 @@
 // Packages
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_colored_progress_indicators/flutter_colored_progress_indicators.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // fUNCTION
-import '../function/RandomNum.dart';
 import '../function/DB/DataBaseHelper.dart';
-import '../function/localStorage.dart';
+
+
 // Constant
 import 'package:askarie/constent/Color.dart';
 // Themes
@@ -71,13 +73,21 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
                   DataBaseHelper baseHelper=DataBaseHelper(); // DataBase Helper
                   var material_name = await baseHelper.getUnitName(widget.materialName);
                   // Go To Unit Page
-                  Units.unitNumber=material_name.length;
+//                  Units.unitNumber=material_name.length;
                   Units.materialName=widget.materialName;
+                  // Empty the array
+                  Units.UnitName.clear();
                   var cont = 0;
+                  var savedUnitname;
                   for(var material in material_name){
-                    Units.UnitName[cont]=material['UnitName'];
-                    cont ++ ;
+                    if(! Units.UnitName.contains(material['UnitName'])){
+                      Units.UnitName.add(material['UnitName']);
+                      print(material['UnitName']);
+                      cont ++ ;
+                    }
                   }
+
+                  Units.unitNumber=cont;
                   Navigator.pushReplacementNamed(context, Units.id);
                   //return icon to what it was
                   setState(() {iconPlace= FaIcon(
