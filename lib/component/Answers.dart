@@ -67,11 +67,11 @@ class _AnswersState extends State<Answers> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: AutoDirection(
-                            onDirectionChange: (isRTL) {
-                              setState(() {
-                                textDirection =TextDirection.rtl;
-                              });
-                            },
+//                            onDirectionChange: (isRTL) {
+//                              setState(() {
+//                                textDirection =TextDirection.rtl;
+//                              });
+//                            },
                             text: widget.Answer,
                             child: AutoSizeText(
                               widget.Answer,

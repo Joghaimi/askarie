@@ -1,4 +1,5 @@
 // packages
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -80,15 +81,23 @@ class _UnitsState extends State<Units> {
                       children: [
                         Padding(
                           padding: EdgeInsets.fromLTRB(0, 5 * SizeConfig.heightMultiplier, 0, 0),
-                          child: Text(
-                            Units.materialName,
-                            style: AppTheme.AllMaterialName,
-                          ),
+                          child:
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: Container(
+                              width: 40* SizeConfig.widthMultiplier,
+                              child: AutoSizeText(
+                                Units.materialName,
+                                style: AppTheme.AllMaterialName,
+                              ),
+                            ),
+                          )
+
                         ),
                         SizedBox(
-                          width: 18* SizeConfig.widthMultiplier,
+                          width: 10* SizeConfig.widthMultiplier,
                         ),
-                        Image.asset("images/women.png",),
+                        Image.asset("images/women.png",width: SizeConfig.textMultiplier*25,),
                       ],
 
                     ),

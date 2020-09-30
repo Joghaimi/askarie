@@ -84,11 +84,20 @@ class _splash_screenState extends State<splash_screen> {
   }
 
   Future<dynamic> OpenNewView() async {
-    await checkForNewMaterial();
-    await localStorageSavedUnsavedMaterialPage();
-    if(AllMaterial.Ready){
-      Navigator.pushReplacementNamed(context, AllMaterial.id);
-    }
+    checkForNewMaterial().then(
+        (value) async{
+          await localStorageSavedUnsavedMaterialPage();
+          Navigator.pushReplacementNamed(context, AllMaterial.id);
+        }
+    );
+
+//    Future.delayed(new Duration(milliseconds: 1500),()async{
+//      await localStorageSavedUnsavedMaterialPage();
+//      if(AllMaterial.Ready){
+//        Navigator.pushReplacementNamed(context, AllMaterial.id);
+//      }
+//    });
+
   }
 }
 

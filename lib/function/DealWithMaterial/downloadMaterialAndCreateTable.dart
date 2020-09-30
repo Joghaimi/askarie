@@ -20,7 +20,7 @@ downloadMaterialAndCreateTable(String materialName) async{
   var connectionstate =await  downloadMaterial.internetConnection();
   if(connectionstate){
     // Their is Internet Connection
-    bool downloadState =await downloadMaterial.downloadFile('http://joghaimi.com/${materialName}.json', '${materialName}.json');
+    bool downloadState =await downloadMaterial.downloadFile('http://joghaimi.com/kewy/${materialName}.json', '${materialName}.json');
     if(downloadState){ // Download Sucess
       // Read File
       var materialCont      = await ReadFile.readFile('${materialName}.json');

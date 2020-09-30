@@ -1,4 +1,5 @@
 // Packages
+import 'package:auto_direction/auto_direction.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
@@ -300,6 +301,8 @@ class _MultibleChoiseState extends State<MultibleChoise> {
     }
     // Get the correct Ans
     widget.correctAns = Units.questionsArray[widget.QestionsNumber][5];
+    // If correct ans > 4 then make it 4
+    widget.correctAns = widget.correctAns<4?widget.correctAns:4;
     // Change Colors and make btn UnClickable
     setState(() {
       // But Red Color in the Selected Ans
@@ -336,7 +339,7 @@ class QuestionPart extends StatelessWidget {
         children: [
           // For QS Text
           Container(
-            width: 40 * SizeConfig.widthMultiplier,
+            width: 90 * SizeConfig.widthMultiplier,
             height: 40 * SizeConfig.widthMultiplier,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -345,10 +348,18 @@ class QuestionPart extends StatelessWidget {
                   height: SizeConfig.heightMultiplier * 12,
                   child: Align(
                     alignment: Alignment.center,
-                    child: AutoSizeText(
-                      Units.questionsArray[widget.QestionsNumber][0],
-                      style: AppTheme.SmallSizeText,
+                    child : AutoDirection(
+                      text: Units.questionsArray[widget.QestionsNumber][0],
+                      child: AutoSizeText(
+                        Units.questionsArray[widget.QestionsNumber][0],
+                        style: AppTheme.SmallSizeText,
+                      ),
                     ),
+
+//                    child: AutoSizeText(
+//                      Units.questionsArray[widget.QestionsNumber][0],
+//                      style: AppTheme.SmallSizeText,
+//                    ),
                   ),
                 ),
               ],

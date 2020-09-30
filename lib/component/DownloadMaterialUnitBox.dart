@@ -4,6 +4,7 @@ import 'package:flutter_colored_progress_indicators/flutter_colored_progress_ind
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // Function
 import '../function/RandomNum.dart';
+import '../function/DB/DataBaseHelper.dart';
 // Function DataBase
 import '../function/DealWithMaterial/downloadMaterialAndCreateTable.dart';
 // Constant
@@ -11,7 +12,8 @@ import 'package:askarie/constent/Color.dart';
 // Themes
 import '../themes/size_config.dart';
 import '../themes/AppTheme.dart';
-
+// Screens
+import '../screens/units.dart';
 class DownloadMaterialUnitBox extends StatefulWidget {
   final String materialName;
   const DownloadMaterialUnitBox(this.materialName);
@@ -67,10 +69,33 @@ class _DownloadMaterialUnitBoxState extends State<DownloadMaterialUnitBox> {
                   // Open The New View
                   if(downloadState){
                     setState(() {
-                      IconPlace= FaIcon(
-                        FontAwesomeIcons.arrowCircleLeft,
-                        size: SizeConfig.textMultiplier *5 ,
-                        color:C_White,
+                      IconPlace= GestureDetector(
+                        child: FaIcon(
+                          FontAwesomeIcons.arrowCircleLeft,
+                          size: SizeConfig.textMultiplier *5 ,
+                          color:C_White,
+                        ),
+                        onTap: ()async{
+                          setState(() {IconPlace= ColoredCircularProgressIndicator();});
+                          // Save All Unit Name
+                          DataBaseHelper baseHelper=DataBaseHelper(); // DataBase Helper
+                          var material_name = await baseHelper.getUnitName(widget.materialName);
+                          Units.materialName=widget.materialName;
+                          // Empty the array
+                          Units.UnitName.clear();
+                          var cont = 0;
+                          var savedUnitname;
+                          for(var material in material_name){
+                            if(! Units.UnitName.contains(material['UnitName'])){
+                              Units.UnitName.add(material['UnitName']);
+                              print(material['UnitName']);
+                              cont ++ ;
+                            }
+                          }
+
+                          Units.unitNumber=cont;
+                          Navigator.pushReplacementNamed(context, Units.id);
+                        },
                       );
                     });
                   }
