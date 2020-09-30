@@ -8,6 +8,7 @@ import '../themes/size_config.dart';
 
 // Function
 import '../function/saverandomdata.dart';
+import '../function/shareApp.dart';
 
 class MyBottomAppBar extends StatefulWidget {
   bool isSearching = false;
@@ -73,10 +74,13 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
             Expanded(
               // share
               flex: 1,
-              child:FaIcon(
-                FontAwesomeIcons.shareAlt,
-                size: SizeConfig.textMultiplier*4 ,
-                color:C_White,
+              child:GestureDetector(
+                child: FaIcon(
+                  FontAwesomeIcons.shareAlt,
+                  size: SizeConfig.textMultiplier*4 ,
+                  color:C_White,
+                ),
+                onTap: () => shareApp(),
               ),
             ),
           ],
