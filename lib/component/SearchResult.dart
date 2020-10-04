@@ -85,7 +85,7 @@ class _SearchResultState extends State<SearchResult> {
                                         setState(() {
                                           widget.rs = false;
                                           Units.Search = false;
-                                          MultibleChoise.Search = false;
+//                                          MultibleChoise.Search = false;
                                           QuestionsAndAnswer.Search = false;
                                         });
                                       },

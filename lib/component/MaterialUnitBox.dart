@@ -1,12 +1,10 @@
 // Packages
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_colored_progress_indicators/flutter_colored_progress_indicators.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // fUNCTION
 import '../function/DB/DataBaseHelper.dart';
-
+import '../function/DealWithMaterial/getSetScore.dart';
 
 // Constant
 import 'package:askarie/constent/Color.dart';
@@ -21,8 +19,6 @@ class MaterialUnitBox extends StatefulWidget {
   const MaterialUnitBox(this.materialName, this.boxColor);
   final String materialName;
   final boxColor;
-
-
   @override
   _MaterialUnitBoxState createState() => _MaterialUnitBoxState();
 }
@@ -73,7 +69,7 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
                   DataBaseHelper baseHelper=DataBaseHelper(); // DataBase Helper
                   var material_name = await baseHelper.getUnitName(widget.materialName);
                   // Go To Unit Page
-//                  Units.unitNumber=material_name.length;
+
                   Units.materialName=widget.materialName;
                   // Empty the array
                   Units.UnitName.clear();
@@ -81,12 +77,12 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
                   var savedUnitname;
                   for(var material in material_name){
                     if(! Units.UnitName.contains(material['UnitName'])){
-                      Units.UnitName.add(material['UnitName']);
-                      print(material['UnitName']);
+                      Units.UnitName.add(material['UnitName']); // Unit Name
+                      Units.unitScore.add(await getUnitScore(widget.materialName, material['UnitName'])); //@todo It save 0 Data
+                      print(await getUnitScore(widget.materialName, material['UnitName']));
                       cont ++ ;
                     }
                   }
-
                   Units.unitNumber=cont;
                   Navigator.pushReplacementNamed(context, Units.id);
                   //return icon to what it was
@@ -106,4 +102,5 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
 }
 // TODO
 //  - ADD Text For the Number of QS
-//  - ADD Progress Indecator
+//  - ADD Progress Indicator
+//  - if the user click in the unit showthe option

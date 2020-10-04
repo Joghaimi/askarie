@@ -3,7 +3,7 @@ import 'package:askarie/constent/Color.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
+import 'package:percent_indicator/linear_percent_indicator.dart';
 //Function
 import '../function/RandomNum.dart';
 import '../function/AllUnitFunction/saveQsinUnitArray.dart';
@@ -11,26 +11,20 @@ import '../function/AllUnitFunction/saveQsinUnitArray.dart';
 import '../themes/size_config.dart';
 import '../themes/AppTheme.dart';
 // Screens
-import '../screens/units.dart';
 import '../screens/QuestionsAndAnswer.dart';
 import '../screens/MultibleChoice.dart';
 
 class UnitBoxs extends StatefulWidget {
-  UnitBoxs(this.BoxTitel, this.Final_Score, this.NumerOfQestions,this.circleColors,this.materialName);
+  UnitBoxs(this.BoxTitel, this.Final_Score, this.NumerOfQestions,this.materialName);
   final BoxTitel;
   final Final_Score;
   final NumerOfQestions;
-  final circleColors;
   final materialName;
   var ahmad=5;
   var goData=0;
   Widget iconPlace =
   Padding(
-      padding: EdgeInsets.fromLTRB(
-          SizeConfig.widthMultiplier * 7,
-          0,
-          0,
-          0),
+      padding: EdgeInsets.fromLTRB(SizeConfig.widthMultiplier * 7, 0,0,0),
       child: FaIcon(
         FontAwesomeIcons.arrowCircleLeft,
         size: SizeConfig.textMultiplier *5 ,
@@ -44,7 +38,6 @@ class UnitBoxs extends StatefulWidget {
 class _UnitBoxsState extends State<UnitBoxs> {
   var color =MaterialColorArray[RandomNum()];
   var sizedBoxSie=SizeConfig.widthMultiplier * 8;
-
   @override
   Widget build(BuildContext context) {
     Widget selectMultibleChoiseQs= FaIcon(
@@ -73,12 +66,25 @@ class _UnitBoxsState extends State<UnitBoxs> {
             Padding(
               padding:  EdgeInsets.fromLTRB(
                   SizeConfig.widthMultiplier * 3,
-                  0,
+                  SizeConfig.heightMultiplier*1.2,
                   SizeConfig.widthMultiplier * 7,
                   0),
-              child: Text(
-                widget.BoxTitel,
-                style: AppTheme.MaterialName,
+              child: Column(
+                children: [
+                  // MaterialName
+                  Text(
+                    widget.BoxTitel,
+                    style: AppTheme.MaterialName,
+                  ),
+                  // ProgressBar
+                  LinearPercentIndicator(
+                    width: 100.0,
+                    lineHeight: 8.0,
+                    percent: ((100-widget.Final_Score)/ 100), // TODo Make IT as Score
+                    progressColor:   C_White,
+                    backgroundColor: Colors.red,
+                  ),
+                ],
               ),
             ),
             Expanded(child: Text(""),),
@@ -121,7 +127,6 @@ class _UnitBoxsState extends State<UnitBoxs> {
                                       // Get Data
                                       await getQuestion(widget.materialName,widget.BoxTitel );
                                       Navigator.pushNamed(context,QuestionsAndAnswer.id);
-
                                       // Go To QSAndAnsPage
 
                                     },
@@ -147,6 +152,8 @@ class _UnitBoxsState extends State<UnitBoxs> {
                                       );
                                       // Get Data
                                       await getQuestion(widget.materialName,widget.BoxTitel );
+                                      MultibleChoise.materialName=widget.materialName;
+                                      MultibleChoise.unitName=widget.BoxTitel;
                                       Navigator.pushNamed(context,MultibleChoise.id);
 
                                     },

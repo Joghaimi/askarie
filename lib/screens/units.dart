@@ -35,6 +35,7 @@ class Units extends StatefulWidget {
   static var materialName ;
   static var unitNumber = 0;
   static var UnitName = [];
+  static var unitScore =[];
   static var questionsArray = new List(100);
   static var questionNumber=0;
   // Searching
@@ -42,7 +43,7 @@ class Units extends StatefulWidget {
   // For Unit And Type
   static var Unit_id;
   static var Search = false;
-  static var UnitScore = new List(100);
+//  static var UnitScore = new List(100);
   FToast fToast;
   @override
   _UnitsState createState() => _UnitsState();
@@ -115,6 +116,7 @@ class _UnitsState extends State<Units> {
                           ListView.builder(
                               itemCount: Units.unitNumber,
                               itemBuilder: (BuildContext ctxt, int index) {
+                                print(Units.unitScore[index]);
                                 return Column(
                                   children: <Widget>[
                                     index == 0
@@ -126,16 +128,7 @@ class _UnitsState extends State<Units> {
                                             height:
                                                 0.4 * SizeConfig.heightMultiplier,
                                           ),
-                                    buildGestureDetector(
-                                        Units.UnitName[index],
-                                        "${UnitsArray[index].length} سؤال ",
-                                        "${Units.UnitScore[index]}/100",
-                                        index,
-                                        Units.UnitScore[index] == 0
-                                            ? Colors.white
-                                            : C_Purple,
-                                        Units.materialName),
-
+                                    buildGestureDetector(Units.UnitName[index], "${UnitsArray[index].length} سؤال ", Units.unitScore[index], index, Units.materialName),
                                   ],
                                 );
                               }),
@@ -156,8 +149,7 @@ class _UnitsState extends State<Units> {
   }
 
   GestureDetector buildGestureDetector(var BoxTitel, var NumerOfQwstions,
-      var final_Score, var unit_id, var circleColors ,var materialName) {
-
+      var final_Score, var unit_id,var materialName) {
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -165,11 +157,11 @@ class _UnitsState extends State<Units> {
           Units.state = true;
         });
       },
+
       child: UnitBoxs(
         BoxTitel,
-        NumerOfQwstions,
         final_Score,
-        circleColors,
+        NumerOfQwstions,
         materialName,
       ),
     );

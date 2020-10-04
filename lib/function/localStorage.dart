@@ -1,5 +1,4 @@
 import 'package:shared_preferences/shared_preferences.dart';
-
 class localStorage{
   // Get and Set Int Data
   static getData(String data) async{
@@ -15,9 +14,7 @@ class localStorage{
   static saveData(String data,int value) async{
     final prefs =await SharedPreferences.getInstance();
     prefs.setInt(data, value);
-
   }
-
   // Get and Set String Data
   static SaveString(String data,var value)async{
     final prefs =await SharedPreferences.getInstance();
@@ -46,6 +43,4 @@ class localStorage{
       return returnedData;
     }
   }
-
-
 }

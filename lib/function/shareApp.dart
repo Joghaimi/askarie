@@ -6,6 +6,6 @@ void shareApp(){
   WcFlutterShare.share(
       sharePopupTitle: subject,
       subject: subject,
-      text: shareText, // TODO Change the URL
+      text: shareText,
       mimeType: 'text/plain');
 }
