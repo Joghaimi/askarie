@@ -116,7 +116,6 @@ class _UnitsState extends State<Units> {
                           ListView.builder(
                               itemCount: Units.unitNumber,
                               itemBuilder: (BuildContext ctxt, int index) {
-                                print(Units.unitScore[index]);
                                 return Column(
                                   children: <Widget>[
                                     index == 0
@@ -163,6 +162,7 @@ class _UnitsState extends State<Units> {
         final_Score,
         NumerOfQwstions,
         materialName,
+          unit_id
       ),
     );
   }
@@ -173,6 +173,5 @@ class _UnitsState extends State<Units> {
 /*
 *  - Change the Bottom NavBar Done
 *  - Change Unit Box Style and Function
-*  - Make the Design Like AdobeXD
 *  - Create Share Option
 * */

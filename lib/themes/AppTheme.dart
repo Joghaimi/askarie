@@ -102,6 +102,10 @@ class AppTheme{
     borderRadius: BorderRadius.all(Radius.circular(SizeConfig.heightMultiplier*2.7)),
     color: C_Purple,
   );
+  static final BoxDecoration materialUnitCheckBox= BoxDecoration(
+    borderRadius: BorderRadius.only(topRight: Radius.circular(SizeConfig.heightMultiplier*2.7),bottomRight:  Radius.circular(SizeConfig.heightMultiplier*2.7)),
+    color: C_Purple,
+  );
   static final TextStyle MaterialName = TextStyle(
     color: C_White,
     fontFamily: 'ArbFONTS-Asmaa',

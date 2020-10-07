@@ -5,3 +5,5 @@ getUnitScore(String materialName , String unitName){
 setUnitScore(String materialName , String unitName , int unitScore){
   localStorage.saveData("$materialName.$unitName", unitScore);
 }
+getMaterialScore(String materialName){} // materialName.AllScore
+setMaterialScore(String materialName){}
