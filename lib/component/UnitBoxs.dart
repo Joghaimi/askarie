@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:roundcheckbox/roundcheckbox.dart';
+
 //Function
 import '../function/RandomNum.dart';
 import '../function/AllUnitFunction/saveQsinUnitArray.dart';
@@ -13,6 +15,7 @@ import '../themes/AppTheme.dart';
 // Screens
 import '../screens/QuestionsAndAnswer.dart';
 import '../screens/MultibleChoice.dart';
+import '../screens/units.dart';
 
 class UnitBoxs extends StatefulWidget {
   UnitBoxs(this.BoxTitel, this.Final_Score, this.NumerOfQestions,this.materialName,this.unitColor);
@@ -23,6 +26,9 @@ class UnitBoxs extends StatefulWidget {
   final unitColor;
   var ahmad=5;
   var goData=0;
+  //CheckBox State
+  bool checkBoxVal =true;
+
   Widget iconPlace = Padding(
       padding: EdgeInsets.fromLTRB(SizeConfig.widthMultiplier * 7, 0,0,0),
       child: FaIcon(
@@ -332,64 +338,52 @@ class _UnitBoxsState extends State<UnitBoxs> {
              height: SizeConfig.heightMultiplier * 10,
              width: SizeConfig.widthMultiplier*10,
              decoration:AppTheme.materialUnitCheckBox.copyWith(color: C_White),
-             child: Checkbox(
-               value: true,
-               activeColor: PrimaryColor,
-               onChanged: (value) {
-                 // Remove the icons
-                 widget.iconPlace = Padding(
-                     padding: EdgeInsets.fromLTRB(SizeConfig.widthMultiplier * 7, 0,0,0),
-                     child: FaIcon(
-                       FontAwesomeIcons.arrowCircleLeft,
-                       size: SizeConfig.textMultiplier *5 ,
-                       color:C_White,
-                     )
-                 );
-               },
-             ),
+                child:Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    RoundCheckBox(
+                      borderColor: PrimaryColor,
+                      size: SizeConfig.textMultiplier*5,
+                      onTap: (selected) {
+                        if(selected){
+                          addToUnitsTestArray(widget.BoxTitel);
+                        }else{
+                          removeFromUnitTestArray(widget.BoxTitel);
+                        }
+
+                      },),
+                  ],
+                ),
+
            );
          });
-        },
-        onForcePressEnd: (details) {
-          widget.iconPlace = Padding(
-              padding: EdgeInsets.fromLTRB(SizeConfig.widthMultiplier * 7, 0,0,0),
-              child: FaIcon(
-                FontAwesomeIcons.arrowCircleLeft,
-                size: SizeConfig.textMultiplier *5 ,
-                color:C_White,
-              )
-          ); //Remove Icon
-          widget.selectPlace = Container(
-            height: SizeConfig.heightMultiplier * 10,
-            width: SizeConfig.widthMultiplier*10,
-            decoration:AppTheme.materialUnitCheckBox.copyWith(color: C_White),
-            child: Checkbox(
-              value: true,
-              activeColor: PrimaryColor,
-              onChanged: (value) {
-                // Remove the icons
-                widget.iconPlace = Padding(
-                    padding: EdgeInsets.fromLTRB(SizeConfig.widthMultiplier * 7, 0,0,0),
-                    child: FaIcon(
-                      FontAwesomeIcons.arrowCircleLeft,
-                      size: SizeConfig.textMultiplier *5 ,
-                      color:C_White,
-                    )
-                );
-              },
-            ),
-          );
         },
       ),
     );
   }
+  void addToUnitsTestArray(var unitName){
+    // Make Sure that is not exist
+    if(!Units.selectedUnits.contains(unitName)){
+      Units.selectedUnits.add(unitName);
+    }
+    print(Units.selectedUnits);
+  }
+  void removeFromUnitTestArray(var unitName){
+    // Make Sure that is exist
+    if(Units.selectedUnits.contains(unitName)){
+      Units.selectedUnits.remove(unitName);
+      print(Units.selectedUnits);
+    }
+  }
 }
+
 
 // TODo for Unit
 /***
- *    - Change CheckBox Style
  *    - Select Unit For Test
  *    - Create Test Option
+ *    - slide option Back
  *
  * ***/
 

@@ -27,6 +27,7 @@ import '../function/search.dart';
 // Screens
 import 'AllMaterial.dart';
 class Units extends StatefulWidget {
+  // Unit Root
   static final id = "units";
   static final ad = 0;
   static var state = false;
@@ -43,7 +44,12 @@ class Units extends StatefulWidget {
   // For Unit And Type
   static var Unit_id;
   static var Search = false;
-//  static var UnitScore = new List(100);
+  // For Unit SelectedTest
+  static var selectedUnits=[];
+
+
+
+
   FToast fToast;
   @override
   _UnitsState createState() => _UnitsState();
@@ -102,17 +108,22 @@ class _UnitsState extends State<Units> {
                       ],
 
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding:EdgeInsets.fromLTRB(0, 0, 7* SizeConfig.widthMultiplier, 0),
+                          child: Text(
+                            "جميع الوحد ",
+                            style: AppTheme.MaterialName.copyWith(color: PrimaryColor),
+                          ),
+                        ),
+                      ],
+                    ),
                     Flexible(
                       child: Stack(
 
                         children: <Widget>[
-                          Padding(
-                            padding:EdgeInsets.fromLTRB(0, 0, 7* SizeConfig.widthMultiplier, 0),
-                            child: Text(
-                              "جميع الوحد ",
-                              style: AppTheme.MaterialName.copyWith(color: PrimaryColor),
-                            ),
-                          ),
                           ListView.builder(
                               itemCount: Units.unitNumber,
                               itemBuilder: (BuildContext ctxt, int index) {
@@ -121,13 +132,14 @@ class _UnitsState extends State<Units> {
                                     index == 0
                                         ? SizedBox(
                                             height:
-                                                2.5* SizeConfig.heightMultiplier,
+                                                1* SizeConfig.heightMultiplier,
                                           )
                                         : SizedBox(
                                             height:
                                                 0.4 * SizeConfig.heightMultiplier,
                                           ),
-                                    buildGestureDetector(Units.UnitName[index], "${UnitsArray[index].length} سؤال ", Units.unitScore[index], index, Units.materialName),
+                                    UnitBoxs(Units.UnitName[index],Units.unitScore[index],"${UnitsArray[index].length} سؤال ",Units.materialName,index),
+
                                   ],
                                 );
                               }),
@@ -146,32 +158,4 @@ class _UnitsState extends State<Units> {
       ),
     );
   }
-
-  GestureDetector buildGestureDetector(var BoxTitel, var NumerOfQwstions,
-      var final_Score, var unit_id,var materialName) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          Units.Unit_id = unit_id;
-          Units.state = true;
-        });
-      },
-
-      child: UnitBoxs(
-        BoxTitel,
-        final_Score,
-        NumerOfQwstions,
-        materialName,
-          unit_id
-      ),
-    );
-  }
 }
-
-
-// TODO :
-/*
-*  - Change the Bottom NavBar Done
-*  - Change Unit Box Style and Function
-*  - Create Share Option
-* */

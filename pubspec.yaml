@@ -32,6 +32,8 @@ dependencies:
   kt_dart: ^0.7.0+1
   connectivity: ^0.4.9+3
   percent_indicator: "^2.1.5"
+  roundcheckbox: ^1.0.0+1
+
 
 
 dev_dependencies:
