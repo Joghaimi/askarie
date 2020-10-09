@@ -1,13 +1,22 @@
 import 'package:firebase_admob/firebase_admob.dart';
 
 class ADS{
+
+
+  // Ads New Shape
+  static var newTargetingInfo=MobileAdTargetingInfo(
+      nonPersonalizedAds: true,
+      keywords: <String>['student','collage','Young','arab','jordan','learn','engineer','accounting','university']
+  );
+  static var rewordAdsRandomTestId = 'ca-app-pub-3940256099942544/5224354917';
+
+
+
+
   MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
       nonPersonalizedAds: true,
-      keywords: <String>['student','collage','Young','arab','jordan','learn','engineer']
+      keywords: <String>['student','collage','Young','arab','jordan','learn','engineer','accounting','university']
   );
-
-
-
 
 
    InterstitialAd getNewInterstital(){

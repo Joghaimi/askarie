@@ -75,30 +75,29 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
                   color: widget.colors,
                 ),
                 onTap: () async {
-//                  if (Units.selectedUnits.length > 0) {
-//                    // Test Selected
-//                    Fluttertoast.showToast(
-//                        msg: K_Loading,
-//                        toastLength: Toast.LENGTH_LONG,
-//                        gravity: ToastGravity.BOTTOM,
-//                        timeInSecForIosWeb: 1,
-//                        backgroundColor: Colors.green,
-//                        textColor: Colors.white,
-//                        fontSize: 16.0);
-////                    selectedUnitTest();
-//                    await selectedUnitTest().then((val) {
-//                      Navigator.pushNamed(context, MultibleChoise.id);
-//                    });
-//                  } else {
-//                    Fluttertoast.showToast(
-//                        msg: K_PSelectUnits,
-//                        toastLength: Toast.LENGTH_LONG,
-//                        gravity: ToastGravity.BOTTOM,
-//                        timeInSecForIosWeb: 1,
-//                        backgroundColor: Colors.black,
-//                        textColor: Colors.white,
-//                        fontSize: 16.0);
-//                  }
+                  if (Units.selectedUnits.length > 0) {
+                    // Test Selected
+                    Fluttertoast.showToast(
+                        msg: K_Loading,
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.green,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                    await selectedUnitTest().then((val) {
+                      Navigator.pushNamed(context, MultibleChoise.id);
+                    });
+                  } else {
+                    Fluttertoast.showToast(
+                        msg: K_PSelectUnits,
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.black,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  }
                 },
               ),
             ),

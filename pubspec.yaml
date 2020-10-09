@@ -34,6 +34,8 @@ dependencies:
   percent_indicator: "^2.1.5"
   roundcheckbox: ^1.0.0+1
   avatar_glow: ^1.2.0
+  firebase_messaging: any
+
 
 
 

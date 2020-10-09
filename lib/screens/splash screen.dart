@@ -1,26 +1,21 @@
 // packages
 import 'package:flutter/material.dart';
 import 'package:loading_animations/loading_animations.dart';
-import 'package:week_of_year/week_of_year.dart';
 
 // Constent
 import '../constent/Color.dart';
 import '../constent/Text.dart';
-import '../material/Units.dart';
 
 // Functions
-import '../function/localStorage.dart';
-import '../function/DealWithMaterial/downloadFile.dart';
-import '../function/DealWithMaterial/MaterialToLocalStorage.dart';
 import '../function/DealWithMaterial/LocalStorageSavedUnsavedMaterialpage.dart';
 import '../function/SplashScreenFunction.dart';
+import '../function/Notification/push_notification.dart';
 
 //Themes
 import '../themes/AppTheme.dart';
 import '../themes/size_config.dart';
 
 //Screens
-import 'units.dart';
 import '../screens/AllMaterial.dart';
 
 class splash_screen extends StatefulWidget {
@@ -34,6 +29,8 @@ class _splash_screenState extends State<splash_screen> {
   @override
   void initState() {
       OpenNewView();
+      // initialise Notification
+      PushNotificationService.initialise();
       super.initState();
   }
 
@@ -90,13 +87,6 @@ class _splash_screenState extends State<splash_screen> {
           Navigator.pushReplacementNamed(context, AllMaterial.id);
         }
     );
-
-//    Future.delayed(new Duration(milliseconds: 1500),()async{
-//      await localStorageSavedUnsavedMaterialPage();
-//      if(AllMaterial.Ready){
-//        Navigator.pushReplacementNamed(context, AllMaterial.id);
-//      }
-//    });
 
   }
 }

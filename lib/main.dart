@@ -10,6 +10,8 @@ import 'screens/QuestionsAndAnswer.dart';
 import 'screens/AllMaterial.dart';
 // ADS
 import 'package:firebase_admob/firebase_admob.dart';
+// Function
+import 'function/Notification/push_notification.dart';
 void main(){
   WidgetsFlutterBinding.ensureInitialized();
   FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-9661386178168248~7055214624' );
@@ -27,8 +29,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     final DefaultCupertinoLocalizations localizations = CupertinoLocalizations.of(context);
-
     return MaterialApp(
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,

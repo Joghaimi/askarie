@@ -1,6 +1,8 @@
 // packages
 import 'package:askarie/constent/Color.dart';
 import 'package:askarie/constent/Text.dart';
+import 'package:askarie/function/ads.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -365,7 +367,7 @@ class _UnitBoxsState extends State<UnitBoxs> {
     );
   }
   void addToUnitsTestArray(var unitName){
-
+    // Init Ads
     // Make Sure that is not exist
     if(!Units.selectedUnits.contains(unitName)){
       Units.selectedUnits.add(unitName);
@@ -380,7 +382,6 @@ class _UnitBoxsState extends State<UnitBoxs> {
         textColor: Colors.white,
         fontSize: 16.0
     );
-    print(Units.selectedUnits);
   }
   void removeFromUnitTestArray(var unitName){
     // Make Sure that is exist
