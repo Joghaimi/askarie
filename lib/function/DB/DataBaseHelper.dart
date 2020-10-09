@@ -67,6 +67,11 @@ class DataBaseHelper{
     Database db =await this.database;
     return await db.query(tableName, where: "UnitName =?",whereArgs:[untName]);
   }
+  Future<List<Map<String, dynamic>>> getRandomQS(String tableName,String untName) async{
+    Database db =await this.database;
+    return await db.query(tableName, where: "UnitName =? ORDER BY RANDOM() LIMIT 10",whereArgs:[untName]);
+  }
+
 
 
   // insert Data To DataBase

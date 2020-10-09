@@ -1,5 +1,7 @@
 // packages
 import 'package:askarie/constent/Text.dart';
+import 'package:askarie/function/AllUnitFunction/selectedUnitTest.dart';
+import 'package:askarie/screens/MultibleChoice.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,7 +19,6 @@ import '../function/shareApp.dart';
 
 // Screens
 import 'package:askarie/screens/units.dart';
-
 
 class MyBottomAppBar extends StatefulWidget {
   MyBottomAppBar(this.colors);
@@ -73,30 +74,31 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
                   size: SizeConfig.textMultiplier * 4,
                   color: widget.colors,
                 ),
-                onTap: () {
-                  if(Units.selectedUnits.length > 0){ // Test Selected
-                    Fluttertoast.showToast(
-                        msg: K_Loading,
-                        toastLength: Toast.LENGTH_LONG,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.green,
-                        textColor: Colors.white,
-                        fontSize: 16.0
-                    );
-                  }else{
-                    Fluttertoast.showToast(
-                        msg: K_PSelectUnits,
-                        toastLength: Toast.LENGTH_LONG,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.black,
-                        textColor: Colors.white,
-                        fontSize: 16.0
-                    );
-
-
-                  }
+                onTap: () async {
+//                  if (Units.selectedUnits.length > 0) {
+//                    // Test Selected
+//                    Fluttertoast.showToast(
+//                        msg: K_Loading,
+//                        toastLength: Toast.LENGTH_LONG,
+//                        gravity: ToastGravity.BOTTOM,
+//                        timeInSecForIosWeb: 1,
+//                        backgroundColor: Colors.green,
+//                        textColor: Colors.white,
+//                        fontSize: 16.0);
+////                    selectedUnitTest();
+//                    await selectedUnitTest().then((val) {
+//                      Navigator.pushNamed(context, MultibleChoise.id);
+//                    });
+//                  } else {
+//                    Fluttertoast.showToast(
+//                        msg: K_PSelectUnits,
+//                        toastLength: Toast.LENGTH_LONG,
+//                        gravity: ToastGravity.BOTTOM,
+//                        timeInSecForIosWeb: 1,
+//                        backgroundColor: Colors.black,
+//                        textColor: Colors.white,
+//                        fontSize: 16.0);
+//                  }
                 },
               ),
             ),

@@ -23,4 +23,12 @@ class ADS{
        targetingInfo: targetingInfo,
      );
   }
+
+//  RewardedVideoAd getNewRewordAd(){
+//     return RewardedVideoAd.instance.load(adUnitId: "ca-app-pub-3940256099942544/5224354917"),
+//  }
+
+
+
+
 }

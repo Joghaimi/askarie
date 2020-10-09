@@ -29,7 +29,6 @@ class UnitBoxs extends StatefulWidget {
   var goData=0;
   //CheckBox State
   bool checkBoxVal =true;
-
   Widget iconPlace = Padding(
       padding: EdgeInsets.fromLTRB(SizeConfig.widthMultiplier * 7, 0,0,0),
       child: FaIcon(
@@ -375,7 +374,7 @@ class _UnitBoxsState extends State<UnitBoxs> {
     Fluttertoast.showToast(
         msg: K_UnitTestSelect,
         toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
+        gravity: ToastGravity.TOP,
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.black,
         textColor: Colors.white,
@@ -391,12 +390,3 @@ class _UnitBoxsState extends State<UnitBoxs> {
     }
   }
 }
-
-
-// TODo for Unit
-/***
- *    - Create Test Option
- *    - slide option Back
- *
- * ***/
-
