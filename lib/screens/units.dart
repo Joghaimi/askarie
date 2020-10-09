@@ -46,10 +46,8 @@ class Units extends StatefulWidget {
   static var Search = false;
   // For Unit SelectedTest
   static var selectedUnits=[];
-
-
-
-
+  static var testButtonColor = C_White;
+  static var testBtn =false;
   FToast fToast;
   @override
   _UnitsState createState() => _UnitsState();
@@ -152,7 +150,8 @@ class _UnitsState extends State<Units> {
               ),
                 isLoading:Units.loadingState,
             ),
-            bottomNavigationBar: MyBottomAppBar(),
+            bottomNavigationBar: MyBottomAppBar(Units.testButtonColor),
+
           ),
         ),
       ),

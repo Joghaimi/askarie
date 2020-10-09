@@ -1,5 +1,6 @@
 // packages
 import 'package:askarie/constent/Color.dart';
+import 'package:askarie/constent/Text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -344,10 +345,12 @@ class _UnitBoxsState extends State<UnitBoxs> {
                   children: [
                     RoundCheckBox(
                       borderColor: PrimaryColor,
-                      size: SizeConfig.textMultiplier*5,
+                      size: SizeConfig.textMultiplier*3.5,
                       onTap: (selected) {
                         if(selected){
-                          addToUnitsTestArray(widget.BoxTitel);
+                          setState(() {
+                            addToUnitsTestArray(widget.BoxTitel);
+                          });
                         }else{
                           removeFromUnitTestArray(widget.BoxTitel);
                         }
@@ -363,10 +366,21 @@ class _UnitBoxsState extends State<UnitBoxs> {
     );
   }
   void addToUnitsTestArray(var unitName){
+
     // Make Sure that is not exist
     if(!Units.selectedUnits.contains(unitName)){
       Units.selectedUnits.add(unitName);
     }
+    // Show Instruction Toast
+    Fluttertoast.showToast(
+        msg: K_UnitTestSelect,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
     print(Units.selectedUnits);
   }
   void removeFromUnitTestArray(var unitName){
@@ -381,7 +395,6 @@ class _UnitBoxsState extends State<UnitBoxs> {
 
 // TODo for Unit
 /***
- *    - Select Unit For Test
  *    - Create Test Option
  *    - slide option Back
  *

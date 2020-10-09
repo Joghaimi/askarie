@@ -33,6 +33,7 @@ dependencies:
   connectivity: ^0.4.9+3
   percent_indicator: "^2.1.5"
   roundcheckbox: ^1.0.0+1
+  avatar_glow: ^1.2.0
 
 
 

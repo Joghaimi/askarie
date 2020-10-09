@@ -80,7 +80,7 @@ class _AllMaterialState extends State<AllMaterial> {
           ],
         ),
     ),
-      bottomNavigationBar: MyBottomAppBar(),
+      bottomNavigationBar: MyBottomAppBar(C_White),
     );
   }
 }
