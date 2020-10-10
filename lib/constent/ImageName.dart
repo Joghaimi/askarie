@@ -1,1 +1,1 @@
-const K_camel   = "images/Boy.png";
+const K_camel   = "";

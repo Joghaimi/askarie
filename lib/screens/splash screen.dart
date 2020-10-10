@@ -28,7 +28,7 @@ class splash_screen extends StatefulWidget {
 class _splash_screenState extends State<splash_screen> {
   @override
   void initState() {
-      OpenNewView();
+//      OpenNewView();
       // initialise Notification
       PushNotificationService.initialise();
       super.initState();
@@ -42,31 +42,28 @@ class _splash_screenState extends State<splash_screen> {
         return Container(
           child: Scaffold(
             body: Container(
-              color: C_Purple,
+              color: C_Gray,
               child: Center(
                 child: Column(
                   children: <Widget>[
                     Expanded(
-                      flex: 5,
+                      flex: 7,
                       child: Text(""),
                     ),
                     Expanded(
                       flex: 9,
                       child: Column(
                         children: <Widget>[
-                          LoadingDoubleFlipping.square(
-                            borderColor: C_White,
-                            backgroundColor: C_White,
-                            borderSize: 3.0 * SizeConfig.textMultiplier,
-                            size: 16 * SizeConfig.textMultiplier,
-                          ),
                           Text(
                             AppName,
                             style: AppTheme.Titel.copyWith(
-                              fontSize: 12 * SizeConfig.textMultiplier,
-                              height: 0.3 * SizeConfig.heightMultiplier,
+                                fontSize: 25 * SizeConfig.textMultiplier,
+                                height: 0.2 * SizeConfig.heightMultiplier,
+                                color: PrimaryColor
                             ),
                           ),
+                          Image.asset("images/Kewy.png",height: 10 * SizeConfig.textMultiplier,),
+
                         ],
                       ),
                     ),
@@ -90,4 +87,20 @@ class _splash_screenState extends State<splash_screen> {
 
   }
 }
+
+
+//                          LoadingDoubleFlipping.square(
+//                            borderColor: C_White,
+//                            backgroundColor: C_White,
+//                            borderSize: 3.0 * SizeConfig.textMultiplier,
+//                            size: 16 * SizeConfig.textMultiplier,
+//                          ),
+//                          Text(
+//                            AppName,
+//                            style: AppTheme.Titel.copyWith(
+//                              fontSize: 12 * SizeConfig.textMultiplier,
+//                              height: 0.3 * SizeConfig.heightMultiplier,
+//                              color: PrimaryColor
+//                            ),
+//                          ),
 
