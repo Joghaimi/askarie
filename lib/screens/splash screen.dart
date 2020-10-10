@@ -1,6 +1,6 @@
 // packages
 import 'package:flutter/material.dart';
-import 'package:loading_animations/loading_animations.dart';
+//import 'package:loading_animations/loading_animations.dart';
 
 // Constent
 import '../constent/Color.dart';
@@ -28,12 +28,11 @@ class splash_screen extends StatefulWidget {
 class _splash_screenState extends State<splash_screen> {
   @override
   void initState() {
-//      OpenNewView();
+      OpenNewView();
       // initialise Notification
       PushNotificationService.initialise();
       super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -63,7 +62,6 @@ class _splash_screenState extends State<splash_screen> {
                             ),
                           ),
                           Image.asset("images/Kewy.png",height: 10 * SizeConfig.textMultiplier,),
-
                         ],
                       ),
                     ),
@@ -76,7 +74,6 @@ class _splash_screenState extends State<splash_screen> {
       });
     });
   }
-
   Future<dynamic> OpenNewView() async {
     checkForNewMaterial().then(
         (value) async{
@@ -84,11 +81,8 @@ class _splash_screenState extends State<splash_screen> {
           Navigator.pushReplacementNamed(context, AllMaterial.id);
         }
     );
-
   }
 }
-
-
 //                          LoadingDoubleFlipping.square(
 //                            borderColor: C_White,
 //                            backgroundColor: C_White,
