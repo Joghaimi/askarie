@@ -54,7 +54,7 @@ class _MyAppBarState extends State<MyAppBar> {
                 setState(() {
                   Units.Search =true;
                 });
-                print("Srearch Done MotherFucker");
+                print("Srearch Done");
               },
               decoration: InputDecoration(
                 hintText: "احمد يبحث",

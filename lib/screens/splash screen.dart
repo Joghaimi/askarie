@@ -20,7 +20,6 @@ import '../screens/AllMaterial.dart';
 
 class splash_screen extends StatefulWidget {
   static final id = 'splash_screen';
-
   @override
   _splash_screenState createState() => _splash_screenState();
 }

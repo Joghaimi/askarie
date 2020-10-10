@@ -6,3 +6,7 @@ const K_NextQs = 'التالي';
 const K_UnitTestSelect = "بعد الانتهاء من اختيار الوحد قم بالضغط على ايقونة الريشه لبدأ الاختبار";
 const K_Loading = "جار التحميل";
 const K_PSelectUnits = "الرجاء اختيار وحد لاجراء الاختبار";
+const K_privateLink = "روابط خاصة";
+const K_publicLink = "روابط مهمة";
+const K_URLTitle ="عنوان الرابط";
+const K_URL ="الرابط";

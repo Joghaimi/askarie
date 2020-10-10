@@ -1,8 +1,6 @@
 // packages
 import 'package:askarie/constent/Color.dart';
 import 'package:askarie/constent/Text.dart';
-import 'package:askarie/function/ads.dart';
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,7 +8,6 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
 //Function
-import '../function/RandomNum.dart';
 import '../function/AllUnitFunction/saveQsinUnitArray.dart';
 // Themes
 import '../themes/size_config.dart';
