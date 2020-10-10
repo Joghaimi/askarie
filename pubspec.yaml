@@ -35,6 +35,8 @@ dependencies:
   roundcheckbox: ^1.0.0+1
   avatar_glow: ^1.2.0
   firebase_messaging: any
+  flutter_awesome_alert_box: ^1.0.1
+
 
 
 
