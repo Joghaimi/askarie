@@ -36,6 +36,8 @@ dependencies:
   avatar_glow: ^1.2.0
   firebase_messaging: any
   flutter_awesome_alert_box: ^1.0.1
+  flutter_toggle_tab: ^0.0.3+2
+
 
 
 

@@ -69,7 +69,6 @@ class _MultibleChoiseState extends State<MultibleChoise> {
     MultibleChoiseBannerAds.load();
     super.initState();
   }
-
   @override
   void dispose() {
     MultibleChoiseBannerAds.dispose();

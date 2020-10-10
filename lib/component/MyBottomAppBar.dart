@@ -1,24 +1,19 @@
 // packages
 import 'package:askarie/constent/Text.dart';
 import 'package:askarie/function/AllUnitFunction/selectedUnitTest.dart';
-import 'package:askarie/screens/MultibleChoice.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:avatar_glow/avatar_glow.dart';
-
 // Constant
 import '../constent/Color.dart';
-
 // Themes
 import '../themes/size_config.dart';
-
 // Function
-import '../function/saverandomdata.dart';
 import '../function/shareApp.dart';
-
 // Screens
 import 'package:askarie/screens/units.dart';
+import 'package:askarie/screens/MultibleChoice.dart';
+import 'package:askarie/screens/home.dart';
 
 class MyBottomAppBar extends StatefulWidget {
   MyBottomAppBar(this.colors);
@@ -50,13 +45,9 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
             Expanded(
               // Home
               flex: 1,
-              child: GestureDetector(
-                onTap: () async {
-                  await saveRandomData();
-                  print("what now ? ");
-                  setState(() {
-//                    widget.isSearching = !widget.isSearching;
-                  });
+              child: GestureDetector( // Home +Add Link+ ASK New For new unit
+                onTap: ()  {
+                  Navigator.pushNamed(context, Home.id); // Go To Your Page
                 },
                 child: FaIcon(
                   FontAwesomeIcons.home,
@@ -101,11 +92,11 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
                 },
               ),
             ),
-            Expanded(
+            Expanded(  // Search
               // Send request
               flex: 1,
               child: FaIcon(
-                FontAwesomeIcons.plus,
+                FontAwesomeIcons.search,
                 size: SizeConfig.textMultiplier * 4,
                 color: C_White,
               ),
