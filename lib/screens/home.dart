@@ -5,22 +5,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:fialogs/fialogs.dart';
-
-
-
 // Constant
 import 'package:askarie/constent/Color.dart';
 import 'package:askarie/constent/Text.dart';
-
 // Component
 import 'package:askarie/component/MyBottomAppBar.dart';
-
 // Themes
 import 'package:askarie/themes/size_config.dart';
-
+// Function
+import '../function/Home/readWriteLinks.dart';
 class Home extends StatefulWidget {
   static final id = 'home';
-  static var privetLink=["ahmad","said","joghaimi"]; // Get Links from dataBase and save them in this place
+  static var privetLink=[]; // Get Links from dataBase and save them in this place
   @override
   _HomeState createState() => _HomeState();
 }
@@ -65,13 +61,17 @@ class _HomeState extends State<Home> {
             Flexible(
               child: Stack(
                 children: <Widget>[
+                  Home.privetLink.length>0?
                   ListView.builder(
                       itemCount: Home.privetLink.length,
                       itemBuilder: (BuildContext ctxt, int index){
                         // Return non Saved Material
-                         return BoxLink(this,index,Home.privetLink[index],"ahmad");
+                         return BoxLink(this,index,Home.privetLink[index][0],Home.privetLink[index][1]);
 
-                      }),
+                      })
+                      :
+                      Text("قم بأضافة روابط")
+                  ,
                 ],
               ),
             ),
@@ -83,10 +83,7 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: MyBottomAppBar(C_White),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: PrimaryColor,
-        onPressed: () {
-          saveLinkDialog(context);
-          //_settingModalBottomSheet(context);
-        },
+        onPressed: () {saveLinkDialog(this,context);},
         icon: Icon(Icons.save),
         label: Padding(
           padding: const EdgeInsets.all(3.0),
@@ -98,7 +95,9 @@ class _HomeState extends State<Home> {
 }
 
 
-void saveLinkDialog(context){
+void saveLinkDialog(parent,context){
+  String linkTitle;
+  String linkURL;
   customDialog(
     context,
     title: Text(
@@ -134,6 +133,7 @@ void saveLinkDialog(context){
                       SizeConfig.heightMultiplier * 0.2),
                   hintStyle: TextStyle(color: PrimaryColor),
                 ),
+                onChanged: (value) => linkTitle = value,
               ),
             ),
             Container(
@@ -147,6 +147,8 @@ void saveLinkDialog(context){
                       horizontal:
                       SizeConfig.heightMultiplier * 0.2),
                 ),
+                onChanged: (value) => linkURL = value,
+
               ),
             ),
           ],
@@ -154,7 +156,15 @@ void saveLinkDialog(context){
       ],
     ),
     positiveButtonText: K_Save,
-    positiveButtonAction: () {},
+    positiveButtonAction: () {
+      // Save Link in DB
+      writeLink('private',linkTitle,linkURL);
+      // Update Widget
+      parent.setState(() {
+        Home.privetLink.add([linkTitle,linkURL]); // Error
+      });
+      Navigator.pop(context);
+    },
     negativeButtonText: "الغاء",
     negativeButtonAction: () { Navigator.pop(context);},
     neutralButtonAction: () {

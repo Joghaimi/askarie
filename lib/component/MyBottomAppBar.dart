@@ -5,12 +5,16 @@ import 'package:askarie/function/Home/readWriteLinks.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 // Constant
 import '../constent/Color.dart';
+
 // Themes
 import '../themes/size_config.dart';
+
 // Function
 import '../function/shareApp.dart';
+
 // Screens
 import 'package:askarie/screens/units.dart';
 import 'package:askarie/screens/MultibleChoice.dart';
@@ -47,13 +51,18 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
               // Home
               flex: 1,
               child: GestureDetector(
-                onTap: ()  {
+                onTap: () async {
                   // Read Links in DB
-                  print("read");
-                  readLinks("private");
-                  print("read");
+                  var linkArray = await readLinks("private");
+                  // Save LinkArray in home privetLink
+                  // Removw all link inside the array
+                  Home.privetLink.clear();
+                  for (var link in linkArray) {
+                    var addLink = [link['LinkName'], link['LinkURL']];
+                    Home.privetLink.add(addLink);
+                  }
                   // Navigate to Home Page
-//                  Navigator.pushNamed(context, Home.id); // Go To Your Page
+                  Navigator.pushNamed(context, Home.id); // Go To Your Page
                 },
                 child: FaIcon(
                   FontAwesomeIcons.home,
@@ -98,7 +107,8 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
                 },
               ),
             ),
-            Expanded(  // Search
+            Expanded(
+              // Search
               // Send request
               flex: 1,
               child: FaIcon(

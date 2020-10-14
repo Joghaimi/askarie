@@ -26,7 +26,6 @@ localStorageSavedUnsavedMaterialPage() async {
         AllMaterial.SavedMaterialNum += 1;
       } else {
         // Table NOT Exist
-        print(i); // TODO Delete
         AllMaterial.NonSavedMaterial[AllMaterial.NonSavedMaterialNum] =
             allMaterialFromlocal[i];
         AllMaterial.NonSavedMaterialNum += 1;
