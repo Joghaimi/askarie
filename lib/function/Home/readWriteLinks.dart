@@ -22,7 +22,6 @@ writeLink(state, String linkTitle, String linkURL) async {
   linkMap['state'] = state; // string
   // Save Link To DB
   baseHelper.insertLink(linkMap);
-  print("inserted");
 }
 deleteLink(String linkURL){
   DataBaseHelper baseHelper = DataBaseHelper();

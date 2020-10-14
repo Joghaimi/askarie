@@ -231,9 +231,3 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
     }
   }
 }
-
-// TODO
-/*
-* * Add the Bottom NaveBar
-* * Make The Shown Image Right !!
-* */

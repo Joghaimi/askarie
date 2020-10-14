@@ -21,13 +21,6 @@ void main(){
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  /// ToDo :
-  ///  Change the Bottom APP BAR
-  ///  Create Material Component
-  ///  Download material and read them
-  ///  Redesign Material Page
-  ///  Make it Responsive all tings
-
   @override
   Widget build(BuildContext context) {
     

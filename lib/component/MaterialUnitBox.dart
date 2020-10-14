@@ -104,7 +104,3 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
     );
   }
 }
-// TODO
-//  - ADD Text For the Number of QS
-//  - ADD Progress Indicator
-//  - if the user click in the unit showthe option

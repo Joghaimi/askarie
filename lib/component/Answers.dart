@@ -35,7 +35,7 @@ class _AnswersState extends State<Answers> {
           textDirection: textDirection,
           child: Container(
             width: 40 * SizeConfig.widthMultiplier,
-            height: 16 * SizeConfig.widthMultiplier,
+            height: 9.5 * SizeConfig.heightMultiplier,
             decoration: AppTheme.Answers.copyWith(
               border: Border.all(
                 color: widget.BoarderColor,
@@ -53,10 +53,10 @@ class _AnswersState extends State<Answers> {
                     child: Row(
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 4, 4, 8), // TODO Make it Dynamic
+                          padding: EdgeInsets.fromLTRB(1.6* SizeConfig.widthMultiplier, 0.4*SizeConfig.heightMultiplier, 0.4 * SizeConfig.widthMultiplier, 0.8*SizeConfig.heightMultiplier),
                           child: Container(
-                            width: 20,// TODO Make it Dynamic
-                            height: 20,// TODO Make it Dynamic
+                            width:  4.5* SizeConfig.widthMultiplier,
+                            height: 4.5* SizeConfig.widthMultiplier,
                             child: Text(""),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
@@ -72,11 +72,6 @@ class _AnswersState extends State<Answers> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: AutoDirection(
-//                            onDirectionChange: (isRTL) {
-//                              setState(() {
-//                                textDirection =TextDirection.rtl;
-//                              });
-//                            },
                                 text: widget.Answer,
                                 child: AutoSizeText(
                                   widget.Answer,

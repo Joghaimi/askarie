@@ -11,18 +11,19 @@ import '../themes/AppTheme.dart';
 // Screen
 import '../screens/home.dart';
 
-class BoxLink extends StatefulWidget {
+class PublicBoxLink extends StatefulWidget {
   final int index ;
   final String linkTitle;
   final String linKUrl;
   final parent;
 
-  const BoxLink(this.parent,this.index, this.linkTitle,this.linKUrl);
+  const PublicBoxLink(this.parent,this.index, this.linkTitle,this.linKUrl);
+
   @override
-  _BoxLinkState createState() => _BoxLinkState();
+  _PublicBoxLinkState createState() => _PublicBoxLinkState();
 }
 
-class _BoxLinkState extends State<BoxLink> {
+class _PublicBoxLinkState extends State<PublicBoxLink> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -80,28 +81,7 @@ class _BoxLinkState extends State<BoxLink> {
                         });
                       },
                     ),
-                    SizedBox(width: SizeConfig.widthMultiplier*3,),
-                    GestureDetector(
-                      child: FaIcon(
-                        FontAwesomeIcons.solidTrashAlt,
-                        size: SizeConfig.textMultiplier *4 ,
-                        color:C_White,
-                      ),
-                      onTap: (){
-                          widget.parent.setState(() {
-                          // Delete It From DataBase
-                          deleteLink(widget.linKUrl);
-                          // Show That it has been deleted
-                          final snackBar = SnackBar(
-                            content: Text('تم حذف الرابط'),
-                            backgroundColor: Colors.red,
-                          );
-                          Scaffold.of(context).showSnackBar(snackBar);
-                          // Change the Widget
-                          Home.privetLink.removeAt(widget.index);
-                        });
-                      },
-                    ),
+
                   ],
                 ),
               ),

@@ -54,12 +54,18 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
                 onTap: () async {
                   // Read Links in DB
                   var linkArray = await readLinks("private");
+                  var publicLinkArray = await readLinks("public");
                   // Save LinkArray in home privetLink
                   // Removw all link inside the array
                   Home.privetLink.clear();
+                  Home.publicLink.clear();
                   for (var link in linkArray) {
                     var addLink = [link['LinkName'], link['LinkURL']];
                     Home.privetLink.add(addLink);
+                  }
+                  for (var link in publicLinkArray) {
+                    var addLink = [link['LinkName'], link['LinkURL']];
+                    Home.publicLink.add(addLink);
                   }
                   // Navigate to Home Page
                   Navigator.pushNamed(context, Home.id); // Go To Your Page

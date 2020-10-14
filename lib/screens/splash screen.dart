@@ -1,4 +1,5 @@
 // packages
+import 'package:askarie/function/Home/localStorageSavedUnsavedLink.dart';
 import 'package:flutter/material.dart';
 //import 'package:loading_animations/loading_animations.dart';
 
@@ -88,18 +89,4 @@ class _splash_screenState extends State<splash_screen> {
     );
   }
 }
-//                          LoadingDoubleFlipping.square(
-//                            borderColor: C_White,
-//                            backgroundColor: C_White,
-//                            borderSize: 3.0 * SizeConfig.textMultiplier,
-//                            size: 16 * SizeConfig.textMultiplier,
-//                          ),
-//                          Text(
-//                            AppName,
-//                            style: AppTheme.Titel.copyWith(
-//                              fontSize: 12 * SizeConfig.textMultiplier,
-//                              height: 0.3 * SizeConfig.heightMultiplier,
-//                              color: PrimaryColor
-//                            ),
-//                          ),
 

@@ -1,10 +1,5 @@
-
 import 'package:firebase_messaging/firebase_messaging.dart';
-
-
 // TODO uses this to show notification https://pub.dev/packages/edge_alert
-
-
 class PushNotificationService{
   static final FirebaseMessaging fcm = FirebaseMessaging();
   static Future initialise()async{

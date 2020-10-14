@@ -8,7 +8,6 @@ Future<void> jsonToLocalStorage() async {
   var JsonMaterialName  = json.decode(MaterialName)['Material'];
   List<String> AllmaterialArray=new List();
   for(var material in JsonMaterialName){
-    print(material); // TODO
     AllmaterialArray.add(material.toString());
   }
    await localStorage.SaveStringArray('Material', AllmaterialArray);

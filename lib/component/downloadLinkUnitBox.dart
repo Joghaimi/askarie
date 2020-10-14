@@ -4,6 +4,7 @@ import 'package:flutter_colored_progress_indicators/flutter_colored_progress_ind
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // Function
 import '../function/RandomNum.dart';
+import '../function/Home/DownloadandSaveLinkinDB.dart';
 // Constant
 import 'package:askarie/constent/Color.dart';
 // Themes
@@ -11,6 +12,9 @@ import '../themes/size_config.dart';
 import '../themes/AppTheme.dart';
 
 class DownloadLink extends StatefulWidget {
+  final univName;
+  final parent;
+  const DownloadLink(this.parent,this.univName);
   @override
   _DownloadLinkState createState() => _DownloadLinkState();
 }
@@ -47,7 +51,7 @@ class _DownloadLinkState extends State<DownloadLink> {
                 Padding(
                   padding:  EdgeInsets.only(right: SizeConfig.widthMultiplier * 4),
                   child: Text(
-                    "ahmad",
+                    widget.univName,
                     style: AppTheme.MaterialName,
                   ),
                 ),
@@ -59,7 +63,8 @@ class _DownloadLinkState extends State<DownloadLink> {
                   ),
                   onTap: (){
                     setState(() {IconPlace= ColoredCircularProgressIndicator();});
-                    // 
+                    downloadLinkAndCreateTable(widget.parent,widget.univName);
+
                     print("Download Links");
                   },
                 ),

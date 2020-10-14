@@ -49,7 +49,7 @@ class DataBaseHelper{
     }
   }
   // Fetch Database
-  getMaterial(String TableName , {List<dynamic> whereArgs}) async { // ToDo May need to remove the {} to make it must
+  getMaterial(String TableName , {List<dynamic> whereArgs}) async {
     Database db =await this.database;
     var result =await db.query(TableName , whereArgs:whereArgs);
     return result;
