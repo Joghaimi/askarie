@@ -67,6 +67,20 @@ class DataBaseHelper{
     Database db =await this.database;
     return await db.query(tableName, where: "UnitName =?",whereArgs:[untName]);
   }
+  // Links
+
+  void createLinkTable() async{
+    Database db =await this.database;
+    String sql = "CREATE TABLE IF NOT EXISTS link(id INTEGER PRIMARY KEY, LinkName TEXT,LinkURL TEXT, state TEXT)";
+    db.execute(sql);
+  }
+
+
+  Future<List<Map<String, dynamic>>> getAllLink(String state) async{
+    Database db =await this.database;
+    return await db.query("link", where: "state =?",whereArgs:[state]);
+  }
+
   Future<List<Map<String, dynamic>>> getRandomQS(String tableName,String untName) async{
     Database db =await this.database;
     return await db.query(tableName, where: "UnitName =? ORDER BY RANDOM() LIMIT 10",whereArgs:[untName]);

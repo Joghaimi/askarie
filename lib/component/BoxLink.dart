@@ -7,14 +7,17 @@ import 'package:askarie/constent/Color.dart';
 // Themes
 import '../themes/size_config.dart';
 import '../themes/AppTheme.dart';
+// Screen
+import '../screens/home.dart';
 
 
 class BoxLink extends StatefulWidget {
   final int index ;
   final String linkTitle;
   final String linKUrl;
+  final parent;
 
-  const BoxLink(this.index, this.linkTitle,this.linKUrl);
+  const BoxLink(this.parent,this.index, this.linkTitle,this.linKUrl);
   @override
   _BoxLinkState createState() => _BoxLinkState();
 }
@@ -78,10 +81,17 @@ class _BoxLinkState extends State<BoxLink> {
                       },
                     ),
                     SizedBox(width: SizeConfig.widthMultiplier*3,),
-                    FaIcon(
-                      FontAwesomeIcons.solidTrashAlt,
-                      size: SizeConfig.textMultiplier *4 ,
-                      color:C_White,
+                    GestureDetector(
+                      child: FaIcon(
+                        FontAwesomeIcons.solidTrashAlt,
+                        size: SizeConfig.textMultiplier *4 ,
+                        color:C_White,
+                      ),
+                      onTap: (){
+                        widget.parent.setState(() {
+                          Home.privetLink.removeAt(widget.index);
+                        });
+                      },
                     ),
                   ],
                 ),

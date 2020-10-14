@@ -1,6 +1,7 @@
 // packages
 import 'package:askarie/constent/Text.dart';
 import 'package:askarie/function/AllUnitFunction/selectedUnitTest.dart';
+import 'package:askarie/function/Home/readWriteLinks.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -45,9 +46,14 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
             Expanded(
               // Home
               flex: 1,
-              child: GestureDetector( // Home +Add Link+ ASK New For new unit
+              child: GestureDetector(
                 onTap: ()  {
-                  Navigator.pushNamed(context, Home.id); // Go To Your Page
+                  // Read Links in DB
+                  print("read");
+                  readLinks("private");
+                  print("read");
+                  // Navigate to Home Page
+//                  Navigator.pushNamed(context, Home.id); // Go To Your Page
                 },
                 child: FaIcon(
                   FontAwesomeIcons.home,

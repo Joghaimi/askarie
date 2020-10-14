@@ -1,7 +1,5 @@
 // Packages
 import 'package:askarie/component/BoxLink.dart';
-import 'package:askarie/component/Button.dart';
-import 'package:askarie/component/DownloadMaterialUnitBox.dart';
 import 'package:askarie/themes/AppTheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +20,7 @@ import 'package:askarie/themes/size_config.dart';
 
 class Home extends StatefulWidget {
   static final id = 'home';
-
+  static var privetLink=["ahmad","said","joghaimi"]; // Get Links from dataBase and save them in this place
   @override
   _HomeState createState() => _HomeState();
 }
@@ -68,10 +66,10 @@ class _HomeState extends State<Home> {
               child: Stack(
                 children: <Widget>[
                   ListView.builder(
-                      itemCount: 12,
+                      itemCount: Home.privetLink.length,
                       itemBuilder: (BuildContext ctxt, int index){
                         // Return non Saved Material
-                         return BoxLink(index,"ahmad","ahmad");
+                         return BoxLink(this,index,Home.privetLink[index],"ahmad");
 
                       }),
                 ],
