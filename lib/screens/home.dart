@@ -1,6 +1,4 @@
 // Packages
-import 'package:askarie/component/BoxLink.dart';
-import 'package:askarie/themes/AppTheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
@@ -10,13 +8,18 @@ import 'package:askarie/constent/Color.dart';
 import 'package:askarie/constent/Text.dart';
 // Component
 import 'package:askarie/component/MyBottomAppBar.dart';
+import '../component/downloadLinkUnitBox.dart';
+import 'package:askarie/component/BoxLink.dart';
 // Themes
 import 'package:askarie/themes/size_config.dart';
+import 'package:askarie/themes/AppTheme.dart';
 // Function
 import '../function/Home/readWriteLinks.dart';
+
 class Home extends StatefulWidget {
   static final id = 'home';
   static var privetLink=[]; // Get Links from dataBase and save them in this place
+  bool privatePublic = true;
   @override
   _HomeState createState() => _HomeState();
 }
@@ -53,25 +56,17 @@ class _HomeState extends State<Home> {
                     fontWeight: FontWeight.w500),
                 labels: [K_privateLink, K_publicLink],
                 selectedLabelIndex: (index) {
-                  print("Selected Index $index");
+                  setState(() {
+                    index ==0?widget.privatePublic = true:widget.privatePublic = false;
+                  });
                 },
               ),
             ),
-            SizedBox(height: 40,),
+            SizedBox(height: SizeConfig.heightMultiplier*4.2,),
             Flexible(
               child: Stack(
                 children: <Widget>[
-                  Home.privetLink.length>0?
-                  ListView.builder(
-                      itemCount: Home.privetLink.length,
-                      itemBuilder: (BuildContext ctxt, int index){
-                        // Return non Saved Material
-                         return BoxLink(this,index,Home.privetLink[index][0],Home.privetLink[index][1]);
-
-                      })
-                      :
-                      Text("قم بأضافة روابط")
-                  ,
+                  listReturn(this,widget.privatePublic),
                 ],
               ),
             ),
@@ -173,4 +168,35 @@ void saveLinkDialog(parent,context){
     hideNeutralButton: true,
     closeOnBackPress: true,
   );
+}
+listReturn(parent, bool privatePublic){
+  if(privatePublic){ // PrivateLink Return
+    if(Home.privetLink.length>0){
+      return ListView.builder(
+          itemCount: Home.privetLink.length,
+          itemBuilder: (BuildContext ctxt, int index){
+            // Return non Saved Material
+            return BoxLink(parent,index,Home.privetLink[index][0],Home.privetLink[index][1]);
+
+          });
+    }else{
+      return Text("قم بأضافة روابط",style: AppTheme.MaterialName.copyWith(color: Color(0xFF4f518c)),);
+    }
+  }else{ // Public
+
+    if(true){
+      return DownloadLink();
+//      return ListView.builder(
+//          itemCount: Home.privetLink.length,
+//          itemBuilder: (BuildContext ctxt, int index){
+//            // Return non Saved Material
+//            return BoxLink(parent,index,Home.privetLink[index][0],Home.privetLink[index][1]);
+//
+//          });
+    }else{
+          return Text("قم بأختيار الجامعه ",style: AppTheme.MaterialName.copyWith(color: Color(0xFF4f518c)),);
+    }
+  }
+
+
 }

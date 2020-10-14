@@ -9,7 +9,6 @@ import 'package:path_provider/path_provider.dart';
 class DataBaseHelper{
   static DataBaseHelper _dataBaseHelper; // define variable only
   static Database _database;
-
   DataBaseHelper._createInstanse(); // Named Constractor
   factory DataBaseHelper(){
     if(_dataBaseHelper == null){
@@ -17,7 +16,6 @@ class DataBaseHelper{
     }
     return _dataBaseHelper;
   }
-
   // initialize DB
   Future<Database>initializeDB() async{
     // Get Directory path
@@ -50,8 +48,6 @@ class DataBaseHelper{
       return false;
     }
   }
-
-
   // Fetch Database
   getMaterial(String TableName , {List<dynamic> whereArgs}) async { // ToDo May need to remove the {} to make it must
     Database db =await this.database;
@@ -67,7 +63,6 @@ class DataBaseHelper{
     Database db =await this.database;
     return await db.query(tableName, where: "UnitName =?",whereArgs:[untName]);
   }
-
   Future<List<Map<String, dynamic>>> getRandomQS(String tableName,String untName) async{
     Database db =await this.database;
     return await db.query(tableName, where: "UnitName =? ORDER BY RANDOM() LIMIT 10",whereArgs:[untName]);
@@ -78,23 +73,24 @@ class DataBaseHelper{
     var result = await db.insert(tableName,material);
     return result;
   }
-
   // Links
   void createLinkTable() async{
     Database db =await this.database;
     String sql = "CREATE TABLE IF NOT EXISTS link(id INTEGER PRIMARY KEY, LinkName TEXT,LinkURL TEXT, state TEXT)";
     db.execute(sql);
   }
-
   Future<List<Map<String, dynamic>>> getAllLink(String state) async{
     Database db =await this.database;
     return await db.query("link", where: "state =?",whereArgs:[state]);
   }
-
   insertLink(Map linkInfo)async{
     Database db =await this.database;
     var result = await db.insert("link",linkInfo);
     return result;
+  }
+  deleteLink(linkURL)async{
+    Database db =await this.database;
+    await db.delete("link",where: "LinkURL = ?", whereArgs: [linkURL],);
   }
 
 

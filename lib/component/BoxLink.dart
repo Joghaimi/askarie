@@ -1,4 +1,5 @@
 // Packages
+import 'package:askarie/function/Home/readWriteLinks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,7 +10,6 @@ import '../themes/size_config.dart';
 import '../themes/AppTheme.dart';
 // Screen
 import '../screens/home.dart';
-
 
 class BoxLink extends StatefulWidget {
   final int index ;
@@ -89,6 +89,15 @@ class _BoxLinkState extends State<BoxLink> {
                       ),
                       onTap: (){
                         widget.parent.setState(() {
+                          // Delete It From DataBase
+                          deleteLink(widget.linKUrl);
+                          // Show That it has been deleted
+                          final snackBar = SnackBar(
+                            content: Text('تم حذف الرابط'),
+                            backgroundColor: Colors.red,
+                          );
+                          Scaffold.of(context).showSnackBar(snackBar);
+                          // Change the Widget
                           Home.privetLink.removeAt(widget.index);
                         });
                       },

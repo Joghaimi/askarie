@@ -25,5 +25,6 @@ writeLink(state, String linkTitle, String linkURL) async {
   print("inserted");
 }
 deleteLink(String linkURL){
-
+  DataBaseHelper baseHelper = DataBaseHelper();
+  baseHelper.deleteLink(linkURL);
 }

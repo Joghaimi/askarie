@@ -9,7 +9,7 @@ import '../function/RandomNum.dart';
 
 import 'DealWithMaterial/LocalStorageSavedUnsavedMaterialpage.dart';
 
-checkForNewMaterial() async{
+checkForNewMaterial() async{ // Check New Material and links
   // Make Sure that their are internet Connection
   DownloadFile SplashScreenDownload = DownloadFile();
   var connectionstate =await  SplashScreenDownload.internetConnection();
@@ -29,7 +29,7 @@ checkForNewMaterial() async{
         // -  save data in the local Storage
         await DownloadState.then((value) async {
           if (value) { // - File Downloaded
-            print(value);
+//            print(value);
             await jsonToLocalStorage(); // Material To localStorage
             await localStorage.saveData('Qata3alastcheckData', weekNum);
           } else { //  -  File Feild to download

@@ -10,6 +10,7 @@ import '../constent/Text.dart';
 import '../function/DealWithMaterial/LocalStorageSavedUnsavedMaterialpage.dart';
 import '../function/SplashScreenFunction.dart';
 import '../function/Notification/push_notification.dart';
+import '../function/Home/checkForNewLink.dart';
 
 //Themes
 import '../themes/AppTheme.dart';
@@ -77,7 +78,12 @@ class _splash_screenState extends State<splash_screen> {
     checkForNewMaterial().then(
         (value) async{
           await localStorageSavedUnsavedMaterialPage();
-          Navigator.pushReplacementNamed(context, AllMaterial.id);
+          checkForNewLink().then(
+              (value){
+                localStorageSavedUnsavedLink();
+                Navigator.pushReplacementNamed(context, AllMaterial.id);
+              }
+          );
         }
     );
   }

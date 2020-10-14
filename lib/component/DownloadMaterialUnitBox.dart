@@ -50,13 +50,19 @@ class _DownloadMaterialUnitBoxState extends State<DownloadMaterialUnitBox> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Text(
-                widget.materialName,
-                style: AppTheme.MaterialName,
+              Padding(
+                padding: EdgeInsets.only(right: SizeConfig.widthMultiplier * 4),
+                child: Text(
+                  widget.materialName,
+                  style: AppTheme.MaterialName,
+                ),
               ),
-              SizedBox(width:SizeConfig.widthMultiplier * 8 ,),
+              Expanded(child: Text(""),),
               GestureDetector(
-                child: IconPlace,
+                child: Padding(
+                  padding: EdgeInsets.only(left: SizeConfig.widthMultiplier * 4),
+                  child: IconPlace,
+                ),
                 onTap:onTabCondition? ()async{
                   // Start Downloading and Change the Icon
                   // -- ChangeIcon

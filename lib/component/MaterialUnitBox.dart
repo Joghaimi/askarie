@@ -53,15 +53,19 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Text(
-                widget.materialName,
-                style: AppTheme.MaterialName,
+              Padding(
+                padding:  EdgeInsets.only(right: SizeConfig.widthMultiplier * 4),
+                child: Text(
+                  widget.materialName,
+                  style: AppTheme.MaterialName,
+                ),
               ),
-              SizedBox(
-                width: SizeConfig.widthMultiplier * 8,
-              ),
+              Expanded(child: Text(""),),
               GestureDetector(
-                child:iconPlace,
+                child:Padding(
+                  padding: EdgeInsets.only(left: SizeConfig.widthMultiplier * 4),
+                  child: iconPlace,
+                ),
                 onTap: ()async{
                   // Change Icon To loading Icon
                   setState(() {iconPlace= ColoredCircularProgressIndicator();});

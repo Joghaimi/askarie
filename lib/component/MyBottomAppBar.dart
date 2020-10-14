@@ -65,7 +65,7 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
                   Navigator.pushNamed(context, Home.id); // Go To Your Page
                 },
                 child: FaIcon(
-                  FontAwesomeIcons.home,
+                  FontAwesomeIcons.link,
                   size: SizeConfig.textMultiplier * 4,
                   color: C_White,
                 ),
