@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+
 // Constant
 import '../constent/Color.dart';
 
@@ -77,6 +78,7 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
                 ),
               ),
             ),
+            Expanded(child: Text(""),),
             Expanded(
               // search for other material
               flex: 1,
@@ -113,16 +115,18 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
                 },
               ),
             ),
-            Expanded(
-              // Search
-              // Send request
-              flex: 1,
-              child: FaIcon(
-                FontAwesomeIcons.search,
-                size: SizeConfig.textMultiplier * 4,
-                color: C_White,
-              ),
-            ),
+            Expanded(child: Text(""),),
+// USE THIS https://pub.dev/packages/searchable_dropdown
+//            Expanded(
+//              // Search
+//              // Send request
+//              flex: 1,
+//              child: FaIcon(
+//                FontAwesomeIcons.search,
+//                size: SizeConfig.textMultiplier * 4,
+//                color: C_White,
+//              ),
+//            ),
             Expanded(
               // share
               flex: 1,

@@ -1,5 +1,6 @@
 // Packages
 import 'package:askarie/function/Home/readWriteLinks.dart';
+import 'package:askarie/function/RandomNum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -34,7 +35,7 @@ class _BoxLinkState extends State<BoxLink> {
       child: Container(
         height: SizeConfig.heightMultiplier * 10,
         decoration:
-        AppTheme.MaterialUnitBoxContainer.copyWith(color: MaterialColorArray[widget.index]),
+        AppTheme.MaterialUnitBoxContainer.copyWith(color: MaterialColorArray[widget.index < MaterialColorArray.length?widget.index:RandomNum()]),
         child: Padding(
           padding: EdgeInsets.fromLTRB(
               SizeConfig.widthMultiplier * 1,

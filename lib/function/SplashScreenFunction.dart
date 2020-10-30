@@ -6,10 +6,9 @@ import 'localStorage.dart';
 import 'DealWithMaterial/downloadFile.dart';
 import 'DealWithMaterial/MaterialToLocalStorage.dart';
 import '../function/RandomNum.dart';
-
 import 'DealWithMaterial/LocalStorageSavedUnsavedMaterialpage.dart';
-
-checkForNewMaterial() async{ // Check New Material and links
+checkForNewMaterial() async{
+  // Check New Material and links
   // Make Sure that their are internet Connection
   DownloadFile SplashScreenDownload = DownloadFile();
   var connectionstate =await  SplashScreenDownload.internetConnection();
@@ -21,9 +20,7 @@ checkForNewMaterial() async{ // Check New Material and links
     var weekNum = date.weekOfYear;
     if (true) { // TODO change condition (lastcheckData + 3) <= weekNum
       // * Data never Checked or checked more than one month
-      // - Download the File
       Future DownloadState =SplashScreenDownload.downloadFile('http://joghaimi.com/kewy/mat.json', 'MaterialName.json'); //
-
       // - Make Sure File is saved
       if (!SplashScreenDownload.ErrorDownload) {
         // -  save data in the local Storage
@@ -45,3 +42,7 @@ checkForNewMaterial() async{ // Check New Material and links
     return true;
   }
 }
+firstRun() async{
+  var result = await localStorage.getData("UNIName");
+  return result;
+  }

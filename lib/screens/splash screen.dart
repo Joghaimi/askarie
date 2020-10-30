@@ -1,7 +1,9 @@
 // packages
+import 'package:askarie/constent/UniName.dart';
 import 'package:askarie/function/Home/localStorageSavedUnsavedLink.dart';
 import 'package:flutter/material.dart';
-//import 'package:loading_animations/loading_animations.dart';
+import 'package:select_dialog/select_dialog.dart';
+
 
 // Constent
 import '../constent/Color.dart';
@@ -28,7 +30,8 @@ class splash_screen extends StatefulWidget {
 
 class _splash_screenState extends State<splash_screen> {
   @override
-  void initState() {
+  void initState(){
+
       OpenNewView();
       // initialise Notification
       PushNotificationService.initialise();
@@ -62,7 +65,10 @@ class _splash_screenState extends State<splash_screen> {
                                 color: PrimaryColor
                             ),
                           ),
+
                           Image.asset("images/Kewy.png",height: 10 * SizeConfig.textMultiplier,),
+
+
                         ],
                       ),
                     ),
@@ -76,17 +82,39 @@ class _splash_screenState extends State<splash_screen> {
     });
   }
   Future<dynamic> OpenNewView() async {
-    checkForNewMaterial().then(
-        (value) async{
-          await localStorageSavedUnsavedMaterialPage();
-          checkForNewLink().then(
-              (value){
-                localStorageSavedUnsavedLink();
-                Navigator.pushReplacementNamed(context, AllMaterial.id);
-              }
-          );
-        }
-    );
+    var theFirstRun=await firstRun();
+    if(theFirstRun == 0){ // First Run
+      print("First Run Bitch");
+      // Select the Uni
+      String UNI = "";
+      SelectDialog.showModal<String>(
+        context,
+        label: "Simple Example",
+        selectedValue: UNI,
+        items: uniName,
+        onChange: (String selected) {
+          setState(() {
+            UNI = selected;
+            // Save it IN Local Storage
+            print(UNI);
+          });
+        },
+      );
+
+    }else{
+      checkForNewMaterial().then(
+              (value) async{
+            await localStorageSavedUnsavedMaterialPage();
+            checkForNewLink().then(
+                    (value){
+                  localStorageSavedUnsavedLink();
+                  Navigator.pushReplacementNamed(context, AllMaterial.id);
+                }
+            );
+          }
+      );
+    }
+
   }
 }
 
