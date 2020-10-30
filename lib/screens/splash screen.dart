@@ -3,22 +3,18 @@ import 'package:askarie/constent/UniName.dart';
 import 'package:askarie/function/Home/localStorageSavedUnsavedLink.dart';
 import 'package:flutter/material.dart';
 import 'package:select_dialog/select_dialog.dart';
-
-
 // Constent
 import '../constent/Color.dart';
 import '../constent/Text.dart';
-
 // Functions
+import '../function/localStorage.dart';
 import '../function/DealWithMaterial/LocalStorageSavedUnsavedMaterialpage.dart';
 import '../function/SplashScreenFunction.dart';
 import '../function/Notification/push_notification.dart';
 import '../function/Home/checkForNewLink.dart';
-
 //Themes
 import '../themes/AppTheme.dart';
 import '../themes/size_config.dart';
-
 //Screens
 import '../screens/AllMaterial.dart';
 
@@ -31,7 +27,6 @@ class splash_screen extends StatefulWidget {
 class _splash_screenState extends State<splash_screen> {
   @override
   void initState(){
-
       OpenNewView();
       // initialise Notification
       PushNotificationService.initialise();
@@ -65,10 +60,7 @@ class _splash_screenState extends State<splash_screen> {
                                 color: PrimaryColor
                             ),
                           ),
-
                           Image.asset("images/Kewy.png",height: 10 * SizeConfig.textMultiplier,),
-
-
                         ],
                       ),
                     ),
@@ -81,36 +73,49 @@ class _splash_screenState extends State<splash_screen> {
       });
     });
   }
-  Future<dynamic> OpenNewView() async {
+   OpenNewView() async {
     var theFirstRun=await firstRun();
     if(theFirstRun == 0){ // First Run
-      print("First Run Bitch");
       // Select the Uni
       String UNI = "";
       SelectDialog.showModal<String>(
         context,
-        label: "Simple Example",
+        label: "اختيار الجامعه",
         selectedValue: UNI,
         items: uniName,
         onChange: (String selected) {
           setState(() {
             UNI = selected;
-            // Save it IN Local Storage
             print(UNI);
-          });
+              //Save it IN Local Storage
+            localStorage.SaveString("UNIName",UNI).then(
+              // Get Data
+                checkForNewMaterial().then(
+                        (value) async{
+                      await localStorageSavedUnsavedMaterialPage();
+                      saveUniLink();
+                      Navigator.pushReplacementNamed(context, AllMaterial.id);
+//                      checkForNewLink().then(
+//                              (value){
+//                            localStorageSavedUnsavedLink();
+//                            // Save Links
+//                            saveUniLink();
+//                            Navigator.pushReplacementNamed(context, AllMaterial.id);
+//                          }
+//                      );
+                    }
+                )
+            );
+          })
+          ;
         },
       );
-
     }else{
       checkForNewMaterial().then(
               (value) async{
             await localStorageSavedUnsavedMaterialPage();
-            checkForNewLink().then(
-                    (value){
-                  localStorageSavedUnsavedLink();
-                  Navigator.pushReplacementNamed(context, AllMaterial.id);
-                }
-            );
+//            saveUniLink();
+            Navigator.pushReplacementNamed(context, AllMaterial.id);
           }
       );
     }

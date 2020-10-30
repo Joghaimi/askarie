@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_awesome_alert_box/flutter_awesome_alert_box.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-// ADS
-import 'package:firebase_admob/firebase_admob.dart';
-import '../function/ads.dart';
+//// ADS
+//import 'package:firebase_admob/firebase_admob.dart';
+//import '../function/ads.dart';
 // Component
 import '../component/Answers.dart';
 import '../component/Button.dart';
@@ -52,31 +52,31 @@ class MultibleChoise extends StatefulWidget {
 }
 
 class _MultibleChoiseState extends State<MultibleChoise> {
-  final ahmdaAds = ADS();
-  InterstitialAd MultibleChoiseAds;
-  BannerAd MultibleChoiseBannerAds;
+//  final ahmdaAds = ADS();
+//  InterstitialAd MultibleChoiseAds;
+//  BannerAd MultibleChoiseBannerAds;
 
   @override
   void initState() {
 
     WidgetsFlutterBinding.ensureInitialized();
-    FirebaseAdMob.instance.initialize(
-        appId:
-            'ca-app-pub-9661386178168248~7055214624'); //ca-app-pub-9661386178168248~2297648329
-    MultibleChoiseAds = ahmdaAds.getNewInterstital();
-    MultibleChoiseBannerAds = ahmdaAds.getNewBannerAd();
-    MultibleChoiseAds.load();
-    MultibleChoiseBannerAds.load();
+//    FirebaseAdMob.instance.initialize(
+//        appId:
+//            'ca-app-pub-9661386178168248~7055214624'); //ca-app-pub-9661386178168248~2297648329
+//    MultibleChoiseAds = ahmdaAds.getNewInterstital();
+//    MultibleChoiseBannerAds = ahmdaAds.getNewBannerAd();
+//    MultibleChoiseAds.load();
+//    MultibleChoiseBannerAds.load();
     super.initState();
   }
   @override
   void dispose() {
-    MultibleChoiseBannerAds.dispose();
+//    MultibleChoiseBannerAds.dispose();
     super.dispose();
   }
   @override
   Widget build(BuildContext context) {
-    MultibleChoiseBannerAds.show();
+//    MultibleChoiseBannerAds.show();
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -229,7 +229,7 @@ class _MultibleChoiseState extends State<MultibleChoise> {
         widget.Score = 0;
         widget.QestionsNumber = 0;
         Units.Unit_id = 0;
-        MultibleChoiseAds.show();
+//        MultibleChoiseAds.show();
         Navigator.pop(context);
         // Show Score in Dialog
         return CustomBgAlertBox(

@@ -1,10 +1,12 @@
 // Packages
 import 'package:askarie/function/Home/readWriteLinks.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // Constant
 import 'package:askarie/constent/Color.dart';
+import 'package:url_launcher/url_launcher.dart';
 // Themes
 import '../themes/size_config.dart';
 import '../themes/AppTheme.dart';
@@ -66,6 +68,19 @@ class _PublicBoxLinkState extends State<PublicBoxLink> {
                     SizeConfig.heightMultiplier * 0.1),
                 child: Row(
                   children: [
+                    GestureDetector(
+                      child: FaIcon(
+                        FontAwesomeIcons.externalLinkAlt,
+                        size: SizeConfig.textMultiplier *4 ,
+                        color:C_White,
+                      ),
+                      onTap: ()async{
+                        if (await canLaunch( widget.linKUrl)) {
+                          await launch(widget.linKUrl);
+                        }
+                      },
+                    ),
+                    SizedBox(width: SizeConfig.widthMultiplier*3,),
                     GestureDetector(
                       child: FaIcon(
                         FontAwesomeIcons.copy,

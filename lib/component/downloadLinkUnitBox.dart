@@ -64,8 +64,6 @@ class _DownloadLinkState extends State<DownloadLink> {
                   onTap: (){
                     setState(() {IconPlace= ColoredCircularProgressIndicator();});
                     downloadLinkAndCreateTable(widget.parent,widget.univName);
-
-                    print("Download Links");
                   },
                 ),
               ],

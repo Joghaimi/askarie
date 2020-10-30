@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:auto_direction/auto_direction.dart';
-// ADS
-import 'package:firebase_admob/firebase_admob.dart';
-import '../function/ads.dart';
+//// ADS
+//import 'package:firebase_admob/firebase_admob.dart';
+//import '../function/ads.dart';
 // Constant
 import '../constent/Color.dart';
 // themes
@@ -35,30 +35,30 @@ class QuestionsAndAnswer extends StatefulWidget {
 }
 
 class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
-  final ahmdaAds = ADS();
-  InterstitialAd MultibleChoiseAds;
-  BannerAd MultibleChoiseBannerAds;
+//  final ahmdaAds = ADS();
+//  InterstitialAd MultibleChoiseAds;
+//  BannerAd MultibleChoiseBannerAds;
 
   @override
   void initState() {
     WidgetsFlutterBinding.ensureInitialized();
-    FirebaseAdMob.instance
-        .initialize(appId: 'ca-app-pub-9661386178168248~7055214624');
-    MultibleChoiseAds = ahmdaAds.getNewInterstital();
-    MultibleChoiseBannerAds = ahmdaAds.getNewBannerAd();
-    MultibleChoiseAds.load();
-    MultibleChoiseBannerAds.load();
+//    FirebaseAdMob.instance
+//        .initialize(appId: 'ca-app-pub-9661386178168248~7055214624');
+//    MultibleChoiseAds = ahmdaAds.getNewInterstital();
+//    MultibleChoiseBannerAds = ahmdaAds.getNewBannerAd();
+//    MultibleChoiseAds.load();
+//    MultibleChoiseBannerAds.load();
     super.initState();
   }
 
   void dispose() {
-    MultibleChoiseBannerAds.dispose();
+//    MultibleChoiseBannerAds.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    MultibleChoiseBannerAds.show();
+//    MultibleChoiseBannerAds.show();
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -218,8 +218,8 @@ class _QuestionsAndAnswerState extends State<QuestionsAndAnswer> {
         widget.QestionsNumber += i;
       }
     } else {
-      MultibleChoiseBannerAds.dispose();
-      MultibleChoiseAds.show();
+//      MultibleChoiseBannerAds.dispose();
+//      MultibleChoiseAds.show();
       widget.QestionsNumber = 0;
       Navigator.pop(context);
     }
