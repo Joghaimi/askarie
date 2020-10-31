@@ -28,8 +28,6 @@ class MultibleChoise extends StatefulWidget {
   static var unitName;
   static var unitIndex;
   // For Save Score
-
-
   var QestionsNumber = 0;
   var SelectedAnswer = 0;
   var BorderColor = [
@@ -245,16 +243,6 @@ class _MultibleChoiseState extends State<MultibleChoise> {
             buttonText: "تمام ",
 
         );
-        Fluttertoast.showToast(
-            msg: "Your Score is ${score.toInt()}",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: score > 40 ? Colors.green : Colors.red[500],
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
-
       }
     });
   }

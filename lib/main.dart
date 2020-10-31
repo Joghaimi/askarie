@@ -9,6 +9,7 @@ import 'screens/MultibleChoice.dart';
 import 'screens/QuestionsAndAnswer.dart';
 import 'screens/AllMaterial.dart';
 import 'screens/home.dart';
+import 'screens/introductionScreen.dart';
 // ADS
 //import 'package:firebase_admob/firebase_admob.dart';
 // Function
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         QuestionsAndAnswer.id : (context) => QuestionsAndAnswer(),
         AllMaterial.id : (context) => AllMaterial(),
         Home.id : (context) => Home(),
+        IntroScreen.id: (context) => IntroScreen(),
       },
     );
   }

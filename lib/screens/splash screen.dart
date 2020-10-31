@@ -17,7 +17,7 @@ import '../themes/AppTheme.dart';
 import '../themes/size_config.dart';
 //Screens
 import '../screens/AllMaterial.dart';
-
+import '../screens/introductionScreen.dart';
 class splash_screen extends StatefulWidget {
   static final id = 'splash_screen';
   @override
@@ -76,45 +76,38 @@ class _splash_screenState extends State<splash_screen> {
    OpenNewView() async {
     var theFirstRun=await firstRun();
     if(theFirstRun == 0){ // First Run
+      Navigator.pushReplacementNamed(context, IntroScreen.id);
+
       // Select the Uni
-      String UNI = "";
-      SelectDialog.showModal<String>(
-        context,
-        label: "اختيار الجامعه",
-        selectedValue: UNI,
-        items: uniName,
-        onChange: (String selected) {
-          setState(() {
-            UNI = selected;
-            print(UNI);
-              //Save it IN Local Storage
-            localStorage.SaveString("UNIName",UNI).then(
-              // Get Data
-                checkForNewMaterial().then(
-                        (value) async{
-                      await localStorageSavedUnsavedMaterialPage();
-                      saveUniLink();
-                      Navigator.pushReplacementNamed(context, AllMaterial.id);
-//                      checkForNewLink().then(
-//                              (value){
-//                            localStorageSavedUnsavedLink();
-//                            // Save Links
-//                            saveUniLink();
-//                            Navigator.pushReplacementNamed(context, AllMaterial.id);
-//                          }
-//                      );
-                    }
-                )
-            );
-          })
-          ;
-        },
-      );
+//      String UNI = "";
+//      SelectDialog.showModal<String>(
+//        context,
+//        label: "اختيار الجامعه",
+//        selectedValue: UNI,
+//        items: uniName,
+//        onChange: (String selected) {
+//          setState(() {
+//            UNI = selected;
+//            print(UNI);
+//              //Save it IN Local Storage
+//            localStorage.SaveString("UNIName",UNI).then(
+//              // Get Data
+//                checkForNewMaterial().then(
+//                        (value) async{
+//                      await localStorageSavedUnsavedMaterialPage();
+//                      saveUniLink();
+//                      Navigator.pushReplacementNamed(context, AllMaterial.id);
+//                    }
+//                )
+//            );
+//          })
+//          ;
+//        },
+//      );
     }else{
       checkForNewMaterial().then(
               (value) async{
             await localStorageSavedUnsavedMaterialPage();
-//            saveUniLink();
             Navigator.pushReplacementNamed(context, AllMaterial.id);
           }
       );

@@ -2,10 +2,10 @@
 import 'package:askarie/constent/Text.dart';
 import 'package:askarie/function/AllUnitFunction/selectedUnitTest.dart';
 import 'package:askarie/function/Home/readWriteLinks.dart';
+import 'package:askarie/screens/AllMaterial.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 
 // Constant
 import '../constent/Color.dart';
@@ -49,17 +49,25 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
           textDirection: TextDirection.ltr,
           children: <Widget>[
             Expanded(
-              // Home
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.popAndPushNamed(context, AllMaterial.id);    // Navigate to Home Page
+                },
+                child: FaIcon(
+                  FontAwesomeIcons.home,
+                  size: SizeConfig.textMultiplier * 4,
+                  color: C_White,
+                ),
+              ),
+            ),
+            Expanded(
               flex: 1,
               child: GestureDetector(
                 onTap: () async {
-                  // Read Links in DB
-                  var linkArray = await readLinks("private");
-                  var publicLinkArray = await readLinks("public");
-                  // Save LinkArray in home privetLink
-                  // Removw all link inside the array
-                  Home.privetLink.clear();
-                  Home.publicLink.clear();
+                  var linkArray = await readLinks("private");      // Read Links in DB
+                  var publicLinkArray = await readLinks("public"); // Save LinkArray in home privetLink
+                  Home.privetLink.clear();                         // Remove all link inside the array
+                  Home.publicLink.clear();                         // Remove all link inside the array
                   for (var link in linkArray) {
                     var addLink = [link['LinkName'], link['LinkURL']];
                     Home.privetLink.add(addLink);
@@ -68,9 +76,7 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
                     var addLink = [link['LinkName'], link['LinkURL']];
                     Home.publicLink.add(addLink);
                   }
-                  // Navigate to Home Page
-                  Navigator.popAndPushNamed(context, Home.id);
-//                  Navigator.pushNamed(context, Home.id); // Go To Your Page
+                  Navigator.popAndPushNamed(context, Home.id);    // Navigate to Home Page
                 },
                 child: FaIcon(
                   FontAwesomeIcons.link,
@@ -79,9 +85,8 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
                 ),
               ),
             ),
-            Expanded(child: Text(""),),
+
             Expanded(
-              // search for other material
               flex: 1,
               child: GestureDetector(
                 child: FaIcon(
@@ -90,8 +95,7 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
                   color: widget.colors,
                 ),
                 onTap: () async {
-                  if (Units.selectedUnits.length > 0) {
-                    // Test Selected
+                  if (Units.selectedUnits.length > 0) {  // Test Selected
                     Fluttertoast.showToast(
                         msg: K_Loading,
                         toastLength: Toast.LENGTH_LONG,
@@ -116,7 +120,6 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
                 },
               ),
             ),
-            Expanded(child: Text(""),),
 // USE THIS https://pub.dev/packages/searchable_dropdown
 //            Expanded(
 //              // Search
