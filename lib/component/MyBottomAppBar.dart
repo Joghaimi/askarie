@@ -69,7 +69,8 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
                     Home.publicLink.add(addLink);
                   }
                   // Navigate to Home Page
-                  Navigator.pushNamed(context, Home.id); // Go To Your Page
+                  Navigator.popAndPushNamed(context, Home.id);
+//                  Navigator.pushNamed(context, Home.id); // Go To Your Page
                 },
                 child: FaIcon(
                   FontAwesomeIcons.link,

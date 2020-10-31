@@ -242,6 +242,7 @@ class _UnitBoxsState extends State<UnitBoxs> {
                           await getQuestion(widget.materialName,widget.BoxTitel );
                           MultibleChoise.materialName=widget.materialName;
                           MultibleChoise.unitName=widget.BoxTitel;
+                          MultibleChoise.unitIndex =widget.unitColor ;
                           Navigator.pushNamed(context,MultibleChoise.id);
 
                         },

@@ -26,6 +26,7 @@ class MultibleChoise extends StatefulWidget {
   // For Save Score
   static var materialName;
   static var unitName;
+  static var unitIndex;
   // For Save Score
 
 
@@ -226,9 +227,11 @@ class _MultibleChoiseState extends State<MultibleChoise> {
         var score =(widget.Score/Units.questionNumber)*100;
         // Save Score In localStorage
         setUnitScore(MultibleChoise.materialName,MultibleChoise.unitName,score.floor());
+//        Units.unitScore[MultibleChoise.unitIndex]=score.floor(); // TODO
         widget.Score = 0;
         widget.QestionsNumber = 0;
         Units.Unit_id = 0;
+        MultibleChoise.unitIndex=0;
 //        MultibleChoiseAds.show();
         Navigator.pop(context);
         // Show Score in Dialog
