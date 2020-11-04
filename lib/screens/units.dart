@@ -59,6 +59,7 @@ class _UnitsState extends State<Units> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: WillPopScope(
+        // ignore: missing_return
         onWillPop: () {
           Navigator.pushNamed(context, AllMaterial.id);
         },
@@ -111,7 +112,6 @@ class _UnitsState extends State<Units> {
                     ),
                     Flexible(
                       child: Stack(
-
                         children: <Widget>[
                           ListView.builder(
                               itemCount: Units.unitNumber,
@@ -128,7 +128,6 @@ class _UnitsState extends State<Units> {
                                                 0.4 * SizeConfig.heightMultiplier,
                                           ),
                                     UnitBoxs(Units.UnitName[index],Units.unitScore[index],"${UnitsArray[index].length} سؤال ",Units.materialName,index),
-
                                   ],
                                 );
                               }),

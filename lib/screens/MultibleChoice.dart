@@ -21,7 +21,6 @@ import '../screens/units.dart';
 import '../function/DealWithMaterial/getSetScore.dart';
 
 class MultibleChoise extends StatefulWidget {
-  //  ADMOB
   static final id = "MultibleChoise";
   // For Save Score
   static var materialName;
@@ -240,7 +239,7 @@ class _MultibleChoiseState extends State<MultibleChoise> {
             buttonColor: PrimaryColor,
             titleTextColor: PrimaryColor,
             infoMessage: "Your Score is ${score.toInt()}",
-            buttonText: "تمام ",
+            buttonText: "حسنا",
 
         );
       }

@@ -85,7 +85,7 @@ class _MaterialUnitBoxState extends State<MaterialUnitBox> {
             if(! Units.UnitName.contains(material['UnitName'])){
               Units.UnitName.add(material['UnitName']); // Unit Name
               Units.unitScore.add(await getUnitScore(widget.materialName, material['UnitName'])); //@todo It save 0 Data
-              print(await getUnitScore(widget.materialName, material['UnitName']));
+//              print(await getUnitScore(widget.materialName, material['UnitName']));
               cont ++ ;
             }
           }

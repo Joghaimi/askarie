@@ -16,11 +16,10 @@ Future <void> saveTestUnitQsArray(var materialName , var unitsName) async{
   // Initialize DB
   DataBaseHelper baseHelper=DataBaseHelper(); // DataBase Helper
   Units.questionNumber = (unitsName.length*10)-1;
-  print(Units.questionNumber);
   int incrementStart =0;
   int incrementLim =10;
   int increment =10;
-  for(int x=0;x<unitsName.length;x++) {
+  for(int x=0;x<(unitsName.length);x++) {
     var allQs = await baseHelper.getRandomQS(materialName, unitsName[x]);
     var allIndex =0;
     for (; incrementStart < incrementLim; incrementStart++) {
@@ -36,9 +35,10 @@ Future <void> saveTestUnitQsArray(var materialName , var unitsName) async{
     }
     incrementStart = incrementLim;
     incrementLim = increment*(x+2);
-    emptyTestArray();
+
 
   }
+  emptyTestArray();
 }
 void emptyTestArray(){
   Units.selectedUnits.clear();

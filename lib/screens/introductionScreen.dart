@@ -1,5 +1,6 @@
 // Packages
 import 'package:askarie/constent/Color.dart';
+import 'package:askarie/constent/Text.dart';
 import 'package:askarie/constent/UniName.dart';
 import 'package:askarie/function/DealWithMaterial/LocalStorageSavedUnsavedMaterialpage.dart';
 import 'package:askarie/function/SplashScreenFunction.dart';
@@ -11,36 +12,36 @@ import '../function/localStorage.dart';
 // Screens
 import 'AllMaterial.dart';
 // Style
-
-
 class IntroScreen extends StatefulWidget {
   static String id ="IntroScreen";
   @override
   _IntroScreenState createState() => _IntroScreenState();
 }
-
 class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return IntroductionScreen(
       pages: [
         PageViewModel(
-          title: "Fractional shares",
-          body:
-          "Instead of having to buy an entire share, invest any amount you want.",
+          title: K_intro,
+          body:K_introTXT,
+          image: _buildImage('introPage1.jpg'),
+        ),
+        PageViewModel(
+          title: K_MaterialLib,
+          body:K_MaterialLibTXT,
           image: _buildImage('read.png'),
         ),
         PageViewModel(
-          title: "Fractional shares",
-          body:
-          "Instead of having to buy an entire share, invest any amount you want.",
+          title: K_LinkLib,
+          body:  K_LinkLibTXT,
           image: _buildImage('link.png'),
         ),
         PageViewModel(
-          title: "Fractional shares",
+          title: "قطاعة",
           body:
-          "Instead of having to buy an entire share, invest any amount you want.",
-          image: _buildImage('img1'),
+          "قطّاعة.. طريقك لتكون قطاعة ^^",
+          image: _buildImage('introPage2.jpg'),
         ),
 
       ],
@@ -65,7 +66,6 @@ class _IntroScreenState extends State<IntroScreen> {
       alignment: Alignment.bottomCenter,
     );
   }
-
   void _onIntroEnd(context) {
     // Select the Uni
       String UNI = "";

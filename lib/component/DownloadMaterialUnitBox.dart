@@ -72,6 +72,7 @@ class _DownloadMaterialUnitBoxState extends State<DownloadMaterialUnitBox> {
                   // Disable The appilitty to click
                   onTabCondition=false;
                   var downloadState = await downloadMaterialAndCreateTable(widget.materialName);
+                  print("Download MaterialFinashed ");
                   // Open The New View
                   if(downloadState){
                     setState(() {
@@ -91,15 +92,20 @@ class _DownloadMaterialUnitBoxState extends State<DownloadMaterialUnitBox> {
                           Units.UnitName.clear();
                           var cont = 0;
                           var savedUnitname;
+                          print("UNITNAME Fitsh After Downloading");
                           for(var material in material_name){
+                            // DataFitch
                             if(! Units.UnitName.contains(material['UnitName'])){
                               Units.UnitName.add(material['UnitName']);
+                              Units.unitScore.add(0);
                               print(material['UnitName']);
                               cont ++ ;
-                            }
+                              }
                           }
-
-                          Units.unitNumber=cont;
+                          print("UNITNAME Fitsh After Downloading");
+                          Units.unitNumber=(cont-1);
+                          print(cont);
+                          print(Units.UnitName.length);
                           Navigator.pushReplacementNamed(context, Units.id);
                         },
                       );

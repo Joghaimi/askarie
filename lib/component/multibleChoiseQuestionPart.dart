@@ -70,7 +70,7 @@ class QuestionPart extends StatelessWidget {
                 Expanded(
                   child: Center(
                     child: Text(
-                      "الوقت",
+                      "التقدم",
                       style: AppTheme
                           .smallerSizeText, // TODO Add Timer Start From the time you enterded the Quiez
                     ),
