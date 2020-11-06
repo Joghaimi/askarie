@@ -215,15 +215,6 @@ listReturn(parent, bool privatePublic) {
                       Home.publicLink[index][1]);
                 }),
           ),
-//          Container(
-//            height: SizeConfig.heightMultiplier*20,
-//            child: ListView.builder(
-//                itemCount: Home.publicLinkToDownload.length,
-//                itemBuilder: (BuildContext ctxt, int index) {
-//                  // Return non Saved Material
-//                  return DownloadLink(parent, Home.publicLinkToDownload[index]);
-//                }),
-//          ),
         ],
       );
 

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:path_provider/path_provider.dart';
 
 class ReadFile{
-
   static Future<File> _getLocalFile(String FileName) async {
     // get the path to the document directory.
     var documentDir = await getApplicationDocumentsDirectory();

@@ -10,6 +10,12 @@ import 'screens/QuestionsAndAnswer.dart';
 import 'screens/AllMaterial.dart';
 import 'screens/home.dart';
 import 'screens/introductionScreen.dart';
+// View
+import 'mvc/view/splashscreen.dart';
+import 'mvc/view/homeScreen.dart';
+import 'mvc/view/firstUseScreen.dart';
+
+
 // ADS
 //import 'package:firebase_admob/firebase_admob.dart';
 // Function
@@ -34,15 +40,20 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         Locale("ar", "AE"),
       ],
-      initialRoute: splash_screen.id,
+      initialRoute: SplashScreen.id,
       routes: {
-        splash_screen.id: (context) => splash_screen(),
-        Units.id : (context) => Units(),
-        MultibleChoise.id : (context) => MultibleChoise(),
-        QuestionsAndAnswer.id : (context) => QuestionsAndAnswer(),
-        AllMaterial.id : (context) => AllMaterial(),
-        Home.id : (context) => Home(),
-        IntroScreen.id: (context) => IntroScreen(),
+
+        SplashScreen.id: (context) => SplashScreen(),
+        HomeScreen.id: (context) => HomeScreen(),
+        FirstUseScreen.id:(context) => FirstUseScreen(),
+
+//        splash_screen.id: (context) => splash_screen(),
+//        Units.id : (context) => Units(),
+//        MultibleChoise.id : (context) => MultibleChoise(),
+//        QuestionsAndAnswer.id : (context) => QuestionsAndAnswer(),
+//        AllMaterial.id : (context) => AllMaterial(),
+//        Home.id : (context) => Home(),
+//        IntroScreen.id: (context) => IntroScreen(),
       },
     );
   }

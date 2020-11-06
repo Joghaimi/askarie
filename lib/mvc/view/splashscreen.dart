@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import '../model/sizeConfig.dart';
 import '../model/constant.dart';
 import '../model/apptheme.dart';
+import '../controller/splashScreenController.dart';
 class SplashScreen extends StatefulWidget {
   static final id = 'splashScreen';
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
+
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState(){
+    SplashScreenController.initSplashScreen(this,context);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {

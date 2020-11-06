@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+
 class LocalStorage{
   static Future<int>getIntData({@required String data}) async{
     /// Return Int Value For saved Data on local Storage & Return -1 if data Not Found
@@ -46,6 +48,13 @@ class LocalStorage{
     final prefs =await SharedPreferences.getInstance();
     prefs.setStringList(data, value);
   }
+  static saveJsonDataAsString({@required String jsonList ,@required listKey })async{
+    List decodeJsonString =json.decode(jsonList)[listKey];
+    List<String> stringArray = new List();
+    for(var material in decodeJsonString){
+      stringArray.add(material.toString());
+    }
+    await LocalStorage.saveStringArray(data: listKey, value: stringArray);
 
-
+  }
 }
