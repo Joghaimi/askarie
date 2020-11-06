@@ -1,12 +1,9 @@
-// packages
 import 'package:flutter/material.dart';
-// Constent
-import '../constent/Color.dart';
-//Themes
-import 'size_config.dart';
+import '../model/constant.dart';
+import 'sizeConfig.dart';
 class AppTheme{
   static final TextStyle UnitName = TextStyle(
-    color: C_TextGray,
+    color: Constant.C_TextGray,
     fontFamily: 'ArbFONTS-Asmaa',
     fontSize: 2.7 * SizeConfig.textMultiplier,
     height: 0.15 * SizeConfig.heightMultiplier,
@@ -25,32 +22,32 @@ class AppTheme{
     height: 0.15 * SizeConfig.heightMultiplier,
   );
   static final TextStyle ButtonNext = TextStyle(
-    color: C_Purple,
+    color: Constant.C_Purple,
     fontFamily: 'ArbFONTS-Asmaa',
     decorationThickness: 1.0,
     fontSize: 3.0 * SizeConfig.textMultiplier,
     height: 0.15 * SizeConfig.heightMultiplier,
   );
   static final TextStyle QestionAns  = TextStyle(
-    color: C_TextGray_Deep,
+    color: Constant.C_TextGray_Deep,
     fontFamily: 'ArbFONTS-Asmaa',
     fontSize: 2.5 * SizeConfig.textMultiplier,
     height: 0.15 * SizeConfig.heightMultiplier,
   );
   static final TextStyle SelectType  = TextStyle(
-    color: C_TextGray_Deep,
+    color: Constant.C_TextGray_Deep,
     fontFamily: 'ArbFONTS-Asmaa',
     fontSize: 3 * SizeConfig.textMultiplier,
     height: 0.15 * SizeConfig.heightMultiplier,
   );
   static final TextStyle UnitScore = TextStyle(
-    color: C_TextGray_Deep,
+    color: Constant.C_TextGray_Deep,
     fontFamily: 'ArbFONTS-Asmaa',
     fontSize: 2.3 * SizeConfig.textMultiplier,
     height: 0.15 * SizeConfig.heightMultiplier,
   );
   static final TextStyle QestionsAndAnswersText = TextStyle(
-    color: C_TextGray_Deep,
+    color: Constant.C_TextGray_Deep,
     fontFamily: 'ArbFONTS-Asmaa',
     fontSize: 3.5 * SizeConfig.textMultiplier,
     height: 0.15 * SizeConfig.heightMultiplier,
@@ -63,12 +60,10 @@ class AppTheme{
   static final BoxDecoration  buttonSubmit = BoxDecoration(
     border: Border.all(
       width:1,
-      color: C_Purple,
+      color: Constant.C_Purple,
     ),
     color: Colors.white,
   );
-
-
   static final BoxDecoration  Answers = BoxDecoration(
     border: Border.all(
       width:1,
@@ -77,7 +72,6 @@ class AppTheme{
     borderRadius: BorderRadius.all(Radius.circular(4)),
     color: Colors.white,
   );
-
   static final BoxDecoration  UnitBoxes = BoxDecoration(
     border: Border.all(
       width: 1,
@@ -96,46 +90,46 @@ class AppTheme{
   );
   static final BoxDecoration MaterialUnitBoxContainer= BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(SizeConfig.heightMultiplier*2.7)),
-    color: C_Purple,
+    color: Constant.C_Purple,
   );
   static final BoxDecoration materialUnitCheckBox= BoxDecoration(
     borderRadius: BorderRadius.only(topRight: Radius.circular(SizeConfig.heightMultiplier*2.7),bottomRight:  Radius.circular(SizeConfig.heightMultiplier*2.7)),
-    color: C_Purple,
+    color: Constant.C_Purple,
   );
   static final TextStyle MaterialName = TextStyle(
-    color: C_White,
+    color: Constant.C_White,
     fontFamily: 'ArbFONTS-Asmaa',
     fontSize: 3.5 * SizeConfig.textMultiplier,
     height: 0.15 * SizeConfig.heightMultiplier,
   );
   static final TextStyle AllMaterialName = TextStyle(
-    color: PrimaryColor,
+    color: Constant.PrimaryColor,
     fontFamily: 'ArbFONTS-Asmaa',
     fontSize: 4.5 * SizeConfig.textMultiplier,
     height: 0.15 * SizeConfig.heightMultiplier,
   );
   static final TextStyle MaterialScore = TextStyle(
-    color: C_White,
+    color: Constant.C_White,
     fontFamily: 'ArbFONTS-Asmaa',
     fontSize: 2 * SizeConfig.textMultiplier,
     height: 0.15 * SizeConfig.heightMultiplier,
   );
   static final TextStyle MaterialNumberofScore = TextStyle(
-    color: C_White,
+    color: Constant.C_White,
     fontFamily: 'ArbFONTS-Asmaa',
     fontSize: 2.5 * SizeConfig.textMultiplier,
     height: 0.15 * SizeConfig.heightMultiplier,
 
   );
   static final TextStyle SplashScreenTitel = TextStyle(
-    color: PrimaryColor,
+    color: Constant.PrimaryColor,
     fontFamily: 'ArbFONTS-Asmaa',
     fontSize: 6 * SizeConfig.textMultiplier,
     height: 0.6 * SizeConfig.heightMultiplier,
     decoration: TextDecoration.none,
   );
   static final TextStyle MidSizeText = TextStyle(
-    color: PrimaryColor,
+    color: Constant.PrimaryColor,
     fontFamily: 'ArbFONTS-Asmaa',
     fontSize: 5 * SizeConfig.textMultiplier,
     height: 0.1 * SizeConfig.heightMultiplier,
@@ -143,7 +137,7 @@ class AppTheme{
 
   );
   static final TextStyle SmallSizeText = TextStyle(
-    color: PrimaryColor,
+    color: Constant.PrimaryColor,
     fontFamily: 'ArbFONTS-Asmaa',
     fontSize: 3 * SizeConfig.textMultiplier,
     height: 0.17 * SizeConfig.heightMultiplier,
@@ -151,12 +145,11 @@ class AppTheme{
 
   );
   static final TextStyle smallerSizeText = TextStyle(
-    color: PrimaryColor,
+    color: Constant.PrimaryColor,
     fontFamily: 'ArbFONTS-Asmaa',
     fontSize: 2.1 * SizeConfig.textMultiplier,
     height: 0.17 * SizeConfig.heightMultiplier,
     decoration: TextDecoration.none,
 
   );
-
 }

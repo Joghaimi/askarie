@@ -1,31 +1,14 @@
-// packages
 import 'package:flutter/material.dart';
-// Constent
-import '../constent/Color.dart';
-import '../constent/Text.dart';
-// Functions
-import '../function/DealWithMaterial/LocalStorageSavedUnsavedMaterialpage.dart';
-import '../function/SplashScreenFunction.dart';
-import '../function/Notification/push_notification.dart';
-//Themes
-import '../themes/AppTheme.dart';
-import '../themes/size_config.dart';
-//Screens
-import '../screens/AllMaterial.dart';
-import '../screens/introductionScreen.dart';
-class splash_screen extends StatefulWidget {
-  static final id = 'splash_screen';
+import '../model/sizeConfig.dart';
+import '../model/constant.dart';
+import '../model/apptheme.dart';
+class SplashScreen extends StatefulWidget {
+  static final id = 'splashScreen';
   @override
-  _splash_screenState createState() => _splash_screenState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _splash_screenState extends State<splash_screen> {
-  @override
-  void initState(){
-      OpenNewView();
-      PushNotificationService.initialise();
-      super.initState();
-  }
+class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -34,7 +17,7 @@ class _splash_screenState extends State<splash_screen> {
         return Container(
           child: Scaffold(
             body: Container(
-              color: C_Gray,
+              color: Constant.C_Gray,
               child: Center(
                 child: Column(
                   children: <Widget>[
@@ -47,11 +30,11 @@ class _splash_screenState extends State<splash_screen> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            AppName,
+                            Constant.AppName,
                             style: AppTheme.Titel.copyWith(
                                 fontSize: 25 * SizeConfig.textMultiplier,
                                 height: 0.2 * SizeConfig.heightMultiplier,
-                                color: PrimaryColor
+                                color: Constant.PrimaryColor
                             ),
                           ),
                           Image.asset("images/Kewy.png",height: 10 * SizeConfig.textMultiplier,),
@@ -67,19 +50,4 @@ class _splash_screenState extends State<splash_screen> {
       });
     });
   }
-   OpenNewView() async {
-    var theFirstRun=await firstRun();
-    if(theFirstRun == 0){ // First Run
-      Navigator.pushReplacementNamed(context, IntroScreen.id);
-    }else{
-      checkForNewMaterial().then(
-              (value) async{
-            await localStorageSavedUnsavedMaterialPage();
-            Navigator.pushReplacementNamed(context, AllMaterial.id);
-          }
-      );
-    }
-
-  }
 }
-
