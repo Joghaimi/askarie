@@ -7,16 +7,13 @@ class DB {
   static DB _dataBaseHelper;
   static Database _database;
   final dataBaseName = "Qata3a.db";
-
-  DB._createInstanse();
-
+  DB._createInstance();
   factory DB() {
     if (_dataBaseHelper == null) {
-      _dataBaseHelper = DB._createInstanse();
+      _dataBaseHelper = DB._createInstance();
     }
     return _dataBaseHelper;
   }
-
   Future<Database> initializeDB() async {
     // initialize DB
     Directory directory =
@@ -26,7 +23,6 @@ class DB {
         await openDatabase(path, version: 1); // Create || open Database
     return dataBase;
   }
-
   Future<Database> get database async {
     // GetDatabase
     if (_database == null) {
@@ -34,13 +30,10 @@ class DB {
     }
     return _database;
   }
-
   void createDBTable({@required String tableQuery}) async {
     Database db = await this.database;
-    db.execute(tableQuery);
-    // String sql = "CREATE TABLE IF NOT EXISTS $tableName(id INTEGER PRIMARY KEY, UnitName TEXT,QS TEXT, A_Ans TEXT,B_Ans TEXT,C_Ans TEXT, D_Ans TEXT,solution INTEGER)";
+    await db.execute(tableQuery);
   }
-
   Future<bool> isExist({@required String tableName}) async {
     /// check if table is exist Return bool
     Database db = await this.database;
@@ -53,5 +46,17 @@ class DB {
     } else {
       return false;
     }
+  }
+  Future<List<Map<String, dynamic>>> readFromDB({@required String sqlStmt,@required args})async{
+    Database db = await this.database;
+    return await db.rawQuery(sqlStmt ,args);
+  }
+  void delete({@required String tableName ,@required String where ,@required String args})async{
+    Database db =await this.database;
+    await db.delete(tableName,where: where, whereArgs: [args],);
+  }
+  Future<void>insert({@required Map mapInfo ,@required String tableName})async{
+    Database db =await this.database;
+    await db.insert(tableName,mapInfo);
   }
 }

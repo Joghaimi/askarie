@@ -18,7 +18,6 @@ class BoxLink extends StatefulWidget {
   final String linkTitle;
   final String linKUrl;
   final parent;
-
   const BoxLink(this.parent,this.index, this.linkTitle,this.linKUrl);
   @override
   _BoxLinkState createState() => _BoxLinkState();

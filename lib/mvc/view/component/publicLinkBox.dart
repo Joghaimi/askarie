@@ -1,25 +1,21 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// Constant
-import 'package:askarie/constent/Color.dart';
-import 'package:url_launcher/url_launcher.dart';
 // Themes
-import '../themes/size_config.dart';
-import '../themes/AppTheme.dart';
+import '../../model/sizeConfig.dart';
+import '../../model/AppTheme.dart';
+import '../../controller/linkScreenController.dart';
+import '../../model/constant.dart';
+
 class PublicBoxLink extends StatefulWidget {
   final int index ;
   final String linkTitle;
   final String linKUrl;
   final parent;
-
   const PublicBoxLink(this.parent,this.index, this.linkTitle,this.linKUrl);
 
   @override
   _PublicBoxLinkState createState() => _PublicBoxLinkState();
 }
-
 class _PublicBoxLinkState extends State<PublicBoxLink> {
   @override
   Widget build(BuildContext context) {
@@ -32,7 +28,7 @@ class _PublicBoxLinkState extends State<PublicBoxLink> {
       child: Container(
         height: SizeConfig.heightMultiplier * 10,
         decoration:
-        AppTheme.MaterialUnitBoxContainer.copyWith(color: MaterialColorArray[widget.index]),
+        AppTheme.MaterialUnitBoxContainer.copyWith(color: Constant.MaterialColorArray[widget.index]),
         child: Padding(
           padding: EdgeInsets.fromLTRB(
               SizeConfig.widthMultiplier * 1,
@@ -67,12 +63,10 @@ class _PublicBoxLinkState extends State<PublicBoxLink> {
                       child: FaIcon(
                         FontAwesomeIcons.externalLinkAlt,
                         size: SizeConfig.textMultiplier *4 ,
-                        color:C_White,
+                        color:Constant.C_White,
                       ),
-                      onTap: ()async{
-                        if (await canLaunch( widget.linKUrl)) {
-                          await launch(widget.linKUrl);
-                        }
+                      onTap: () async{
+                        LinkScreenController.launchLink(context: context, link: widget.linKUrl);
                       },
                     ),
                     SizedBox(width: SizeConfig.widthMultiplier*3,),
@@ -80,18 +74,12 @@ class _PublicBoxLinkState extends State<PublicBoxLink> {
                       child: FaIcon(
                         FontAwesomeIcons.copy,
                         size: SizeConfig.textMultiplier *4 ,
-                        color:C_White,
+                        color:Constant.C_White,
                       ),
                       onTap: (){
-                        Clipboard.setData(new ClipboardData(text: widget.linKUrl)).then((result) {
-                          final snackBar = SnackBar(
-                            content: Text('تم نسخ الرابط'),
-                          );
-                          Scaffold.of(context).showSnackBar(snackBar);
-                        });
-                      },
+                        LinkScreenController.copyLink(context: context, link: widget.linKUrl);
+                        },
                     ),
-
                   ],
                 ),
               ),

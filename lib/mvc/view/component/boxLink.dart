@@ -1,28 +1,28 @@
-
+// Packages
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // Constant
-import 'package:askarie/constent/Color.dart';
-import 'package:url_launcher/url_launcher.dart';
-// Themes
-import '../themes/size_config.dart';
-import '../themes/AppTheme.dart';
-class PublicBoxLink extends StatefulWidget {
+import '../../model/apptheme.dart';
+import '../../model/sizeConfig.dart';
+import '../../model/constant.dart';
+import '../../controller/linkScreenController.dart';
+import '../../model/getRandom.dart';
+import 'package:askarie/function/RandomNum.dart';
+
+class BoxLink extends StatefulWidget {
   final int index ;
   final String linkTitle;
   final String linKUrl;
   final parent;
-
-  const PublicBoxLink(this.parent,this.index, this.linkTitle,this.linKUrl);
-
+  const BoxLink(this.parent,this.index, this.linkTitle,this.linKUrl);
   @override
-  _PublicBoxLinkState createState() => _PublicBoxLinkState();
+  _BoxLinkState createState() => _BoxLinkState();
 }
 
-class _PublicBoxLinkState extends State<PublicBoxLink> {
+class _BoxLinkState extends State<BoxLink> {
   @override
   Widget build(BuildContext context) {
+    final boxColor =  Constant.MaterialColorArray[widget.index < Constant.MaterialColorArray.length?widget.index:GetRandom.colorIndex()];
     return Padding(
       padding: EdgeInsets.fromLTRB(
           SizeConfig.widthMultiplier * 3,
@@ -32,7 +32,7 @@ class _PublicBoxLinkState extends State<PublicBoxLink> {
       child: Container(
         height: SizeConfig.heightMultiplier * 10,
         decoration:
-        AppTheme.MaterialUnitBoxContainer.copyWith(color: MaterialColorArray[widget.index]),
+        AppTheme.MaterialUnitBoxContainer.copyWith(color:boxColor),
         child: Padding(
           padding: EdgeInsets.fromLTRB(
               SizeConfig.widthMultiplier * 1,
@@ -66,32 +66,36 @@ class _PublicBoxLinkState extends State<PublicBoxLink> {
                     GestureDetector(
                       child: FaIcon(
                         FontAwesomeIcons.externalLinkAlt,
-                        size: SizeConfig.textMultiplier *4 ,
-                        color:C_White,
+                        size : SizeConfig.textMultiplier *4 ,
+                        color: Constant.C_White,
                       ),
                       onTap: ()async{
-                        if (await canLaunch( widget.linKUrl)) {
-                          await launch(widget.linKUrl);
-                        }
-                      },
+                        LinkScreenController.launchLink(context: context, link: widget.linKUrl);
+                        },
                     ),
                     SizedBox(width: SizeConfig.widthMultiplier*3,),
                     GestureDetector(
                       child: FaIcon(
                         FontAwesomeIcons.copy,
                         size: SizeConfig.textMultiplier *4 ,
-                        color:C_White,
+                        color:Constant.C_White,
                       ),
                       onTap: (){
-                        Clipboard.setData(new ClipboardData(text: widget.linKUrl)).then((result) {
-                          final snackBar = SnackBar(
-                            content: Text('تم نسخ الرابط'),
-                          );
-                          Scaffold.of(context).showSnackBar(snackBar);
+                        LinkScreenController.copyLink(context: context, link: widget.linKUrl);},
+                    ),
+                    SizedBox(width: SizeConfig.widthMultiplier*3,),
+                    GestureDetector(
+                      child: FaIcon(
+                        FontAwesomeIcons.solidTrashAlt,
+                        size: SizeConfig.textMultiplier *4 ,
+                        color:Constant.C_White,
+                      ),
+                      onTap: (){
+                        widget.parent.setState(() {
+                          LinkScreenController.deleteLink(context: context, linkUrl: widget.linKUrl, linkIndex: widget.index);
                         });
                       },
                     ),
-
                   ],
                 ),
               ),

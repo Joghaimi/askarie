@@ -24,6 +24,10 @@ class Constant {
   static const K_IntroFinalTXT ="قطّاعة.. طريقك لتكون قطاعة ^^";
   static const K_IntroFinish = "Done";
   static const K_ChoseUniversity = "اختيار الجامعه";
+  static const K_CantOpenLink = "لا يمكن فتح الرابط";
+  static const K_LinkCopied = "تم نسخ الرابط";
+  static const K_LinkDeleted = "تم حذف الرابط";
+  static const K_AddLink = "قم بأضافة روابط";
   static const uniName =[
   "الجامعة الأردنية ( عمان )",
   "الجامعة الأردنية ( العقبة )",
@@ -77,6 +81,7 @@ class Constant {
     Colors.white,
     Colors.white
   ];
+  static const C_Red = Color(0xFFDF2935);
   static const MaterialColorArray = [
     Color(0xFF0D113E),
     Color(0xFF855EF8),
