@@ -15,6 +15,8 @@ import 'mvc/view/splashscreen.dart';
 import 'mvc/view/homeScreen.dart';
 import 'mvc/view/firstUseScreen.dart';
 import 'mvc/view/linkScreen.dart';
+import 'mvc/view/materialScreen.dart';
+
 
 
 // ADS
@@ -48,6 +50,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.id: (context) => HomeScreen(),
         FirstUseScreen.id:(context) => FirstUseScreen(),
         LinkScreen.id:(context) => LinkScreen(),
+        MaterialScreen.id:(context) => MaterialScreen(),
 
 //        splash_screen.id: (context) => splash_screen(),
 //        Units.id : (context) => Units(),

@@ -28,6 +28,7 @@ class Constant {
   static const K_LinkCopied = "تم نسخ الرابط";
   static const K_LinkDeleted = "تم حذف الرابط";
   static const K_AddLink = "قم بأضافة روابط";
+  static const K_AllMaterial = "جميع المواد";
   static const uniName =[
   "الجامعة الأردنية ( عمان )",
   "الجامعة الأردنية ( العقبة )",
