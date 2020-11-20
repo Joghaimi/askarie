@@ -30,12 +30,11 @@ class DB {
     }
     return _database;
   }
-  void createDBTable({@required String tableQuery}) async {
+  Future<void> createDBTable({@required String tableQuery}) async {
     Database db = await this.database;
     await db.execute(tableQuery);
   }
   Future<bool> isExist({@required String tableName}) async {
-    /// check if table is exist Return bool
     Database db = await this.database;
     String sql =
         "SELECT name FROM sqlite_master WHERE type='table' AND name='$tableName'";

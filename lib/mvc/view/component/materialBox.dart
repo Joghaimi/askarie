@@ -59,7 +59,7 @@ class _MaterialBoxState extends State<MaterialBox> {
           ),
         ),
         onTap: (){
-          MaterialController.openUnitPage(this,context);
+          MaterialController.openUnitPage(parent: this, context: context, materialName: widget.materialName);
           },
       ),
     );
