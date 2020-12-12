@@ -82,6 +82,8 @@ class Constant {
     Colors.white,
     Colors.white
   ];
+  static const ourMl5s="ملخصنا";
+  static const  otherRelatedFile="روابط اخرى";
   static const C_Red = Color(0xFFDF2935);
   static const MaterialColorArray = [
     Color(0xFF0D113E),
@@ -98,5 +100,21 @@ class Constant {
     Color(0xFFe5446d),
     Color(0xFF1e000e),
     Color(0xFF0d3b66),
+    Color(0xFF4f2a5e),
+    Color(0xFF593984),
+    Color(0xFF8a7195),
+    Color(0xFFff5964),
+    Color(0xFFffe74c),
+    Color(0xFF38618c),
+    Color(0xFFffacb2),
+    Color(0xFFffa058),
+    Color(0xFFff7d5e),
+    Color(0xFF9c5d78),
+    Color(0xFF004643),
+    Color(0xFF0c1618),
+    Color(0xFF062e2e),
+    Color(0xFFd1ac00),
+    Color(0xFFE4B54D),
+    
   ];
 }

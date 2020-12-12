@@ -62,305 +62,125 @@ class _UnitBoxsState extends State<UnitBoxs> {
           SizeConfig.heightMultiplier * 2,
           SizeConfig.widthMultiplier  * 3,
           SizeConfig.heightMultiplier * 0.1),
-      child: GestureDetector(
-        child: Container(
-          height: SizeConfig.heightMultiplier * 10,
-          decoration:
-          AppTheme.MaterialUnitBoxContainer.copyWith(color: color),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              // Select Place
-              widget.selectPlace,
-              // Unit Name & Progress Bar
-              Padding(
-                padding:  EdgeInsets.fromLTRB(
-                    SizeConfig.widthMultiplier * 3,
-                    SizeConfig.heightMultiplier*1.2,
-                    SizeConfig.widthMultiplier * 7,
-                    0),
-                child: Column(
-                  children: [
-                    // MaterialName
-                    Text(
-                      widget.BoxTitel,
-                      style: AppTheme.MaterialName,
-                    ),
-                    // ProgressBar
-                    LinearPercentIndicator(
-                      width: 100.0,
-                      lineHeight: 8.0,
-                      percent: ((100-widget.Final_Score)/ 100),
-                      progressColor:   C_White,
-                      backgroundColor: Colors.red,
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(child: Text(""),),
-              // Icons
-              Row(
-                mainAxisSize:  MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.end,
+      child: Container(
+        height: SizeConfig.heightMultiplier * 10,
+        decoration:
+        AppTheme.MaterialUnitBoxContainer.copyWith(color: color),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            // Select Place
+            widget.selectPlace,
+            // Unit Name & Progress Bar
+            Padding(
+              padding:  EdgeInsets.fromLTRB(
+                  SizeConfig.widthMultiplier * 3,
+                  SizeConfig.heightMultiplier*1.2,
+                  SizeConfig.widthMultiplier * 7,
+                  0),
+              child: Column(
                 children: [
-                  SizedBox(width:sizedBoxSie,),
-                  GestureDetector(
-                      child: widget.iconPlace,
-                      onTap:() {
-                        setState(() {
-                          widget.selectPlace=Text(""); // Hide Select Option
-                          widget.iconPlace =  Container(
-                              height: SizeConfig.heightMultiplier * 10,
-                              width: 200,
-                              decoration:AppTheme.MaterialUnitBoxContainer.copyWith(color: C_White),
-                              child:Row(
-                                children: [
-                                  Padding(
-                                    padding:  EdgeInsets.fromLTRB(
-                                        SizeConfig.widthMultiplier * 3,
-                                        0,
-                                        SizeConfig.widthMultiplier * 8,
-                                        0),
-                                    child: GestureDetector(
-                                      child: SelectQsAndAns,
-                                      onTap: () async{
-                                        // StopClicking
-                                        // Show Toast
-                                        Fluttertoast.showToast(
-                                            msg: "Loading ..",
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                            timeInSecForIosWeb: 1,
-                                            backgroundColor: Colors.green,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0
-                                        );
-                                        // Get Data
-                                        await getQuestion(widget.materialName,widget.BoxTitel );
-                                        Navigator.pushNamed(context,QuestionsAndAnswer.id);
-                                        // Go To QSAndAnsPage
-
-                                      },
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:  EdgeInsets.fromLTRB(
-                                        SizeConfig.widthMultiplier * 3,
-                                        0,
-                                        SizeConfig.widthMultiplier * 7,
-                                        0),
-                                    child: GestureDetector(
-                                      child: selectMultibleChoiseQs,
-                                      onTap: () async{
-                                        Fluttertoast.showToast(
-                                            msg: "Loading ..",
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                            timeInSecForIosWeb: 1,
-                                            backgroundColor: Colors.green,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0
-                                        );
-                                        // Get Data
-                                        await getQuestion(widget.materialName,widget.BoxTitel );
-                                        MultibleChoise.materialName=widget.materialName;
-                                        MultibleChoise.unitName=widget.BoxTitel;
-                                        Navigator.pushNamed(context,MultibleChoise.id);
-
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              )
-                          );
-                          sizedBoxSie=SizeConfig.widthMultiplier * 5;
-                        });
-                      }
-                  ),],
+                  // MaterialName
+                  Text(
+                    widget.BoxTitel,
+                    style: AppTheme.MaterialName,
+                  ),
+                  // ProgressBar
+                  LinearPercentIndicator(
+                    width: 100.0,
+                    lineHeight: 8.0,
+                    percent: ((100-widget.Final_Score)/ 100),
+                    progressColor:   C_White,
+                    backgroundColor: Colors.red,
+                  ),
+                ],
               ),
+            ),
+            Expanded(child: Text(""),),
+            // Icons
+            Row(
+              mainAxisSize:  MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                SizedBox(width:sizedBoxSie,),
+                GestureDetector(
+                    child: widget.iconPlace,
+                    onTap:() {
+                      setState(() {
+                        widget.selectPlace=Text(""); // Hide Select Option
+                        widget.iconPlace =  Container(
+                            height: SizeConfig.heightMultiplier * 10,
+                            width: 200,
+                            decoration:AppTheme.MaterialUnitBoxContainer.copyWith(color: C_White),
+                            child:Row(
+                              children: [
+                                Padding(
+                                  padding:  EdgeInsets.fromLTRB(
+                                      SizeConfig.widthMultiplier * 3,
+                                      0,
+                                      SizeConfig.widthMultiplier * 8,
+                                      0),
+                                  child: GestureDetector(
+                                    child: SelectQsAndAns,
+                                    onTap: () async{
+                                      // StopClicking
+                                      // Show Toast
+                                      Fluttertoast.showToast(
+                                          msg: "Loading ..",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.green,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0
+                                      );
+                                      // Get Data
+                                      await getQuestion(widget.materialName,widget.BoxTitel );
+                                      Navigator.pushNamed(context,QuestionsAndAnswer.id);
+                                      // Go To QSAndAnsPage
 
-            ],
-          ),
+                                    },
+                                  ),
+                                ),
+                                Padding(
+                                  padding:  EdgeInsets.fromLTRB(
+                                      SizeConfig.widthMultiplier * 3,
+                                      0,
+                                      SizeConfig.widthMultiplier * 7,
+                                      0),
+                                  child: GestureDetector(
+                                    child: selectMultibleChoiseQs,
+                                    onTap: () async{
+                                      Fluttertoast.showToast(
+                                          msg: "Loading ..",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.green,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0
+                                      );
+                                      // Get Data
+                                      await getQuestion(widget.materialName,widget.BoxTitel );
+                                      MultibleChoise.materialName=widget.materialName;
+                                      MultibleChoise.unitName=widget.BoxTitel;
+                                      Navigator.pushNamed(context,MultibleChoise.id);
+
+                                    },
+                                  ),
+                                ),
+                              ],
+                            )
+                        );
+                        sizedBoxSie=SizeConfig.widthMultiplier * 5;
+                      });
+                    }
+                ),],
+            ),
+
+          ],
         ),
-        onHorizontalDragStart: (details) {
-          setState(() {
-            widget.selectPlace=Text("");// Hide Select Option
-            widget.iconPlace =  Container(
-                height: SizeConfig.heightMultiplier * 10,
-                width: 200,
-                decoration:AppTheme.MaterialUnitBoxContainer.copyWith(color: C_White),
-                child:Row(
-                  children: [
-                    Padding(
-                      padding:  EdgeInsets.fromLTRB(
-                          SizeConfig.widthMultiplier * 3,
-                          0,
-                          SizeConfig.widthMultiplier * 8,
-                          0),
-                      child: GestureDetector(
-                        child: SelectQsAndAns,
-                        onTap: () async{
-                          // StopClicking
-                          // Show Toast
-                          Fluttertoast.showToast(
-                              msg: "Loading ..",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.green,
-                              textColor: Colors.white,
-                              fontSize: 16.0
-                          );
-                          // Get Data
-                          await getQuestion(widget.materialName,widget.BoxTitel );
-                          Navigator.pushNamed(context,QuestionsAndAnswer.id);
-                          // Go To QSAndAnsPage
-
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding:  EdgeInsets.fromLTRB(
-                          SizeConfig.widthMultiplier * 3,
-                          0,
-                          SizeConfig.widthMultiplier * 7,
-                          0),
-                      child: GestureDetector(
-                        child: selectMultibleChoiseQs,
-                        onTap: () async{
-                          Fluttertoast.showToast(
-                              msg: "Loading ..",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.green,
-                              textColor: Colors.white,
-                              fontSize: 16.0
-                          );
-                          // Get Data
-                          await getQuestion(widget.materialName,widget.BoxTitel );
-                          MultibleChoise.materialName=widget.materialName;
-                          MultibleChoise.unitName=widget.BoxTitel;
-                          MultibleChoise.unitIndex =widget.unitColor ;
-                          Navigator.pushNamed(context,MultibleChoise.id);
-
-                        },
-                      ),
-                    ),
-                  ],
-                )
-            );
-            sizedBoxSie=SizeConfig.widthMultiplier * 5;
-          });
-        },
-        onTap: (){
-          setState(() {
-            widget.selectPlace=Text("");// Hide Select Option
-            widget.iconPlace =  Container(
-                height: SizeConfig.heightMultiplier * 10,
-                width: 200,
-                decoration:AppTheme.MaterialUnitBoxContainer.copyWith(color: C_White),
-                child:Row(
-                  children: [
-                    Padding(
-                      padding:  EdgeInsets.fromLTRB(
-                          SizeConfig.widthMultiplier * 3,
-                          0,
-                          SizeConfig.widthMultiplier * 8,
-                          0),
-                      child: GestureDetector(
-                        child: SelectQsAndAns,
-                        onTap: () async{
-                          // StopClicking
-                          // Show Toast
-                          Fluttertoast.showToast(
-                              msg: "Loading ..",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.green,
-                              textColor: Colors.white,
-                              fontSize: 16.0
-                          );
-                          // Get Data
-                          await getQuestion(widget.materialName,widget.BoxTitel );
-                          Navigator.pushNamed(context,QuestionsAndAnswer.id);
-                          // Go To QSAndAnsPage
-
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding:  EdgeInsets.fromLTRB(
-                          SizeConfig.widthMultiplier * 3,
-                          0,
-                          SizeConfig.widthMultiplier * 7,
-                          0),
-                      child: GestureDetector(
-                        child: selectMultibleChoiseQs,
-                        onTap: () async{
-                          Fluttertoast.showToast(
-                              msg: "Loading ..",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.green,
-                              textColor: Colors.white,
-                              fontSize: 16.0
-                          );
-                          // Get Data
-                          await getQuestion(widget.materialName,widget.BoxTitel );
-                          MultibleChoise.materialName=widget.materialName;
-                          MultibleChoise.unitName=widget.BoxTitel;
-                          Navigator.pushNamed(context,MultibleChoise.id);
-
-                        },
-                      ),
-                    ),
-                  ],
-                )
-            );
-            sizedBoxSie=SizeConfig.widthMultiplier * 5;});
-        },
-
-        onLongPress: (){
-         setState(() {
-           widget.iconPlace = Padding(
-               padding: EdgeInsets.fromLTRB(SizeConfig.widthMultiplier * 7, 0,0,0),
-               child: FaIcon(
-                 FontAwesomeIcons.arrowCircleLeft,
-                 size: SizeConfig.textMultiplier *5 ,
-                 color:C_White,
-               )
-           ); //Remove Icon
-           widget.selectPlace = Container(
-             height: SizeConfig.heightMultiplier * 10,
-             width: SizeConfig.widthMultiplier*10,
-             decoration:AppTheme.materialUnitCheckBox.copyWith(color: C_White),
-                child:Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    RoundCheckBox(
-                      borderColor: PrimaryColor,
-                      size: SizeConfig.textMultiplier*3.5,
-                      onTap: (selected) {
-                        if(selected){
-                          setState(() {
-                            addToUnitsTestArray(widget.BoxTitel);
-                          });
-                        }else{
-                          removeFromUnitTestArray(widget.BoxTitel);
-                        }
-
-                      },),
-                  ],
-                ),
-
-           );
-         });
-        },
       ),
     );
   }

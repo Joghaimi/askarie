@@ -61,7 +61,11 @@ class MaterialController{
   }
   static void openUnitPage({@required parent ,@required context , @required String materialName}){
     parent.setState(() {parent.iconPlace= ColoredCircularProgressIndicator();});
-    UnitScreenController.initScreenController(materialName);
+    UnitScreenController.initScreenController(parent: parent, context:context,materialName:materialName);
+    parent.setState(() {parent.iconPlace= FaIcon(
+      FontAwesomeIcons.arrowCircleLeft,
+      size: SizeConfig.textMultiplier*5 ,
+      color:Constant.C_White,);});
   }
   static void saveMaterial(parent ,context , String materialName) async{
     parent.setState(() {parent.iconPlace= ColoredCircularProgressIndicator();});
@@ -86,7 +90,7 @@ class MaterialController{
             color:Constant.C_White,
           );});
             Debug.printSt("Material Saved");
-            saveLink(uniName: uniName, materialName: materialName);
+            await saveLink(uniName: uniName, materialName: materialName);
             openUnitPage(parent: parent, context: context, materialName: materialName);
           }else{
             Debug.printSt("Material Not Saved IN DB");

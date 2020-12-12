@@ -43,10 +43,6 @@ dependencies:
   introduction_screen: ^1.0.9
 
 
-
-
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

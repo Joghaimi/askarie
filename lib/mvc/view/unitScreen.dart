@@ -1,9 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import '../model/apptheme.dart';
+import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:flutter/material.dart';
 import '../model/sizeConfig.dart';
-import '../model/apptheme.dart';
 import '../model/constant.dart';
+import '../controller/unitScreenController.dart';
+
 class UnitScreen extends StatefulWidget {
+  static final id="UnitScreen";
   @override
   _UnitScreenState createState() => _UnitScreenState();
 }
@@ -18,7 +22,64 @@ class _UnitScreenState extends State<UnitScreen> {
               color: Constant.C_Gray,
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 10* SizeConfig.heightMultiplier,),
+                  SizedBox(height: 3* SizeConfig.heightMultiplier,),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        2 * SizeConfig.widthMultiplier,
+                        5 * SizeConfig.heightMultiplier,
+                        2 * SizeConfig.widthMultiplier,
+                        2 * SizeConfig.heightMultiplier),
+                    child: FlutterToggleTab(
+                      borderRadius: 20,
+                      height: 7 * SizeConfig.heightMultiplier,
+                      width: 20 * SizeConfig.widthMultiplier,
+                      initialIndex: 0,
+                      selectedBackgroundColors: [Constant.PrimaryColor],
+                      selectedTextStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 2.3 * SizeConfig.textMultiplier,
+                          fontWeight: FontWeight.w700),
+                      unSelectedTextStyle: TextStyle(
+                          color: Colors.black87,
+                          fontSize: 2 * SizeConfig.textMultiplier,
+                          fontWeight: FontWeight.w500),
+                      labels: [Constant.ourMl5s, Constant.otherRelatedFile],
+                      selectedLabelIndex: (index) {
+                        setState(() {
+                          index == 0
+                              ? UnitScreenController.showUnits = true
+                              : UnitScreenController.showUnits = false;
+                        });
+                      },
+                    ),
+                  ),
+                  Container(
+                    height: 65*SizeConfig.heightMultiplier,
+                      child: UnitScreenController.returnUnitContentPageList(parent: this),
+                  ),
+//                  Flexible(
+//                    child: Stack(
+//                      children: <Widget>[
+//                        ListView.builder(
+//                            itemCount: 1,//Units.unitNumber,
+//                            itemBuilder: (BuildContext ctxt, int index) {
+//                              return Column(
+//                                children: <Widget>[
+//                                  index == 0
+//                                      ? SizedBox(
+//                                    height:
+//                                    1* SizeConfig.heightMultiplier,
+//                                  )
+//                                      : SizedBox(
+//                                    height:
+//                                    0.4 * SizeConfig.heightMultiplier,
+//                                  ),
+//                                ],
+//                              );
+//                            }),
+//                      ],
+//                    ),
+//                  ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
@@ -31,10 +92,6 @@ class _UnitScreenState extends State<UnitScreen> {
                             alignment: Alignment.bottomRight,
                             child: Container(
                               width: 40* SizeConfig.widthMultiplier,
-                              child: AutoSizeText(
-                                Units.materialName,
-                                style: AppTheme.AllMaterialName,
-                              ),
                             ),
                           )
 
@@ -46,46 +103,9 @@ class _UnitScreenState extends State<UnitScreen> {
                     ],
 
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding:EdgeInsets.fromLTRB(0, 0, 7* SizeConfig.widthMultiplier, 0),
-                        child: Text(
-                          "جميع الوحد ",
-                          style: AppTheme.MaterialName.copyWith(color: Constant.PrimaryColor),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Flexible(
-                    child: Stack(
-                      children: <Widget>[
-                        ListView.builder(
-                            itemCount: Units.unitNumber,
-                            itemBuilder: (BuildContext ctxt, int index) {
-                              return Column(
-                                children: <Widget>[
-                                  index == 0
-                                      ? SizedBox(
-                                    height:
-                                    1* SizeConfig.heightMultiplier,
-                                  )
-                                      : SizedBox(
-                                    height:
-                                    0.4 * SizeConfig.heightMultiplier,
-                                  ),
-                                  UnitBoxs(Units.UnitName[index],Units.unitScore[index],"${UnitsArray[index].length} سؤال ",Units.materialName,index),
-                                ],
-                              );
-                            }),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
-//          bottomNavigationBar: MyBottomAppBar(Units.testButtonColor),
         ),
       ),
     );
