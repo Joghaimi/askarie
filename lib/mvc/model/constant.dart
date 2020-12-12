@@ -84,6 +84,7 @@ class Constant {
   ];
   static const ourMl5s="ملخصنا";
   static const  otherRelatedFile="روابط اخرى";
+  static const  makeExam="انشئء امتحان";
   static const C_Red = Color(0xFFDF2935);
   static const MaterialColorArray = [
     Color(0xFF0D113E),
